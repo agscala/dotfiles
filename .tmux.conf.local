@@ -1,3 +1,7 @@
+set -g default-shell /usr/local/bin/fish
+
+# underscore colours - needs tmux-3.0
+
 # : << EOF
 # https://github.com/gpakosz/.tmux
 # (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license,
