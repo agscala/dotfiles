@@ -19,6 +19,7 @@ require("packer").startup(
         -- color related stuff
         use "siduck76/nvim-base16.lua"
         use "norcalli/nvim-colorizer.lua"
+        use 'folke/tokyonight.nvim'
 
         -- lsp stuff
         use "nvim-treesitter/nvim-treesitter"
@@ -28,19 +29,20 @@ require("packer").startup(
         use "sbdchd/neoformat"
         use "nvim-lua/plenary.nvim"
 
-        use "mhinz/vim-signify"
+        use "airblade/vim-gitgutter"
         use "akinsho/nvim-bufferline.lua"
         use "glepnir/galaxyline.nvim"
         use "windwp/nvim-autopairs"
         use "alvan/vim-closetag"
 
         -- file managing , picker etc
-        use "kyazdani42/nvim-tree.lua"
+        -- use "kyazdani42/nvim-tree.lua"
         use "kyazdani42/nvim-web-devicons"
         use "ryanoasis/vim-devicons"
         use "nvim-telescope/telescope.nvim"
         use "nvim-telescope/telescope-media-files.nvim"
         use "nvim-lua/popup.nvim"
+        use "preservim/nerdtree"
 
         -- misc
         use "tweekmonster/startuptime.vim"
@@ -81,6 +83,7 @@ g.auto_save = 0
 
 -- colorscheme related stuff
 cmd "syntax on"
+cmd "colorscheme tokyonight"
 
 local base16 = require "base16"
 base16(base16.themes["onedark"], true)
@@ -106,6 +109,8 @@ require "mappings"
 require "telescope-nvim"
 require "nvimTree"
 
+require "whichkey"
+
 -- git signs , lsp symbols etc
 require("nvim-autopairs").setup()
 require("lspkind").init()
@@ -115,5 +120,3 @@ vim.api.nvim_exec([[
    au BufEnter term://* setlocal nonumber
 ]], false)
 
--- setup for TrueZen.nvim
-require "zenmode"

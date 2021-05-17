@@ -75,17 +75,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/TrueZen.nvim"
   },
-  ["friendly-snippets"] = {
-    loaded = true,
-    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/friendly-snippets"
-  },
   ["galaxyline.nvim"] = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
-  },
-  ["gitsigns.nvim"] = {
-    loaded = true,
-    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
@@ -106,6 +98,10 @@ _G.packer_plugins = {
   ["nvim-base16.lua"] = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/nvim-base16.lua"
+  },
+  ["nvim-bufferline.lua"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
@@ -167,9 +163,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-devicons"
   },
-  ["vim-vsnip"] = {
+  ["vim-gitgutter"] = {
     loaded = true,
-    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-vsnip"
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-gitgutter"
   },
   ["which-key.nvim"] = {
     loaded = true,
