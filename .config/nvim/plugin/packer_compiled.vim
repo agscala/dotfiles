@@ -46,7 +46,7 @@ local function save_profiles(threshold)
   _G._packer.profile_output = results
 end
 
-time("Luarocks path setup", true)
+time([[Luarocks path setup]], true)
 local package_path_str = "/Users/andrew/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/andrew/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/andrew/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/andrew/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
 local install_cpath_pattern = "/Users/andrew/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
@@ -57,27 +57,32 @@ if not string.find(package.cpath, install_cpath_pattern, 1, true) then
   package.cpath = package.cpath .. ';' .. install_cpath_pattern
 end
 
-time("Luarocks path setup", false)
-time("try_loadstring definition", true)
+time([[Luarocks path setup]], false)
+time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
   local success, result = pcall(loadstring(s))
   if not success then
-    print('Error running ' .. component .. ' for ' .. name)
-    error(result)
+    vim.schedule(function()
+      vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
+    end)
   end
   return result
 end
 
-time("try_loadstring definition", false)
-time("Defining packer_plugins", true)
+time([[try_loadstring definition]], false)
+time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["TrueZen.nvim"] = {
+  ["codi.vim"] = {
     loaded = true,
-    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/TrueZen.nvim"
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/codi.vim"
   },
   ["galaxyline.nvim"] = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
+  },
+  ["git-messenger.vim"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/git-messenger.vim"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
@@ -87,9 +92,29 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
   },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
+  matchit = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/matchit"
+  },
   neoformat = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/neoformat"
+  },
+  nerdcommenter = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/nerdcommenter"
+  },
+  nerdtree = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/nerdtree"
+  },
+  ["nord.nvim"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/nord.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -98,6 +123,10 @@ _G.packer_plugins = {
   ["nvim-base16.lua"] = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/nvim-base16.lua"
+  },
+  ["nvim-bqf"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/nvim-bqf"
   },
   ["nvim-bufferline.lua"] = {
     loaded = true,
@@ -139,9 +168,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
+  rainbow = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/rainbow"
+  },
   ["startuptime.vim"] = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/startuptime.vim"
+  },
+  ["targets.vim"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/targets.vim"
   },
   ["telescope-media-files.nvim"] = {
     loaded = true,
@@ -151,21 +188,77 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
+  },
+  ["vim-addon-local-vimrc"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-addon-local-vimrc"
+  },
   ["vim-auto-save"] = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-auto-save"
   },
-  ["vim-closetag"] = {
+  ["vim-bracketed-paste"] = {
     loaded = true,
-    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-closetag"
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-bracketed-paste"
   },
   ["vim-devicons"] = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-devicons"
   },
+  ["vim-easy-align"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-easy-align"
+  },
+  ["vim-easymotion"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-easymotion"
+  },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-fugitive"
+  },
+  ["vim-git"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-git"
+  },
   ["vim-gitgutter"] = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-gitgutter"
+  },
+  ["vim-lastplace"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-lastplace"
+  },
+  ["vim-polyglot"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-polyglot"
+  },
+  ["vim-repeat"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-repeat"
+  },
+  ["vim-startify"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-startify"
+  },
+  ["vim-surround"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-surround"
+  },
+  ["vim-trailing-whitespace"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-trailing-whitespace"
+  },
+  ["vim-vsnip"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-vsnip"
+  },
+  ["vim-vsnip-integ"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ"
   },
   ["which-key.nvim"] = {
     loaded = true,
@@ -173,7 +266,7 @@ _G.packer_plugins = {
   }
 }
 
-time("Defining packer_plugins", false)
+time([[Defining packer_plugins]], false)
 if should_profile then save_profiles() end
 
 END

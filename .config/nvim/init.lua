@@ -44,6 +44,7 @@ require("packer").startup(
         use "ryanoasis/vim-devicons"
         use "nvim-telescope/telescope.nvim"
         use "nvim-telescope/telescope-media-files.nvim"
+        use "nvim-telescope/telescope-symbols.nvim"
         use "nvim-lua/popup.nvim"
         use "preservim/nerdtree"
         use "kevinhwang91/nvim-bqf"
@@ -98,6 +99,7 @@ require "statusline"
 require("colorizer").setup()
 
 -- lsp stuff
+
 require "nvim-lspconfig"
 require "compe-completion"
 
@@ -209,7 +211,7 @@ vim.api.nvim_exec([[
     "let g:easy_align_ignore_groups = ['Comment', 'String']
 
     " Show Git Diff in window split when committing
-    autocmd FileType gitcommit silent DiffGitCached | wincmd p | :resize 15
+    autocmd FileType gitcommit silent DiffGitCached | wincmd p | resize 15
 
     noremap <C-k> <C-w><Up>
     noremap <C-j> <C-w><Down>
