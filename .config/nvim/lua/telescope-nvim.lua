@@ -85,6 +85,6 @@ vim.api.nvim_set_keymap("n", "<Leader>fb", [[<Cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap("n", "<Leader>fh", [[<Cmd>lua require('telescope.builtin').help_tags()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fo", [[<Cmd>lua require('telescope.builtin').oldfiles()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<Leader>fm", [[<Cmd> Neoformat<CR>]], opt)
-vim.api.nvim_set_keymap("n", "<Leader>ie", [[<Cmd>lua require'telescope.builtin'.symbols()<CR>]], opt)
+vim.api.nvim_set_keymap("i", "<C-e>", [[<Cmd>lua require'telescope.builtin'.symbols() <CR>]], opt)
 
 
