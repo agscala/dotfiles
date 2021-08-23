@@ -38,6 +38,8 @@ require("packer").startup(
         use "akinsho/nvim-bufferline.lua"
         use "glepnir/galaxyline.nvim" -- customizable line at the bottom
 
+        use 'LionC/nest.nvim' -- keybinding management
+
         -- file managing , picker etc
         use "kyazdani42/nvim-tree.lua"
         use "kyazdani42/nvim-web-devicons"
@@ -64,7 +66,7 @@ require("packer").startup(
         -- discord rich presence
         --use "andweeb/presence.nvim"
 
-        use {"lukas-reineke/indent-blankline.nvim", branch = "lua"}
+        use "lukas-reineke/indent-blankline.nvim"
 
         -- old vim config
         use 'bronson/vim-trailing-whitespace'
@@ -116,9 +118,6 @@ g.auto_save = 0
 vim.g.tokyonight_style = "night"
 cmd "colorscheme tokyonight"
 -- cmd "colorscheme nord"
-
-local base16 = require "base16"
-base16(base16.themes["onedark"], true)
 
 require "custom_highlights"
 
@@ -174,6 +173,50 @@ vim.api.nvim_exec([[
 vim.api.nvim_exec([[
     let g:git_messenger_floating_win_opts = { "border": "single" }
 ]], false)
+
+-- KEYBINDINGS --
+local nest = require('nest')
+nest.applyKeymaps {
+    -- { '<leader>',
+        -- { 'w',
+            -- { 'a', "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>" },
+            -- { 'r', "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>" },
+            -- { 'l', "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>" },
+        -- },
+    -- },
+
+    -- LSP stuff
+    { '<leader>D', "<cmd>lua vim.lsp.buf.type_definition()<CR>" },
+    { 'rn', "<cmd>lua vim.lsp.buf.rename()<CR>" },
+    { 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>" },
+    { 'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>" },
+    { 'gi', "<Cmd>lua vim.lsp.buf.implementation()<CR>" },
+    { 'gr', "<Cmd>lua vim.lsp.buf.references()<CR>" },
+    { 'K', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>" },
+    { '<C-k>', "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
+    { '[d', "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>" },
+    { ']d', "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>" },
+    { '<Leader>e', "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
+    { '<Leader>q', "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>" },
+    { '<Leader>fm', "<Cmd>Neoformat<CR>" },
+
+    -- telescope pickers
+    { '<leader>', {
+        { 'f', {
+            { 't', ":NvimTreeToggle<CR>", { noremap = true, silent = true }},
+            { 'f', "<Cmd>lua require('telescope.builtin').find_files()<CR>" },
+            { 's', "<Cmd>lua require('telescope.builtin').live_grep()<CR>" },
+            { 'b', "<Cmd>lua require('telescope.builtin').buffers()<CR>" },
+            { 'h', "<Cmd>lua require('telescope.builtin').help_tags()<CR>" },
+            { 'o', "<Cmd>lua require('telescope.builtin').oldfiles()<CR>" },
+            { 'e', "<Cmd>lua require('telescope.builtin').symbols() <CR>" },
+        }},
+    }},
+    { mode = 'i', {
+        { '<C-e>', "<Cmd>lua require'telescope.builtin'.symbols() <CR>" },
+    }},
+}
+
 
 ----------------------
 -- Old Vim Config Stuff

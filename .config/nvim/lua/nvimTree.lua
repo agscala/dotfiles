@@ -41,7 +41,7 @@ g.nvim_tree_icons = {
 
 -- Mappings for nvimtree
 
-vim.api.nvim_set_keymap("n", "<Leader>ft", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<Leader>ft", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 -- default mappings
