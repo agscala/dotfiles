@@ -15,3 +15,4 @@ set -x CPPFLAGS "-I/usr/local/opt/zlib/include"
 
 
 thefuck --alias | source
+fish_add_path /usr/local/opt/sphinx-doc/bin
