@@ -39,7 +39,11 @@ require("packer").startup(
         use "hrsh7th/vim-vsnip-integ"
 
         use "akinsho/nvim-bufferline.lua"
-        use "glepnir/galaxyline.nvim" -- customizable line at the bottom
+        use {
+          'nvim-lualine/lualine.nvim',
+          requires = {'kyazdani42/nvim-web-devicons', opt = true}
+        }
+        -- use "glepnir/galaxyline.nvim" -- customizable line at the bottom
 
         use 'LionC/nest.nvim' -- keybinding management
 
@@ -102,9 +106,11 @@ require "file-icons"
 
 require "misc-utils"
 require "top-bufferline"
-require "statusline"
+-- require "statusline"
+--require "lualine-config"
 
 require("colorizer").setup()
+
 
 -- lsp stuff
 
@@ -124,7 +130,7 @@ local catppuccino = require("catppuccino")
 
 catppuccino.setup(
     {
-        colorscheme = "catppuccino",
+        colorscheme = "dark_catppuccino",
         transparency = false,
         styles = {
             comments = "italic",
@@ -149,9 +155,15 @@ catppuccino.setup(
             gitgutter = false,
             gitsigns = false,
             telescope = false,
-            nvimtree = true,
+            nvimtree = {
+                enabled = false,
+                show_root = false,
+            },
             which_key = true,
-            indent_blankline = true,
+            indent_blankline = {
+                enabled = true,
+                colored_indent_levels = false,
+            },
             dashboard = false,
             neogit = false,
             vim_sneak = false,
@@ -200,7 +212,7 @@ g.indent_blankline_show_trailing_blankline_indent = true
 g.indent_blankline_show_first_indent_level = true
 
 require "treesitter-nvim"
-require "mappings"
+--require "mappings"
 
 require "telescope-nvim"
 require "nvimTree"
