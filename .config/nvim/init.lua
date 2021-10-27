@@ -21,11 +21,14 @@ require("packer").startup(
         use "siduck76/nvim-base16.lua"
         use "norcalli/nvim-colorizer.lua"
         use 'folke/tokyonight.nvim'
+
         use 'shaunsingh/nord.nvim'
+        use "Pocco81/Catppuccino.nvim"
 
         -- lsp stuff
         use "windwp/nvim-autopairs"
         use "nvim-treesitter/nvim-treesitter"
+
         use "neovim/nvim-lspconfig"
         use "hrsh7th/nvim-compe"
         use "onsails/lspkind-nvim" -- lsp completion icons
@@ -45,7 +48,7 @@ require("packer").startup(
         use "kyazdani42/nvim-web-devicons"
         use "ryanoasis/vim-devicons"
         use "nvim-telescope/telescope.nvim"
-        use "nvim-telescope/telescope-media-files.nvim"
+        use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
         use "nvim-telescope/telescope-symbols.nvim"
         use "nvim-lua/popup.nvim"
         use "preservim/nerdtree"
@@ -115,8 +118,52 @@ g.mapleader = ","
 g.auto_save = 0
 
 -- colorscheme related stuff cmd "syntax on"
-vim.g.tokyonight_style = "night"
-cmd "colorscheme tokyonight"
+-- vim.g.tokyonight_style = "night"
+-- cmd "colorscheme tokyonight"
+local catppuccino = require("catppuccino")
+
+catppuccino.setup(
+    {
+        colorscheme = "catppuccino",
+        transparency = false,
+        styles = {
+            comments = "italic",
+            functions = "italic",
+            keywords = "italic",
+            strings = "NONE",
+            variables = "NONE",
+        },
+        integrations = {
+            treesitter = true,
+            native_lsp = {
+                enabled = true,
+                styles = {
+                    errors = "italic",
+                    hints = "italic",
+                    warnings = "italic",
+                    information = "italic"
+                }
+            },
+            lsp_trouble = false,
+            lsp_saga = false,
+            gitgutter = false,
+            gitsigns = false,
+            telescope = false,
+            nvimtree = true,
+            which_key = true,
+            indent_blankline = true,
+            dashboard = false,
+            neogit = false,
+            vim_sneak = false,
+            fern = false,
+            barbar = false,
+            bufferline = false,
+            markdown = false,
+        }
+    }
+)
+catppuccino.load()
+
 -- cmd "colorscheme nord"
 
 require "custom_highlights"
@@ -172,6 +219,7 @@ vim.api.nvim_exec([[
 -- git-messenger
 vim.api.nvim_exec([[
     let g:git_messenger_floating_win_opts = { "border": "single" }
+    nmap gc <Plug>(git-messenger)
 ]], false)
 
 -- KEYBINDINGS --
@@ -190,6 +238,7 @@ nest.applyKeymaps {
     { 'rn', "<cmd>lua vim.lsp.buf.rename()<CR>" },
     { 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>" },
     { 'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>" },
+    { 'ga', "<Cmd>lua vim.lsp.buf.code_action()<CR>" },
     { 'gi', "<Cmd>lua vim.lsp.buf.implementation()<CR>" },
     { 'gr', "<Cmd>lua vim.lsp.buf.references()<CR>" },
     { 'K', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>" },
@@ -270,7 +319,7 @@ vim.api.nvim_exec([[
     xmap ga <Plug>(EasyAlign)
 
     " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-    nmap ga <Plug>(EasyAlign)
+    " nmap ga <Plug>(EasyAlign)
     let g:easy_align_ignore_groups = []
     "let g:easy_align_ignore_groups = ['Comment', 'String']
 
