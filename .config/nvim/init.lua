@@ -26,7 +26,7 @@ require("packer").startup(
         use "Pocco81/Catppuccino.nvim"
 
         -- lsp stuff
-        use "windwp/nvim-autopairs"
+        -- use "windwp/nvim-autopairs"
         use "nvim-treesitter/nvim-treesitter"
 
         use "neovim/nvim-lspconfig"
@@ -220,7 +220,7 @@ require "nvimTree"
 require "whichkey"
 
 -- git signs , lsp symbols etc
-require("nvim-autopairs").setup()
+-- require("nvim-autopairs").setup()
 require("lspkind").init()
 
 -- hide line numbers in terminal windows
