@@ -26,11 +26,10 @@ require("packer").startup(
         use "Pocco81/Catppuccino.nvim"
 
         -- lsp stuff
-        -- use "windwp/nvim-autopairs"
+        use "windwp/nvim-autopairs"
         use "nvim-treesitter/nvim-treesitter"
 
         use "neovim/nvim-lspconfig"
-        use "hrsh7th/nvim-compe"
         use "onsails/lspkind-nvim" -- lsp completion icons
         use "sbdchd/neoformat" -- reformat utility (,fm)
         use "nvim-lua/plenary.nvim" -- useful lua functions
@@ -115,7 +114,6 @@ require("colorizer").setup()
 -- lsp stuff
 
 require "nvim-lspconfig"
-require "compe-completion"
 
 local cmd = vim.cmd
 local g = vim.g
