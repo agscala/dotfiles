@@ -26,10 +26,17 @@ require("packer").startup(
         use "Pocco81/Catppuccino.nvim"
 
         -- lsp stuff
+        use 'neovim/nvim-lspconfig'
+        use 'hrsh7th/cmp-nvim-lsp'
+        use 'hrsh7th/cmp-buffer'
+        use 'hrsh7th/cmp-path'
+        use 'hrsh7th/cmp-cmdline'
+        use 'hrsh7th/cmp-vsnip'
+        use 'hrsh7th/nvim-cmp'
+
         use "windwp/nvim-autopairs"
         use "nvim-treesitter/nvim-treesitter"
 
-        use "neovim/nvim-lspconfig"
         use "onsails/lspkind-nvim" -- lsp completion icons
         use "sbdchd/neoformat" -- reformat utility (,fm)
         use "nvim-lua/plenary.nvim" -- useful lua functions
@@ -47,7 +54,11 @@ require("packer").startup(
         use 'LionC/nest.nvim' -- keybinding management
 
         -- file managing , picker etc
-        use "kyazdani42/nvim-tree.lua"
+        use {
+          'kyazdani42/nvim-tree.lua',
+          requires = 'kyazdani42/nvim-web-devicons',
+          config = function() require'nvim-tree'.setup {} end
+        }
         use "kyazdani42/nvim-web-devicons"
         use "ryanoasis/vim-devicons"
         use "nvim-telescope/telescope.nvim"
@@ -107,6 +118,8 @@ require "misc-utils"
 require "top-bufferline"
 -- require "statusline"
 --require "lualine-config"
+
+require('config-cmp')
 
 require("colorizer").setup()
 

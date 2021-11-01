@@ -44,9 +44,11 @@ local servers = {"html", "cssls", "tsserver", "pyright", "bashls", "clangd", "cc
 -- local servers = {}
 
 for _, lang in ipairs(servers) do
+    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     lspconf[lang].setup {
         on_attach = on_attach,
-        root_dir = vim.loop.cwd
+        root_dir = vim.loop.cwd,
+        capabilities = capabilities
     }
 end
 

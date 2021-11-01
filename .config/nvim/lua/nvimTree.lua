@@ -45,7 +45,7 @@ g.nvim_tree_icons = {
 
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 -- default mappings
-vim.g.nvim_tree_bindings = {
+local keybindings = {
   { key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
   { key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
   { key = "<C-v>",                        cb = tree_cb("vsplit") },
@@ -77,4 +77,52 @@ vim.g.nvim_tree_bindings = {
   { key = "-",                            cb = tree_cb("dir_up") },
   { key = "q",                            cb = tree_cb("close") },
   { key = "g?",                           cb = tree_cb("toggle_help") },
+}
+
+require'nvim-tree'.setup {
+  disable_netrw       = true,
+  hijack_netrw        = true,
+  open_on_setup       = false,
+  ignore_ft_on_setup  = {},
+  auto_close          = false,
+  open_on_tab         = false,
+  hijack_cursor       = false,
+  update_cwd          = false,
+  update_to_buf_dir   = {
+    enable = true,
+    auto_open = true,
+  },
+  diagnostics = {
+    enable = false,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    }
+  },
+  update_focused_file = {
+    enable      = false,
+    update_cwd  = false,
+    ignore_list = {}
+  },
+  system_open = {
+    cmd  = nil,
+    args = {}
+  },
+  filters = {
+    dotfiles = false,
+    custom = {}
+  },
+  view = {
+    width = 30,
+    height = 30,
+    hide_root_folder = false,
+    side = 'left',
+    auto_resize = false,
+    mappings = {
+      custom_only = false,
+      list = keybindings,
+    }
+  }
 }
