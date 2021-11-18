@@ -84,6 +84,7 @@ require("packer").startup(
         -- discord rich presence
         --use "andweeb/presence.nvim"
 
+        use "rhysd/committia.vim" -- git commit preview
         use "lukas-reineke/indent-blankline.nvim"
 
         -- old vim config
@@ -121,6 +122,7 @@ require "top-bufferline"
 --require "lualine-config"
 
 require('config-cmp')
+require('config-committia')
 
 require("colorizer").setup()
 
@@ -357,9 +359,6 @@ vim.api.nvim_exec([[
     " nmap ga <Plug>(EasyAlign)
     let g:easy_align_ignore_groups = []
     "let g:easy_align_ignore_groups = ['Comment', 'String']
-
-    " Show Git Diff in window split when committing
-    autocmd FileType gitcommit silent DiffGitCached | wincmd p | resize 15
 
     noremap <C-k> <C-w><Up>
     noremap <C-j> <C-w><Down>
