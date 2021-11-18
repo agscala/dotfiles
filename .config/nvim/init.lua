@@ -23,7 +23,7 @@ require("packer").startup(
         use 'folke/tokyonight.nvim'
 
         use 'shaunsingh/nord.nvim'
-        use "Pocco81/Catppuccino.nvim"
+        use {"Pocco81/Catppuccino.nvim", branch="old-catppuccino"}
 
         -- lsp stuff
         use 'neovim/nvim-lspconfig'
@@ -148,7 +148,7 @@ catppuccino.setup(
         transparency = false,
         styles = {
             comments = "italic",
-            functions = "italic",
+            functions = "NONE",
             keywords = "italic",
             strings = "NONE",
             variables = "NONE",
@@ -192,7 +192,7 @@ catppuccino.load()
 
 -- cmd "colorscheme nord"
 
-require "custom_highlights"
+-- require "custom_highlights"
 
 -- hop
 vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
