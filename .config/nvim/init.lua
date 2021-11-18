@@ -250,6 +250,7 @@ vim.api.nvim_exec([[
 vim.api.nvim_exec([[
     let g:git_messenger_floating_win_opts = { "border": "single" }
     nmap gc <Plug>(git-messenger)
+    let g:git_messenger_no_default_mappings = v:true
 ]], false)
 
 -- KEYBINDINGS --
@@ -279,9 +280,8 @@ nest.applyKeymaps {
     { '<Leader>q', "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>" },
     { '<Leader>fm', "<Cmd>Neoformat<CR>" },
 
-    -- telescope pickers
     { '<leader>', {
-        { 'f', {
+        { 'f', { -- telescope pickers
             { 't', ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true }},
             { 'f', "<Cmd>lua require('telescope.builtin').find_files()<CR>" },
             { 's', "<Cmd>lua require('telescope.builtin').live_grep()<CR>" },
@@ -289,6 +289,11 @@ nest.applyKeymaps {
             { 'h', "<Cmd>lua require('telescope.builtin').help_tags()<CR>" },
             { 'o', "<Cmd>lua require('telescope.builtin').oldfiles()<CR>" },
             { 'e', "<Cmd>lua require('telescope.builtin').symbols() <CR>" },
+        }},
+        { 'g', { -- git stuff
+            { 'm', "<Cmd>GitMessenger<CR>" },
+            { 'b', "<Cmd>Git blame<CR>" },
+            { 's', "<Cmd>Git<CR>" },
         }},
     }},
     { mode = 'i', {
