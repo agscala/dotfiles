@@ -282,7 +282,7 @@ nest.applyKeymaps {
     -- telescope pickers
     { '<leader>', {
         { 'f', {
-            { 't', ":NvimTreeToggle<CR>", { noremap = true, silent = true }},
+            { 't', ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true }},
             { 'f', "<Cmd>lua require('telescope.builtin').find_files()<CR>" },
             { 's', "<Cmd>lua require('telescope.builtin').live_grep()<CR>" },
             { 'b', "<Cmd>lua require('telescope.builtin').buffers()<CR>" },
