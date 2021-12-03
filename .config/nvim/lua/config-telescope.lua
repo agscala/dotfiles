@@ -24,7 +24,7 @@ require("telescope").setup {
         prompt_prefix = " ",
         selection_caret = " ",
         entry_prefix = "  ",
-        path_display = { "shorten" },
+        path_display = { "smart" },
         initial_mode = "insert",
         selection_strategy = "reset",
         sorting_strategy = "descending",
