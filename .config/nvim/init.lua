@@ -235,12 +235,12 @@ require "treesitter-nvim"
 --require "mappings"
 
 require "config-telescope"
+require "config-autopairs"
 require "nvimTree"
 
 require "whichkey"
 
 -- git signs , lsp symbols etc
--- require("nvim-autopairs").setup()
 require("lspkind").init()
 
 -- hide line numbers in terminal windows
