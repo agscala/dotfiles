@@ -34,6 +34,8 @@ require("packer").startup(
         use 'hrsh7th/cmp-vsnip'
         use 'hrsh7th/nvim-cmp'
 
+        use 'stevearc/dressing.nvim' -- unifies ui elements
+
         use "windwp/nvim-autopairs"
         use "nvim-treesitter/nvim-treesitter"
 
