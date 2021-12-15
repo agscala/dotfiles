@@ -245,6 +245,12 @@ require "whichkey"
 -- git signs , lsp symbols etc
 require("lspkind").init()
 
+-- persistent undo
+vim.api.nvim_exec([[
+    set undofile
+    set undodir=~/.config/nvim/undofiles
+]], false)
+
 -- hide line numbers in terminal windows
 vim.api.nvim_exec([[
    au BufEnter term://* setlocal nonumber
