@@ -35,6 +35,7 @@ require("packer").startup(
         use 'hrsh7th/nvim-cmp'
 
         use 'stevearc/dressing.nvim' -- unifies ui elements
+        use 'mbbill/undotree'
 
         use "windwp/nvim-autopairs"
         use "nvim-treesitter/nvim-treesitter"
@@ -293,6 +294,7 @@ nest.applyKeymaps {
     { '<leader>', {
         { 'f', { -- telescope pickers
             { 't', ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true }},
+            { 'u', ":UndotreeToggle<CR>" },
             { 'f', "<Cmd>lua require('telescope.builtin').find_files()<CR>" },
             { 's', "<Cmd>lua require('telescope.builtin').live_grep()<CR>" },
             { 'b', "<Cmd>lua require('telescope.builtin').buffers()<CR>" },
