@@ -23,7 +23,8 @@ require("packer").startup(
         use 'folke/tokyonight.nvim'
 
         use 'shaunsingh/nord.nvim'
-        use {"Pocco81/Catppuccino.nvim", branch="old-catppuccino"}
+        -- use {"Pocco81/Catppuccino.nvim", branch="old-catppuccino"}
+        use { "catppuccin/nvim", as = "catppuccin" }
 
         -- lsp stuff
         use 'neovim/nvim-lspconfig'
@@ -143,55 +144,10 @@ g.auto_save = 0
 -- colorscheme related stuff cmd "syntax on"
 -- vim.g.tokyonight_style = "night"
 -- cmd "colorscheme tokyonight"
-local catppuccino = require("catppuccino")
+local catppuccin = require("catppuccin")
+catppuccin.setup()
+cmd "colorscheme catppuccin"
 
-catppuccino.setup(
-    {
-        colorscheme = "dark_catppuccino",
-        transparency = false,
-        styles = {
-            comments = "italic",
-            functions = "NONE",
-            keywords = "italic",
-            strings = "NONE",
-            variables = "NONE",
-        },
-        integrations = {
-            treesitter = true,
-            native_lsp = {
-                enabled = true,
-                styles = {
-                    errors = "italic",
-                    hints = "italic",
-                    warnings = "italic",
-                    information = "italic"
-                }
-            },
-            lsp_trouble = false,
-            lsp_saga = false,
-            gitgutter = false,
-            gitsigns = false,
-            telescope = false,
-            nvimtree = {
-                enabled = false,
-                show_root = false,
-            },
-            which_key = true,
-            indent_blankline = {
-                enabled = true,
-                colored_indent_levels = false,
-            },
-            dashboard = false,
-            neogit = false,
-            vim_sneak = false,
-            fern = false,
-            barbar = false,
-            bufferline = false,
-            markdown = false,
-        }
-    }
-)
-catppuccino.load()
 
 -- cmd "colorscheme nord"
 
