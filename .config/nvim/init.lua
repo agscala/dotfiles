@@ -44,16 +44,29 @@ require("packer").startup(
         use "onsails/lspkind-nvim" -- lsp completion icons
         use "sbdchd/neoformat" -- reformat utility (,fm)
         use "nvim-lua/plenary.nvim" -- useful lua functions
-        use "glepnir/lspsaga.nvim" -- improved lsp functionality
         use "hrsh7th/vim-vsnip"
         use "hrsh7th/vim-vsnip-integ"
 
-        use "akinsho/nvim-bufferline.lua"
+        use 'j-hui/fidget.nvim' -- LSP status indicator in bottom right
+
+        -- use "akinsho/nvim-bufferline.lua"
         use {
           'nvim-lualine/lualine.nvim',
           requires = {'kyazdani42/nvim-web-devicons', opt = true}
         }
+        use 'feline-nvim/feline.nvim'
         -- use "glepnir/galaxyline.nvim" -- customizable line at the bottom
+        use 'windwp/windline.nvim'
+        use {
+          'lewis6991/gitsigns.nvim',
+          requires = {
+            'nvim-lua/plenary.nvim'
+          },
+          -- tag = 'release' -- To use the latest release
+        }
+        --
+        use { "SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter" }
+
 
         use 'LionC/nest.nvim' -- keybinding management
 
@@ -63,6 +76,7 @@ require("packer").startup(
           requires = 'kyazdani42/nvim-web-devicons',
           config = function() require'nvim-tree'.setup {} end
         }
+        use 'simrat39/symbols-outline.nvim'
         use "kyazdani42/nvim-web-devicons"
         use "ryanoasis/vim-devicons"
         use "nvim-telescope/telescope.nvim"
@@ -117,18 +131,29 @@ require("packer").startup(
     }
 )
 
+
+require('gitsigns').setup()
+
 -- load all plugins
 require "file-icons"
 
 require "misc-utils"
-require "top-bufferline"
+-- require "top-bufferline"
 -- require "statusline"
---require "lualine-config"
+-- require "lualine-config"
 
 require('config-cmp')
 require('config-committia')
+-- require('config-feline')
+--
+--
+require('config-windline')
 
 require("colorizer").setup()
+-- require('feline').setup({
+  -- components = require('catppuccin.core.integrations.feline'),
+-- })
+--
 
 
 -- lsp stuff
@@ -144,10 +169,8 @@ g.auto_save = 0
 -- colorscheme related stuff cmd "syntax on"
 -- vim.g.tokyonight_style = "night"
 -- cmd "colorscheme tokyonight"
-local catppuccin = require("catppuccin")
-catppuccin.setup()
-cmd "colorscheme catppuccin"
 
+require('config-catppuccin')
 
 -- cmd "colorscheme nord"
 
@@ -180,6 +203,9 @@ require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 -- blankline
 
 local indent = 4
+
+g.neoformat_try_node_exe = 1
+
 
 g.indentLine_enabled = 1
 g.indent_blankline_char = "▏"
@@ -239,7 +265,7 @@ nest.applyKeymaps {
     { 'ga', "<Cmd>lua vim.lsp.buf.code_action()<CR>" },
     { 'gi', "<Cmd>lua vim.lsp.buf.implementation()<CR>" },
     { 'gr', "<Cmd>lua vim.lsp.buf.references()<CR>" },
-    { 'K', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>" },
+    { 'K', "<cmd>lua vim.lsp.buf.hover()<CR>" },
     { '<C-k>', "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
     { '[d', "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>" },
     { ']d', "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>" },
@@ -248,6 +274,11 @@ nest.applyKeymaps {
     { '<Leader>fm', "<Cmd>Neoformat<CR>" },
 
     { '<leader>', {
+        { 't', { -- telescope pickers
+            { 's', ":SymbolsOutline<CR>", { noremap = true, silent = true }},
+            { 't', ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true }},
+            { 'u', ":UndotreeToggle<CR>" },
+        }},
         { 'f', { -- telescope pickers
             { 't', ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true }},
             { 'u', ":UndotreeToggle<CR>" },
