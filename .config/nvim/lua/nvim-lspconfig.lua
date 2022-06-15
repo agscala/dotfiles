@@ -1,4 +1,4 @@
-function on_attach(client)
+function on_attach(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -40,7 +40,7 @@ end
 local lspconf = require("lspconfig")
 
 -- these langs require same lspconfig so put em all in a table and loop through!
-local servers = {"html", "cssls", "tsserver", "pyright", "bashls", "clangd", "ccls"}
+local servers = {"html", "cssls", "tsserver", "pyright", "bashls", "clangd", "ccls", "prismals"}
 -- local servers = {}
 
 for _, lang in ipairs(servers) do

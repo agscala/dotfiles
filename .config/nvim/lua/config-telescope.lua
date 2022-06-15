@@ -6,10 +6,11 @@ require("telescope").setup {
             i = {
                 ["<C-k>"] = actions.move_selection_previous,
                 ["<C-j>"] = actions.move_selection_next,
-                ["<esc>"] = actions.close,
+                -- ["<esc>"] = actions.close,
             },
             n = {
                 ["<C-c>"] = actions.close,
+                ["<esc>"] = actions.close,
             },
         },
         vimgrep_arguments = {
@@ -25,7 +26,7 @@ require("telescope").setup {
         selection_caret = " ",
         entry_prefix = "  ",
         path_display = { "smart" },
-        initial_mode = "insert",
+        initial_mode = "normal",
         selection_strategy = "reset",
         sorting_strategy = "descending",
         layout_strategy = "horizontal",

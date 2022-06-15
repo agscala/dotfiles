@@ -206,7 +206,6 @@ local indent = 4
 
 g.neoformat_try_node_exe = 1
 
-
 g.indentLine_enabled = 1
 g.indent_blankline_char = "▏"
 
