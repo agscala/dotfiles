@@ -27,6 +27,7 @@ require("packer").startup(
         use { "catppuccin/nvim", as = "catppuccin" }
 
         -- lsp stuff
+        use 'nathom/filetype.nvim'
         use 'neovim/nvim-lspconfig'
         use 'hrsh7th/cmp-nvim-lsp'
         use 'hrsh7th/cmp-buffer'
@@ -131,6 +132,8 @@ require("packer").startup(
     }
 )
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 require('gitsigns').setup()
 

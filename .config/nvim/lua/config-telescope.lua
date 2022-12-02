@@ -6,6 +6,7 @@ require("telescope").setup {
             i = {
                 ["<C-k>"] = actions.move_selection_previous,
                 ["<C-j>"] = actions.move_selection_next,
+                ["<C-c>"] = actions.close,
                 -- ["<esc>"] = actions.close,
             },
             n = {
@@ -26,7 +27,7 @@ require("telescope").setup {
         selection_caret = " ",
         entry_prefix = "  ",
         path_display = { "smart" },
-        initial_mode = "normal",
+        initial_mode = "insert",
         selection_strategy = "reset",
         sorting_strategy = "descending",
         layout_strategy = "horizontal",

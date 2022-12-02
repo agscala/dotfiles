@@ -124,6 +124,11 @@ _G.packer_plugins = {
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/fidget.nvim",
     url = "https://github.com/j-hui/fidget.nvim"
   },
+  ["filetype.nvim"] = {
+    loaded = true,
+    path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/filetype.nvim",
+    url = "https://github.com/nathom/filetype.nvim"
+  },
   ["git-messenger.vim"] = {
     loaded = true,
     path = "/Users/andrew/.local/share/nvim/site/pack/packer/start/git-messenger.vim",
@@ -397,5 +402,6 @@ if should_profile then save_profiles() end
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end
