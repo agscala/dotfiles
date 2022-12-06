@@ -26,9 +26,16 @@ require("packer").startup(
         -- use {"Pocco81/Catppuccino.nvim", branch="old-catppuccino"}
         use { "catppuccin/nvim", as = "catppuccin" }
 
-        -- lsp stuff
+
         use 'nathom/filetype.nvim'
-        use 'neovim/nvim-lspconfig'
+        use 'pantharshit00/vim-prisma'
+        -- lsp stuff
+        --
+        use {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "neovim/nvim-lspconfig",
+        }
         use 'hrsh7th/cmp-nvim-lsp'
         use 'hrsh7th/cmp-buffer'
         use 'hrsh7th/cmp-path'
@@ -55,7 +62,7 @@ require("packer").startup(
           'nvim-lualine/lualine.nvim',
           requires = {'kyazdani42/nvim-web-devicons', opt = true}
         }
-        use 'feline-nvim/feline.nvim'
+        -- use 'feline-nvim/feline.nvim'
         -- use "glepnir/galaxyline.nvim" -- customizable line at the bottom
         use 'windwp/windline.nvim'
         use {
@@ -80,7 +87,10 @@ require("packer").startup(
         use 'simrat39/symbols-outline.nvim'
         use "kyazdani42/nvim-web-devicons"
         use "ryanoasis/vim-devicons"
-        use "nvim-telescope/telescope.nvim"
+        use {
+          'nvim-telescope/telescope.nvim', tag = '0.1.0',
+          requires = { {'nvim-lua/plenary.nvim'} }
+        }
         use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
         use "nvim-telescope/telescope-symbols.nvim"
         use "nvim-lua/popup.nvim"
@@ -95,9 +105,16 @@ require("packer").startup(
         use "tweekmonster/startuptime.vim"
         use "907th/vim-auto-save"
         use "folke/which-key.nvim"
-
-        -- use 'ggandor/lightspeed.nvim' -- quick movement
-        use {'phaazon/hop.nvim', branch = 'v1'}
+        use "tpope/vim-abolish"
+        use "ggandor/leap.nvim"
+        -- use 'ggandor/lightseeed.nvim' -- quick movement
+        -- use {'phaazon/hop.nvim', branch = 'v1'}
+        use({
+          "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+          config = function()
+            require("lsp_lines").setup()
+          end,
+        })
 
 
         -- discord rich presence
@@ -136,6 +153,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 require('gitsigns').setup()
+require("lsp_lines").setup()
 
 -- load all plugins
 require "file-icons"
@@ -160,7 +178,8 @@ require("colorizer").setup()
 
 
 -- lsp stuff
-
+require("mason").setup()
+require("mason-lspconfig").setup()
 require "nvim-lspconfig"
 
 local cmd = vim.cmd
@@ -179,10 +198,13 @@ require('config-catppuccin')
 
 -- require "custom_highlights"
 
+-- leap
+require('leap').add_default_mappings()
+
 -- hop
-vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+-- vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
+-- vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
+-- require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 
 
 -- lightspeed
@@ -207,7 +229,10 @@ require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 
 local indent = 4
 
-g.neoformat_try_node_exe = 1
+    g.neoformat_try_node_exe = 1
+g.neoformat_basic_format_align = 1
+g.neoformat_basic_format_retab = 1
+g.neoformat_basic_format_trim = 1
 
 g.indentLine_enabled = 1
 g.indent_blankline_char = "▏"
@@ -248,6 +273,17 @@ vim.api.nvim_exec([[
     let g:git_messenger_no_default_mappings = v:true
 ]], false)
 
+vim.diagnostic.config({
+    virtual_lines = false,
+    virtual_text = {
+        format = function(diagnostic)
+            return ""
+        end,
+    }
+    -- virtual_lines = { only_current_line = true },
+})
+
+
 -- KEYBINDINGS --
 local nest = require('nest')
 nest.applyKeymaps {
@@ -269,11 +305,13 @@ nest.applyKeymaps {
     { 'gr', "<Cmd>lua vim.lsp.buf.references()<CR>" },
     { 'K', "<cmd>lua vim.lsp.buf.hover()<CR>" },
     { '<C-k>', "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
-    { '[d', "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>" },
-    { ']d', "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>" },
-    { '<Leader>e', "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
+    { '[d', "<cmd>lua vim.diagnostic.goto_prev()<CR>" },
+    { ']d', "<cmd>lua vim.diagnostic.goto_next()<CR>" },
+    -- { '<Leader>e', "<cmd>lua vim.diagnostic.open_float()<CR>" },
+    { '<Leader>e', "<cmd>lua require('lsp_lines').toggle()<CR>" },
     { '<Leader>q', "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>" },
-    { '<Leader>fm', "<Cmd>Neoformat<CR>" },
+    -- { '<Leader>fm', "<Cmd>Neoformat<CR>" },
+    { '<Leader>fm', "<cmd>lua vim.lsp.buf.format()<CR>" },
 
     { '<leader>', {
         { 't', { -- telescope pickers
@@ -290,6 +328,7 @@ nest.applyKeymaps {
             { 'h', "<Cmd>lua require('telescope.builtin').help_tags()<CR>" },
             { 'o', "<Cmd>lua require('telescope.builtin').oldfiles()<CR>" },
             { 'e', "<Cmd>lua require('telescope.builtin').symbols() <CR>" },
+            { 'r', "<Cmd>lua require('telescope.builtin').resume() <CR>" },
         }},
         { 'g', { -- git stuff
             { 'm', "<Cmd>GitMessenger<CR>" },
