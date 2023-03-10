@@ -55,6 +55,19 @@ require("packer").startup(
         use "sbdchd/neoformat" -- reformat utility (,fm)
         use "nvim-lua/plenary.nvim" -- useful lua functions
 
+        use({
+            "glepnir/lspsaga.nvim",
+            branch = "main",
+            config = function()
+                require("lspsaga").setup({})
+            end,
+            requires = {
+                {"nvim-tree/nvim-web-devicons"},
+                --Please make sure you install markdown and markdown_inline parser
+                {"nvim-treesitter/nvim-treesitter"}
+            }
+        })
+
         use 'j-hui/fidget.nvim' -- LSP status indicator in bottom right
 
         -- use "akinsho/nvim-bufferline.lua"
@@ -201,9 +214,30 @@ require("colorizer").setup()
 
 
 -- lsp stuff
+vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
+vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
+vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
+vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
+
 require("mason").setup()
 require("mason-lspconfig").setup()
-require "nvim-lspconfig"
+-- require    "nvim-lspconfig"
+mason_lspconfig = require("mason-lspconfig")
+mason_lspconfig.setup({
+        ensure_installed = {
+            "sumneko_lua",
+            "tsserver",
+        }
+    })
+mason_lspconfig.setup_handlers({
+        function (server_name)
+            require("lspconfig")[server_name].setup {
+                on_attach = function(client, bufnr)
+                    require("nvim-lspconfig").on_attach(client, bufnr)
+                end
+            }
+        end
+    }) 
 
 local cmd = vim.cmd
 local g = vim.g
