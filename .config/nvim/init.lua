@@ -214,30 +214,27 @@ require("colorizer").setup()
 
 
 -- lsp stuff
-vim.fn.sign_define("LspDiagnosticsSignError", { text = "", numhl = "LspDiagnosticsDefaultError" })
-vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", numhl = "LspDiagnosticsDefaultWarning" })
-vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", numhl = "LspDiagnosticsDefaultInformation" })
-vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", numhl = "LspDiagnosticsDefaultHint" })
 
-require("mason").setup()
-require("mason-lspconfig").setup()
--- require    "nvim-lspconfig"
-mason_lspconfig = require("mason-lspconfig")
-mason_lspconfig.setup({
-    ensure_installed = {
-        "sumneko_lua",
-        "tsserver",
-    }
-})
-mason_lspconfig.setup_handlers({
-    function(server_name)
-        require("lspconfig")[server_name].setup {
-            on_attach = function(client, bufnr)
-                require("nvim-lspconfig").on_attach(client, bufnr)
-            end
-        }
-    end
-})
+-- require("mason").setup()
+-- require("mason-lspconfig").setup()
+require "nvim-lspconfig"
+-- mason_lspconfig = require("mason-lspconfig")
+-- mason_lspconfig.setup({
+-- ensure_installed = {
+-- "sumneko_lua",
+-- "tsserver",
+-- }
+-- })
+-- mason_lspconfig.setup_handlers({
+-- function(server_name)
+-- require("lspconfig")[server_name].setup {
+-- on_attach = function(client, bufnr)
+-- require("nvim-lspconfig").on_attach(client, bufnr)
+-- end
+-- settings
+-- }
+-- end
+-- })
 
 local cmd = vim.cmd
 local g = vim.g
@@ -360,7 +357,7 @@ nest.applyKeymaps {
     { 'ga',         "<Cmd>lua vim.lsp.buf.code_action()<CR>" },
     { 'gi',         "<Cmd>lua vim.lsp.buf.implementation()<CR>" },
     { 'gr',         "<Cmd>lua vim.lsp.buf.references()<CR>" },
-    { 'K',          "<cmd>lua vim.lsp.buf.hover()<CR>" },
+    -- { 'K',          "<cmd>lua vim.lsp.buf.hover()<CR>" },
     { '<C-k>',      "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
     { '[d',         "<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>" },
     { ']d',         "<cmd>lua vim.diagnostic.goto_next({float = false})<CR>" },
