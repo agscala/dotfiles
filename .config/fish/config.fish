@@ -7,12 +7,11 @@ source ~/.config/fish/api-keys.fish
 
 set PATH ~/.node_modules/bin $PATH
 set PATH ~/bin $PATH
+set PATH /Users/andrew/.meteor $PATH
 
 set -x LDFLAGS "-L/usr/local/opt/zlib/lib"
 set -x CPPFLAGS "-I/usr/local/opt/zlib/include"
 
 # load_nvm
 
-
-thefuck --alias | source
 fish_add_path /usr/local/opt/sphinx-doc/bin

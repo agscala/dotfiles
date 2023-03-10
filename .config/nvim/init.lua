@@ -40,8 +40,10 @@ require("packer").startup(
         use 'hrsh7th/cmp-buffer'
         use 'hrsh7th/cmp-path'
         use 'hrsh7th/cmp-cmdline'
-        use 'hrsh7th/cmp-vsnip'
         use 'hrsh7th/nvim-cmp'
+        use 'hrsh7th/cmp-vsnip'
+        use "hrsh7th/vim-vsnip"
+        use "hrsh7th/vim-vsnip-integ"
 
         use 'stevearc/dressing.nvim' -- unifies ui elements
         use 'mbbill/undotree'
@@ -52,8 +54,6 @@ require("packer").startup(
         use "onsails/lspkind-nvim" -- lsp completion icons
         use "sbdchd/neoformat" -- reformat utility (,fm)
         use "nvim-lua/plenary.nvim" -- useful lua functions
-        use "hrsh7th/vim-vsnip"
-        use "hrsh7th/vim-vsnip-integ"
 
         use 'j-hui/fidget.nvim' -- LSP status indicator in bottom right
 
@@ -141,6 +141,15 @@ require("packer").startup(
         use 'wellle/targets.vim'               --  Improved ca( ciw... etc
         use 'farmergreg/vim-lastplace'         --  reopens files to last position
         use 'ConradIrwin/vim-bracketed-paste'  --  auto :set paste
+        use {
+          "nvim-neotest/neotest",
+          requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim",
+            "haydenmeade/neotest-jest",
+          }
+        }
     end,
     {
         display = {
@@ -152,8 +161,22 @@ require("packer").startup(
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+require("neotest").setup({
+    adapters = {
+        require("neotest-jest")({
+          jestCommand = "yarn test --",
+          -- jestConfigFile = "custom.jest.config.ts",
+          env = { CI = true },
+          cwd = function(path)
+            return vim.fn.getcwd()
+          end,
+        })
+    },
+})
+
 require('gitsigns').setup()
 require("lsp_lines").setup()
+require("symbols-outline").setup()
 
 -- load all plugins
 require "file-icons"
@@ -274,7 +297,7 @@ vim.api.nvim_exec([[
 ]], false)
 
 vim.diagnostic.config({
-    virtual_lines = false,
+        virtual_lines = false,
     virtual_text = {
         format = function(diagnostic)
             return ""
@@ -305,8 +328,8 @@ nest.applyKeymaps {
     { 'gr', "<Cmd>lua vim.lsp.buf.references()<CR>" },
     { 'K', "<cmd>lua vim.lsp.buf.hover()<CR>" },
     { '<C-k>', "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
-    { '[d', "<cmd>lua vim.diagnostic.goto_prev()<CR>" },
-    { ']d', "<cmd>lua vim.diagnostic.goto_next()<CR>" },
+    { '[d', "<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>" },
+    { ']d', "<cmd>lua vim.diagnostic.goto_next({float = false})<CR>" },
     -- { '<Leader>e', "<cmd>lua vim.diagnostic.open_float()<CR>" },
     { '<Leader>e', "<cmd>lua require('lsp_lines').toggle()<CR>" },
     { '<Leader>q', "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>" },
