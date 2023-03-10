@@ -1,11 +1,11 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-  execute 'packadd packer.nvim'
+    fn.system({ 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path })
+    execute 'packadd packer.nvim'
 end
 
 local packer = require("packer")
@@ -51,8 +51,8 @@ require("packer").startup(
         use "windwp/nvim-autopairs"
         use "nvim-treesitter/nvim-treesitter"
 
-        use "onsails/lspkind-nvim" -- lsp completion icons
-        use "sbdchd/neoformat" -- reformat utility (,fm)
+        use "onsails/lspkind-nvim"  -- lsp completion icons
+        use "sbdchd/neoformat"      -- reformat utility (,fm)
         use "nvim-lua/plenary.nvim" -- useful lua functions
 
         use({
@@ -62,9 +62,9 @@ require("packer").startup(
                 require("lspsaga").setup({})
             end,
             requires = {
-                {"nvim-tree/nvim-web-devicons"},
+                { "nvim-tree/nvim-web-devicons" },
                 --Please make sure you install markdown and markdown_inline parser
-                {"nvim-treesitter/nvim-treesitter"}
+                { "nvim-treesitter/nvim-treesitter" }
             }
         })
 
@@ -72,18 +72,18 @@ require("packer").startup(
 
         -- use "akinsho/nvim-bufferline.lua"
         use {
-          'nvim-lualine/lualine.nvim',
-          requires = {'kyazdani42/nvim-web-devicons', opt = true}
+            'nvim-lualine/lualine.nvim',
+            requires = { 'kyazdani42/nvim-web-devicons', opt = true }
         }
         -- use 'feline-nvim/feline.nvim'
         -- use "glepnir/galaxyline.nvim" -- customizable line at the bottom
         use 'windwp/windline.nvim'
         use {
-          'lewis6991/gitsigns.nvim',
-          requires = {
-            'nvim-lua/plenary.nvim'
-          },
-          -- tag = 'release' -- To use the latest release
+            'lewis6991/gitsigns.nvim',
+            requires = {
+                'nvim-lua/plenary.nvim'
+            },
+            -- tag = 'release' -- To use the latest release
         }
         --
         use { "SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter" }
@@ -93,18 +93,18 @@ require("packer").startup(
 
         -- file managing , picker etc
         use {
-          'kyazdani42/nvim-tree.lua',
-          requires = 'kyazdani42/nvim-web-devicons',
-          config = function() require'nvim-tree'.setup {} end
+            'kyazdani42/nvim-tree.lua',
+            requires = 'kyazdani42/nvim-web-devicons',
+            config = function() require 'nvim-tree'.setup {} end
         }
         use 'simrat39/symbols-outline.nvim'
         use "kyazdani42/nvim-web-devicons"
         use "ryanoasis/vim-devicons"
         use {
-          'nvim-telescope/telescope.nvim', tag = '0.1.0',
-          requires = { {'nvim-lua/plenary.nvim'} }
+            'nvim-telescope/telescope.nvim', tag = '0.1.0',
+            requires = { { 'nvim-lua/plenary.nvim' } }
         }
-        use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+        use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
         use "nvim-telescope/telescope-symbols.nvim"
         use "nvim-lua/popup.nvim"
         use "preservim/nerdtree"
@@ -123,10 +123,10 @@ require("packer").startup(
         -- use 'ggandor/lightseeed.nvim' -- quick movement
         -- use {'phaazon/hop.nvim', branch = 'v1'}
         use({
-          "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-          config = function()
-            require("lsp_lines").setup()
-          end,
+            "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+            config = function()
+                require("lsp_lines").setup()
+            end,
         })
 
 
@@ -150,18 +150,18 @@ require("packer").startup(
         use 'tpope/vim-git'
         use 'tpope/vim-repeat'
         use 'tpope/vim-surround'
-        use 'metakirby5/codi.vim'              --  Scratchpad :Codi
-        use 'wellle/targets.vim'               --  Improved ca( ciw... etc
-        use 'farmergreg/vim-lastplace'         --  reopens files to last position
-        use 'ConradIrwin/vim-bracketed-paste'  --  auto :set paste
+        use 'metakirby5/codi.vim'             --  Scratchpad :Codi
+        use 'wellle/targets.vim'              --  Improved ca( ciw... etc
+        use 'farmergreg/vim-lastplace'        --  reopens files to last position
+        use 'ConradIrwin/vim-bracketed-paste' --  auto :set paste
         use {
-          "nvim-neotest/neotest",
-          requires = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-            "antoinemadec/FixCursorHold.nvim",
-            "haydenmeade/neotest-jest",
-          }
+            "nvim-neotest/neotest",
+            requires = {
+                "nvim-lua/plenary.nvim",
+                "nvim-treesitter/nvim-treesitter",
+                "antoinemadec/FixCursorHold.nvim",
+                "haydenmeade/neotest-jest",
+            }
         }
     end,
     {
@@ -177,12 +177,12 @@ vim.g.loaded_netrwPlugin = 1
 require("neotest").setup({
     adapters = {
         require("neotest-jest")({
-          jestCommand = "yarn test --",
-          -- jestConfigFile = "custom.jest.config.ts",
-          env = { CI = true },
-          cwd = function(path)
-            return vim.fn.getcwd()
-          end,
+            jestCommand = "yarn test --",
+            -- jestConfigFile = "custom.jest.config.ts",
+            env = { CI = true },
+            cwd = function(path)
+                return vim.fn.getcwd()
+            end,
         })
     },
 })
@@ -208,36 +208,36 @@ require('config-windline')
 
 require("colorizer").setup()
 -- require('feline').setup({
-  -- components = require('catppuccin.core.integrations.feline'),
+-- components = require('catppuccin.core.integrations.feline'),
 -- })
 --
 
 
 -- lsp stuff
-vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
-vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
-vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
-vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
+vim.fn.sign_define("LspDiagnosticsSignError", { text = "", numhl = "LspDiagnosticsDefaultError" })
+vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", numhl = "LspDiagnosticsDefaultWarning" })
+vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", numhl = "LspDiagnosticsDefaultInformation" })
+vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", numhl = "LspDiagnosticsDefaultHint" })
 
 require("mason").setup()
 require("mason-lspconfig").setup()
 -- require    "nvim-lspconfig"
 mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup({
-        ensure_installed = {
-            "sumneko_lua",
-            "tsserver",
-        }
-    })
+    ensure_installed = {
+        "sumneko_lua",
+        "tsserver",
+    }
+})
 mason_lspconfig.setup_handlers({
-        function (server_name)
-            require("lspconfig")[server_name].setup {
-                on_attach = function(client, bufnr)
-                    require("nvim-lspconfig").on_attach(client, bufnr)
-                end
-            }
-        end
-    }) 
+    function(server_name)
+        require("lspconfig")[server_name].setup {
+            on_attach = function(client, bufnr)
+                require("nvim-lspconfig").on_attach(client, bufnr)
+            end
+        }
+    end
+})
 
 local cmd = vim.cmd
 local g = vim.g
@@ -266,27 +266,27 @@ require('leap').add_default_mappings()
 
 -- lightspeed
 -- require'lightspeed'.setup {
-  -- jump_to_first_match = true,
-  -- jump_on_partial_input_safety_timeout = 400,
-  -- -- This can get _really_ slow if the window has a lot of content,
-  -- -- turn it on only if your machine can always cope with it.
-  -- highlight_unique_chars = false,
-  -- grey_out_search_area = true,
-  -- match_only_the_start_of_same_char_seqs = true,
-  -- limit_ft_matches = 5,
-  -- full_inclusive_prefix_key = '<c-x>',
-  -- -- By default, the values of these will be decided at runtime,
-  -- -- based on `jump_to_first_match`.
-  -- labels = nil,
-  -- -- cycle_group_fwd_key = nil,
-  -- -- cycle_group_bwd_key = nil,
+-- jump_to_first_match = true,
+-- jump_on_partial_input_safety_timeout = 400,
+-- -- This can get _really_ slow if the window has a lot of content,
+-- -- turn it on only if your machine can always cope with it.
+-- highlight_unique_chars = false,
+-- grey_out_search_area = true,
+-- match_only_the_start_of_same_char_seqs = true,
+-- limit_ft_matches = 5,
+-- full_inclusive_prefix_key = '<c-x>',
+-- -- By default, the values of these will be decided at runtime,
+-- -- based on `jump_to_first_match`.
+-- labels = nil,
+-- -- cycle_group_fwd_key = nil,
+-- -- cycle_group_bwd_key = nil,
 -- }
 
 -- blankline
 
 local indent = 4
 
-    g.neoformat_try_node_exe = 1
+g.neoformat_try_node_exe = 1
 g.neoformat_basic_format_align = 1
 g.neoformat_basic_format_retab = 1
 g.neoformat_basic_format_trim = 1
@@ -294,8 +294,8 @@ g.neoformat_basic_format_trim = 1
 g.indentLine_enabled = 1
 g.indent_blankline_char = "▏"
 
-g.indent_blankline_filetype_exclude = {"help", "terminal"}
-g.indent_blankline_buftype_exclude = {"terminal"}
+g.indent_blankline_filetype_exclude = { "help", "terminal" }
+g.indent_blankline_buftype_exclude = { "terminal" }
 
 g.indent_blankline_show_trailing_blankline_indent = true
 g.indent_blankline_show_first_indent_level = true
@@ -331,7 +331,7 @@ vim.api.nvim_exec([[
 ]], false)
 
 vim.diagnostic.config({
-        virtual_lines = false,
+    virtual_lines = false,
     virtual_text = {
         format = function(diagnostic)
             return ""
@@ -345,39 +345,39 @@ vim.diagnostic.config({
 local nest = require('nest')
 nest.applyKeymaps {
     -- { '<leader>',
-        -- { 'w',
-            -- { 'a', "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>" },
-            -- { 'r', "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>" },
-            -- { 'l', "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>" },
-        -- },
+    -- { 'w',
+    -- { 'a', "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>" },
+    -- { 'r', "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>" },
+    -- { 'l', "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>" },
+    -- },
     -- },
 
     -- LSP stuff
-    { '<leader>D', "<cmd>lua vim.lsp.buf.type_definition()<CR>" },
-    { 'rn', "<cmd>lua vim.lsp.buf.rename()<CR>" },
-    { 'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>" },
-    { 'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>" },
-    { 'ga', "<Cmd>lua vim.lsp.buf.code_action()<CR>" },
-    { 'gi', "<Cmd>lua vim.lsp.buf.implementation()<CR>" },
-    { 'gr', "<Cmd>lua vim.lsp.buf.references()<CR>" },
-    { 'K', "<cmd>lua vim.lsp.buf.hover()<CR>" },
-    { '<C-k>', "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
-    { '[d', "<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>" },
-    { ']d', "<cmd>lua vim.diagnostic.goto_next({float = false})<CR>" },
+    { '<leader>D',  "<cmd>lua vim.lsp.buf.type_definition()<CR>" },
+    { 'rn',         "<cmd>lua vim.lsp.buf.rename()<CR>" },
+    { 'gD',         "<Cmd>lua vim.lsp.buf.declaration()<CR>" },
+    { 'gd',         "<Cmd>lua vim.lsp.buf.definition()<CR>" },
+    { 'ga',         "<Cmd>lua vim.lsp.buf.code_action()<CR>" },
+    { 'gi',         "<Cmd>lua vim.lsp.buf.implementation()<CR>" },
+    { 'gr',         "<Cmd>lua vim.lsp.buf.references()<CR>" },
+    { 'K',          "<cmd>lua vim.lsp.buf.hover()<CR>" },
+    { '<C-k>',      "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
+    { '[d',         "<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>" },
+    { ']d',         "<cmd>lua vim.diagnostic.goto_next({float = false})<CR>" },
     -- { '<Leader>e', "<cmd>lua vim.diagnostic.open_float()<CR>" },
-    { '<Leader>e', "<cmd>lua require('lsp_lines').toggle()<CR>" },
-    { '<Leader>q', "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>" },
+    { '<Leader>e',  "<cmd>lua require('lsp_lines').toggle()<CR>" },
+    { '<Leader>q',  "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>" },
     -- { '<Leader>fm', "<Cmd>Neoformat<CR>" },
     { '<Leader>fm', "<cmd>lua vim.lsp.buf.format()<CR>" },
 
     { '<leader>', {
         { 't', { -- telescope pickers
-            { 's', ":SymbolsOutline<CR>", { noremap = true, silent = true }},
-            { 't', ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true }},
+            { 's', ":SymbolsOutline<CR>",         { noremap = true, silent = true } },
+            { 't', ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true } },
             { 'u', ":UndotreeToggle<CR>" },
-        }},
+        } },
         { 'f', { -- telescope pickers
-            { 't', ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true }},
+            { 't', ":NvimTreeFindFileToggle<CR>",                           { noremap = true, silent = true } },
             { 'u', ":UndotreeToggle<CR>" },
             { 'f', "<Cmd>lua require('telescope.builtin').find_files()<CR>" },
             { 's', "<Cmd>lua require('telescope.builtin').live_grep()<CR>" },
@@ -386,16 +386,19 @@ nest.applyKeymaps {
             { 'o', "<Cmd>lua require('telescope.builtin').oldfiles()<CR>" },
             { 'e', "<Cmd>lua require('telescope.builtin').symbols() <CR>" },
             { 'r', "<Cmd>lua require('telescope.builtin').resume() <CR>" },
-        }},
+        } },
         { 'g', { -- git stuff
             { 'm', "<Cmd>GitMessenger<CR>" },
             { 'b', "<Cmd>Git blame<CR>" },
             { 's', "<Cmd>Git<CR>" },
-        }},
-    }},
-    { mode = 'i', {
-        { '<C-e>', "<Cmd>lua require'telescope.builtin'.symbols() <CR>" },
-    }},
+        } },
+    } },
+    {
+        mode = 'i',
+        {
+            { '<C-e>', "<Cmd>lua require'telescope.builtin'.symbols() <CR>" },
+        }
+    },
 }
 
 
@@ -481,4 +484,3 @@ vim.api.nvim_exec([[
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 ]], false)
-
