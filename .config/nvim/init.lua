@@ -120,6 +120,8 @@ require('leap').add_default_mappings()
 
 local indent = 4
 
+vim.opt.swapfile = false
+
 g.neoformat_try_node_exe = 1
 g.neoformat_basic_format_align = 1
 g.neoformat_basic_format_retab = 1
