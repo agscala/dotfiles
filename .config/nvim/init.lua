@@ -4,172 +4,187 @@ local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path })
+    fn.system({
+        'git', 'clone', 'https://github.com/wbthomason/packer.nvim',
+        install_path
+    })
     execute 'packadd packer.nvim'
 end
 
 local packer = require("packer")
 local use = packer.use
 
-
 -- using { } for using different branch , loading plugin with certain commands etc
-require("packer").startup(
-    function()
-        use "wbthomason/packer.nvim"
+require("packer").startup(function()
+    use "wbthomason/packer.nvim"
 
-        -- color related stuff
-        use "siduck76/nvim-base16.lua"
-        use "norcalli/nvim-colorizer.lua"
-        use 'folke/tokyonight.nvim'
+    -- color related stuff
+    use "siduck76/nvim-base16.lua"
+    use "norcalli/nvim-colorizer.lua"
+    use 'folke/tokyonight.nvim'
 
-        use 'shaunsingh/nord.nvim'
-        -- use {"Pocco81/Catppuccino.nvim", branch="old-catppuccino"}
-        use { "catppuccin/nvim", as = "catppuccin" }
+    use 'shaunsingh/nord.nvim'
+    -- use {"Pocco81/Catppuccino.nvim", branch="old-catppuccino"}
+    use {"catppuccin/nvim", as = "catppuccin"}
 
+    use 'nathom/filetype.nvim'
+    use 'pantharshit00/vim-prisma'
+    -- lsp stuff
+    --
+    use {
+        "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig"
+    }
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-vsnip'
+    use "hrsh7th/vim-vsnip"
+    use "hrsh7th/vim-vsnip-integ"
 
-        use 'nathom/filetype.nvim'
-        use 'pantharshit00/vim-prisma'
-        -- lsp stuff
-        --
-        use {
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
-            "neovim/nvim-lspconfig",
+    use 'stevearc/dressing.nvim' -- unifies ui elements
+    use 'mbbill/undotree'
+
+    use "windwp/nvim-autopairs"
+    use "nvim-treesitter/nvim-treesitter"
+
+    use "onsails/lspkind-nvim" -- lsp completion icons
+    use "sbdchd/neoformat" -- reformat utility (,fm)
+    use "nvim-lua/plenary.nvim" -- useful lua functions
+
+    use({
+        "glepnir/lspsaga.nvim",
+        branch = "main",
+        config = function() require("lspsaga").setup({}) end,
+        requires = {
+            {"nvim-tree/nvim-web-devicons"},
+            -- Please make sure you install markdown and markdown_inline parser
+            {"nvim-treesitter/nvim-treesitter"}
         }
-        use 'hrsh7th/cmp-nvim-lsp'
-        use 'hrsh7th/cmp-buffer'
-        use 'hrsh7th/cmp-path'
-        use 'hrsh7th/cmp-cmdline'
-        use 'hrsh7th/nvim-cmp'
-        use 'hrsh7th/cmp-vsnip'
-        use "hrsh7th/vim-vsnip"
-        use "hrsh7th/vim-vsnip-integ"
+    })
 
-        use 'stevearc/dressing.nvim' -- unifies ui elements
-        use 'mbbill/undotree'
+    use 'j-hui/fidget.nvim' -- LSP status indicator in bottom right
 
-        use "windwp/nvim-autopairs"
-        use "nvim-treesitter/nvim-treesitter"
+    -- use "akinsho/nvim-bufferline.lua"
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    }
+    -- use 'feline-nvim/feline.nvim'
+    -- use "glepnir/galaxyline.nvim" -- customizable line at the bottom
+    use 'windwp/windline.nvim'
+    use {
+        'lewis6991/gitsigns.nvim',
+        requires = {'nvim-lua/plenary.nvim'}
+        -- tag = 'release' -- To use the latest release
+    }
+    --
+    use {"SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter"}
 
-        use "onsails/lspkind-nvim"  -- lsp completion icons
-        use "sbdchd/neoformat"      -- reformat utility (,fm)
-        use "nvim-lua/plenary.nvim" -- useful lua functions
+    use 'LionC/nest.nvim' -- keybinding management
 
-        use({
-            "glepnir/lspsaga.nvim",
-            branch = "main",
-            config = function()
-                require("lspsaga").setup({})
-            end,
-            requires = {
-                { "nvim-tree/nvim-web-devicons" },
-                --Please make sure you install markdown and markdown_inline parser
-                { "nvim-treesitter/nvim-treesitter" }
-            }
-        })
+    -- file managing , picker etc
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function() require'nvim-tree'.setup {} end
+    }
+    use 'simrat39/symbols-outline.nvim'
+    use "kyazdani42/nvim-web-devicons"
+    use "ryanoasis/vim-devicons"
+    use {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.0',
+        requires = {{'nvim-lua/plenary.nvim'}}
+    }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+    use "nvim-telescope/telescope-symbols.nvim"
+    use "nvim-lua/popup.nvim"
+    use "preservim/nerdtree"
+    use "kevinhwang91/nvim-bqf"
 
-        use 'j-hui/fidget.nvim' -- LSP status indicator in bottom right
+    -- version control
+    use "airblade/vim-gitgutter"
+    use "rhysd/git-messenger.vim"
 
-        -- use "akinsho/nvim-bufferline.lua"
-        use {
-            'nvim-lualine/lualine.nvim',
-            requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    -- misc
+    use "tweekmonster/startuptime.vim"
+    use "907th/vim-auto-save"
+    use "folke/which-key.nvim"
+    use "tpope/vim-abolish"
+    use "ggandor/leap.nvim"
+
+    use({
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function() require("lsp_lines").setup() end
+    })
+
+    use({
+        "jackMort/ChatGPT.nvim",
+        commit = '8820b99c', -- March 6th 2023, before submit issue
+        config = function()
+            require("chatgpt").setup({
+                keymaps = {
+                    close = {"<C-c>"},
+                    submit = "<C-Enter>",
+                    yank_last = "<C-y>",
+                    yank_last_code = "<C-k>",
+                    scroll_up = "<C-u>",
+                    scroll_down = "<C-d>",
+                    toggle_settings = "<C-o>",
+                    new_session = "<C-n>",
+                    cycle_windows = "<Tab>",
+                    -- in the Sessions pane
+                    select_session = "<Space>",
+                    rename_session = "r",
+                    delete_session = "d"
+                }
+            })
+        end,
+        requires = {
+            "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim"
         }
-        -- use 'feline-nvim/feline.nvim'
-        -- use "glepnir/galaxyline.nvim" -- customizable line at the bottom
-        use 'windwp/windline.nvim'
-        use {
-            'lewis6991/gitsigns.nvim',
-            requires = {
-                'nvim-lua/plenary.nvim'
-            },
-            -- tag = 'release' -- To use the latest release
-        }
-        --
-        use { "SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter" }
+    })
 
+    -- discord rich presence
+    -- use "andweeb/presence.nvim"
 
-        use 'LionC/nest.nvim' -- keybinding management
+    use "rhysd/committia.vim" -- git commit preview
+    use "lukas-reineke/indent-blankline.nvim"
 
-        -- file managing , picker etc
-        use {
-            'kyazdani42/nvim-tree.lua',
-            requires = 'kyazdani42/nvim-web-devicons',
-            config = function() require 'nvim-tree'.setup {} end
-        }
-        use 'simrat39/symbols-outline.nvim'
-        use "kyazdani42/nvim-web-devicons"
-        use "ryanoasis/vim-devicons"
-        use {
-            'nvim-telescope/telescope.nvim', tag = '0.1.0',
-            requires = { { 'nvim-lua/plenary.nvim' } }
-        }
-        use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-        use "nvim-telescope/telescope-symbols.nvim"
-        use "nvim-lua/popup.nvim"
-        use "preservim/nerdtree"
-        use "kevinhwang91/nvim-bqf"
-
-        -- version control
-        use "airblade/vim-gitgutter"
-        use "rhysd/git-messenger.vim"
-
-        -- misc
-        use "tweekmonster/startuptime.vim"
-        use "907th/vim-auto-save"
-        use "folke/which-key.nvim"
-        use "tpope/vim-abolish"
-        use "ggandor/leap.nvim"
-        -- use 'ggandor/lightseeed.nvim' -- quick movement
-        -- use {'phaazon/hop.nvim', branch = 'v1'}
-        use({
-            "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-            config = function()
-                require("lsp_lines").setup()
-            end,
-        })
-
-
-        -- discord rich presence
-        --use "andweeb/presence.nvim"
-
-        use "rhysd/committia.vim" -- git commit preview
-        use "lukas-reineke/indent-blankline.nvim"
-
-        -- old vim config
-        use 'bronson/vim-trailing-whitespace'
-        use 'junegunn/vim-easy-align'
-        -- use 'Lokaltog/vim-easymotion'
-        use 'luochen1990/rainbow'
-        use 'MarcWeber/vim-addon-local-vimrc'
-        use 'mhinz/vim-startify'
-        use 'scrooloose/nerdcommenter'
-        use 'sheerun/vim-polyglot'
-        use 'tmhedberg/matchit'
-        use 'tpope/vim-fugitive'
-        use 'tpope/vim-git'
-        use 'tpope/vim-repeat'
-        use 'tpope/vim-surround'
-        use 'metakirby5/codi.vim'             --  Scratchpad :Codi
-        use 'wellle/targets.vim'              --  Improved ca( ciw... etc
-        use 'farmergreg/vim-lastplace'        --  reopens files to last position
-        use 'ConradIrwin/vim-bracketed-paste' --  auto :set paste
-        use {
-            "nvim-neotest/neotest",
-            requires = {
-                "nvim-lua/plenary.nvim",
-                "nvim-treesitter/nvim-treesitter",
-                "antoinemadec/FixCursorHold.nvim",
-                "haydenmeade/neotest-jest",
-            }
-        }
-    end,
-    {
-        display = {
-            border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
+    -- old vim config
+    use 'bronson/vim-trailing-whitespace'
+    use 'junegunn/vim-easy-align'
+    -- use 'Lokaltog/vim-easymotion'
+    use 'luochen1990/rainbow'
+    use 'MarcWeber/vim-addon-local-vimrc'
+    use 'mhinz/vim-startify'
+    use 'scrooloose/nerdcommenter'
+    use 'sheerun/vim-polyglot'
+    use 'tmhedberg/matchit'
+    use 'tpope/vim-fugitive'
+    use 'tpope/vim-git'
+    use 'tpope/vim-repeat'
+    use 'tpope/vim-surround'
+    use 'metakirby5/codi.vim' --  Scratchpad :Codi
+    use 'wellle/targets.vim' --  Improved ca( ciw... etc
+    use 'farmergreg/vim-lastplace' --  reopens files to last position
+    use 'ConradIrwin/vim-bracketed-paste' --  auto :set paste
+    use {
+        "nvim-neotest/neotest",
+        requires = {
+            "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim", "haydenmeade/neotest-jest"
         }
     }
-)
+end, {
+    display = {
+        border = {"┌", "─", "┐", "│", "┘", "─", "└", "│"}
+    }
+})
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -179,12 +194,10 @@ require("neotest").setup({
         require("neotest-jest")({
             jestCommand = "yarn test --",
             -- jestConfigFile = "custom.jest.config.ts",
-            env = { CI = true },
-            cwd = function(path)
-                return vim.fn.getcwd()
-            end,
+            env = {CI = true},
+            cwd = function(path) return vim.fn.getcwd() end
         })
-    },
+    }
 })
 
 require('gitsigns').setup()
@@ -211,7 +224,6 @@ require("colorizer").setup()
 -- components = require('catppuccin.core.integrations.feline'),
 -- })
 --
-
 
 -- lsp stuff
 
@@ -260,7 +272,6 @@ require('leap').add_default_mappings()
 -- vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
 -- require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 
-
 -- lightspeed
 -- require'lightspeed'.setup {
 -- jump_to_first_match = true,
@@ -287,18 +298,19 @@ g.neoformat_try_node_exe = 1
 g.neoformat_basic_format_align = 1
 g.neoformat_basic_format_retab = 1
 g.neoformat_basic_format_trim = 1
+g.neoformat_only_msg_on_error = 1
 
 g.indentLine_enabled = 1
 g.indent_blankline_char = "▏"
 
-g.indent_blankline_filetype_exclude = { "help", "terminal" }
-g.indent_blankline_buftype_exclude = { "terminal" }
+g.indent_blankline_filetype_exclude = {"help", "terminal"}
+g.indent_blankline_buftype_exclude = {"terminal"}
 
 g.indent_blankline_show_trailing_blankline_indent = true
 g.indent_blankline_show_first_indent_level = true
 
 require "config-treesitter"
---require "mappings"
+-- require "mappings"
 
 require "config-telescope"
 require "config-autopairs"
@@ -329,14 +341,9 @@ vim.api.nvim_exec([[
 
 vim.diagnostic.config({
     virtual_lines = false,
-    virtual_text = {
-        format = function(diagnostic)
-            return ""
-        end,
-    }
+    virtual_text = {format = function(diagnostic) return "" end}
     -- virtual_lines = { only_current_line = true },
 })
-
 
 -- KEYBINDINGS --
 local nest = require('nest')
@@ -350,54 +357,76 @@ nest.applyKeymaps {
     -- },
 
     -- LSP stuff
-    { '<leader>D',  "<cmd>lua vim.lsp.buf.type_definition()<CR>" },
-    { 'rn',         "<cmd>lua vim.lsp.buf.rename()<CR>" },
-    { 'gD',         "<Cmd>lua vim.lsp.buf.declaration()<CR>" },
-    { 'gd',         "<Cmd>lua vim.lsp.buf.definition()<CR>" },
-    { 'ga',         "<Cmd>lua vim.lsp.buf.code_action()<CR>" },
-    { 'gi',         "<Cmd>lua vim.lsp.buf.implementation()<CR>" },
-    { 'gr',         "<Cmd>lua vim.lsp.buf.references()<CR>" },
-    -- { 'K',          "<cmd>lua vim.lsp.buf.hover()<CR>" },
-    { '<C-k>',      "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
-    { '[d',         "<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>" },
-    { ']d',         "<cmd>lua vim.diagnostic.goto_next({float = false})<CR>" },
+    {'<leader>D', "<cmd>lua vim.lsp.buf.type_definition()<CR>"},
+    {'rn', "<cmd>lua vim.lsp.buf.rename()<CR>"},
+    {'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>"},
+    {'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>"},
+    {'ga', "<Cmd>lua vim.lsp.buf.code_action()<CR>"},
+    {'gi', "<Cmd>lua vim.lsp.buf.implementation()<CR>"},
+    {'gr', "<Cmd>lua vim.lsp.buf.references()<CR>"},
+    {'K', "<cmd>lua vim.lsp.buf.hover()<CR>"},
+    {'<C-k>', "<cmd>lua vim.lsp.buf.signature_help()<CR>"},
+    {'[d', "<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>"},
+    {']d', "<cmd>lua vim.diagnostic.goto_next({float = false})<CR>"},
     -- { '<Leader>e', "<cmd>lua vim.diagnostic.open_float()<CR>" },
-    { '<Leader>e',  "<cmd>lua require('lsp_lines').toggle()<CR>" },
-    { '<Leader>q',  "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>" },
-    -- { '<Leader>fm', "<Cmd>Neoformat<CR>" },
-    { '<Leader>fm', "<cmd>lua vim.lsp.buf.format()<CR>" },
-
-    { '<leader>', {
-        { 't', { -- telescope pickers
-            { 's', ":SymbolsOutline<CR>",         { noremap = true, silent = true } },
-            { 't', ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true } },
-            { 'u', ":UndotreeToggle<CR>" },
-        } },
-        { 'f', { -- telescope pickers
-            { 't', ":NvimTreeFindFileToggle<CR>",                           { noremap = true, silent = true } },
-            { 'u', ":UndotreeToggle<CR>" },
-            { 'f', "<Cmd>lua require('telescope.builtin').find_files()<CR>" },
-            { 's', "<Cmd>lua require('telescope.builtin').live_grep()<CR>" },
-            { 'b', "<Cmd>lua require('telescope.builtin').buffers()<CR>" },
-            { 'h', "<Cmd>lua require('telescope.builtin').help_tags()<CR>" },
-            { 'o', "<Cmd>lua require('telescope.builtin').oldfiles()<CR>" },
-            { 'e', "<Cmd>lua require('telescope.builtin').symbols() <CR>" },
-            { 'r', "<Cmd>lua require('telescope.builtin').resume() <CR>" },
-        } },
-        { 'g', { -- git stuff
-            { 'm', "<Cmd>GitMessenger<CR>" },
-            { 'b', "<Cmd>Git blame<CR>" },
-            { 's', "<Cmd>Git<CR>" },
-        } },
-    } },
-    {
-        mode = 'i',
-        {
-            { '<C-e>', "<Cmd>lua require'telescope.builtin'.symbols() <CR>" },
+    {'<Leader>e', "<cmd>lua require('lsp_lines').toggle()<CR>"},
+    {'<Leader>q', "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>"},
+    {'<Leader>fm', "<Cmd>Neoformat<CR>"},
+    {'<Leader>fm', "<cmd>lua vim.lsp.buf.format()<CR>"}, {
+        '<leader>', {
+            {
+                't', { -- telescope pickers
+                    {
+                        's', ":SymbolsOutline<CR>",
+                        {noremap = true, silent = true}
+                    },
+                    {
+                        't', ":NvimTreeFindFileToggle<CR>",
+                        {noremap = true, silent = true}
+                    }, {'u', ":UndotreeToggle<CR>"}
+                }
+            }, {
+                'f', { -- telescope pickers
+                    {
+                        't', ":NvimTreeFindFileToggle<CR>",
+                        {noremap = true, silent = true}
+                    }, {'u', ":UndotreeToggle<CR>"},
+                    {
+                        'f',
+                        "<Cmd>lua require('telescope.builtin').find_files()<CR>"
+                    },
+                    {
+                        's',
+                        "<Cmd>lua require('telescope.builtin').live_grep()<CR>"
+                    },
+                    {'b', "<Cmd>lua require('telescope.builtin').buffers()<CR>"},
+                    {
+                        'h',
+                        "<Cmd>lua require('telescope.builtin').help_tags()<CR>"
+                    },
+                    {
+                        'o',
+                        "<Cmd>lua require('telescope.builtin').oldfiles()<CR>"
+                    },
+                    {
+                        'e',
+                        "<Cmd>lua require('telescope.builtin').symbols() <CR>"
+                    },
+                    {'r', "<Cmd>lua require('telescope.builtin').resume() <CR>"}
+                }
+            }, {
+                'g', { -- git stuff
+                    {'m', "<Cmd>GitMessenger<CR>"}, {'b', "<Cmd>Git blame<CR>"},
+                    {'s', "<Cmd>Git<CR>"}
+                }
+            }
         }
     },
+    {
+        mode = 'i',
+        {{'<C-e>', "<Cmd>lua require'telescope.builtin'.symbols() <CR>"}}
+    }
 }
-
 
 ----------------------
 -- Old Vim Config Stuff
