@@ -19,11 +19,11 @@ return {
   'hrsh7th/vim-vsnip',
   'hrsh7th/vim-vsnip-integ',
 
-  'stevearc/dressing.nvim',                                  -- unifies ui elements
-  'mbbill/undotree', 
-  'nvim-treesitter/nvim-treesitter', 'onsails/lspkind-nvim', -- lsp completion icons
-  'sbdchd/neoformat',                                        -- reformat utility (,fm)
-  'nvim-lua/plenary.nvim',                                   -- useful lua functions
+  'stevearc/dressing.nvim', -- unifies ui elements
+  'mbbill/undotree',
+  'onsails/lspkind-nvim',   -- lsp completion icons
+  'sbdchd/neoformat',       -- reformat utility (,fm)
+  'nvim-lua/plenary.nvim',  -- useful lua functions
   {
     'glepnir/lspsaga.nvim',
     branch = 'main',

@@ -1,8 +1,8 @@
-local ts_config = require("nvim-treesitter.configs")
-
-ts_config.setup {
-    -- ensure_installed = "all",
-    ensure_installed = {
+return {
+  'nvim-treesitter/nvim-treesitter',
+  config = function()
+    require("nvim-treesitter.configs").setup {
+      ensure_installed = {
         "javascript",
         "typescript",
         "markdown",
@@ -24,9 +24,11 @@ ts_config.setup {
         "lua",
         "json",
         "python"
-    },
-    highlight = {
+      },
+      highlight = {
         enable = true,
         use_languagetree = true
+      }
     }
+  end,
 }

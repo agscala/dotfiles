@@ -136,7 +136,6 @@ g.indent_blankline_buftype_exclude = {"terminal"}
 g.indent_blankline_show_trailing_blankline_indent = true
 g.indent_blankline_show_first_indent_level = true
 
-require "config-treesitter"
 -- require "mappings"
 
 require "config-telescope"
