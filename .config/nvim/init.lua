@@ -1,188 +1,129 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
-
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-
-if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({
-        'git', 'clone', 'https://github.com/wbthomason/packer.nvim',
-        install_path
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git", "clone", "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git", "--branch=stable", -- latest stable release
+        lazypath
     })
-    execute 'packadd packer.nvim'
 end
 
-local packer = require("packer")
-local use = packer.use
+vim.opt.rtp:prepend(lazypath) -- using { } for using different branch , loading plugin with certain commands etc
 
--- using { } for using different branch , loading plugin with certain commands etc
-require("packer").startup(function()
-    use "wbthomason/packer.nvim"
+vim.g.mapleader = ","
+vim.g.maplocalleader = ","
 
+require("lazy").setup({
     -- color related stuff
-    use "siduck76/nvim-base16.lua"
-    use "norcalli/nvim-colorizer.lua"
-    use 'folke/tokyonight.nvim'
-
-    use 'shaunsingh/nord.nvim'
-    -- use {"Pocco81/Catppuccino.nvim", branch="old-catppuccino"}
-    use {"catppuccin/nvim", as = "catppuccin"}
-
-    use 'nathom/filetype.nvim'
-    use 'pantharshit00/vim-prisma'
+    'siduck76/nvim-base16.lua', 'norcalli/nvim-colorizer.lua',
+    'folke/tokyonight.nvim', 'shaunsingh/nord.nvim',
+    -- use {'Pocco81/Catppuccino.nvim', branch='old-catppuccino'}
+    {'catppuccin/nvim', name = 'catppuccin'}, 'nathom/filetype.nvim',
+    'pantharshit00/vim-prisma',
     -- lsp stuff
     --
-    use {
-        "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig"
-    }
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-vsnip'
-    use "hrsh7th/vim-vsnip"
-    use "hrsh7th/vim-vsnip-integ"
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'hrsh7th/vim-vsnip-integ',
 
-    use 'stevearc/dressing.nvim' -- unifies ui elements
-    use 'mbbill/undotree'
-
-    use "windwp/nvim-autopairs"
-    use "nvim-treesitter/nvim-treesitter"
-
-    use "onsails/lspkind-nvim" -- lsp completion icons
-    use "sbdchd/neoformat" -- reformat utility (,fm)
-    use "nvim-lua/plenary.nvim" -- useful lua functions
-
-    use({
-        "glepnir/lspsaga.nvim",
-        branch = "main",
-        config = function() require("lspsaga").setup({}) end,
-        requires = {
-            {"nvim-tree/nvim-web-devicons"},
+    'stevearc/dressing.nvim', -- unifies ui elements
+    'mbbill/undotree', 'windwp/nvim-autopairs',
+    'nvim-treesitter/nvim-treesitter', 'onsails/lspkind-nvim', -- lsp completion icons
+    'sbdchd/neoformat', -- reformat utility (,fm)
+    'nvim-lua/plenary.nvim', -- useful lua functions
+    {
+        'glepnir/lspsaga.nvim',
+        branch = 'main',
+        config = function() require('lspsaga').setup({}) end,
+        dependencies = {
+            {'nvim-tree/nvim-web-devicons'},
             -- Please make sure you install markdown and markdown_inline parser
-            {"nvim-treesitter/nvim-treesitter"}
+            {'nvim-treesitter/nvim-treesitter'}
         }
-    })
-
-    use 'j-hui/fidget.nvim' -- LSP status indicator in bottom right
-
-    -- use "akinsho/nvim-bufferline.lua"
-    use {
+    }, 'j-hui/fidget.nvim', -- LSP status indicator in bottom right
+    -- use 'akinsho/nvim-bufferline.lua'
+    {
         'nvim-lualine/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
-    }
-    -- use 'feline-nvim/feline.nvim'
-    -- use "glepnir/galaxyline.nvim" -- customizable line at the bottom
-    use 'windwp/windline.nvim'
-    use {
+        dependencies = {'nvim-tree/nvim-web-devicons', opt = true}
+    }, -- use 'feline-nvim/feline.nvim'
+    -- use 'glepnir/galaxyline.nvim' -- customizable line at the bottom
+    'windwp/windline.nvim', {
         'lewis6991/gitsigns.nvim',
-        requires = {'nvim-lua/plenary.nvim'}
+        dependencies = {'nvim-lua/plenary.nvim'}
         -- tag = 'release' -- To use the latest release
-    }
-    --
-    use {"SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter"}
+    }, --
+    {'SmiteshP/nvim-gps', dependencies = 'nvim-treesitter/nvim-treesitter'},
 
-    use 'LionC/nest.nvim' -- keybinding management
-
+    'LionC/nest.nvim', -- keybinding management
     -- file managing , picker etc
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = 'kyazdani42/nvim-web-devicons',
+    {
+        'nvim-tree/nvim-tree.lua',
+        dependencies = 'nvim-tree/nvim-web-devicons',
         config = function() require'nvim-tree'.setup {} end
-    }
-    use 'simrat39/symbols-outline.nvim'
-    use "kyazdani42/nvim-web-devicons"
-    use "ryanoasis/vim-devicons"
-    use {
+    }, 'simrat39/symbols-outline.nvim', 'nvim-tree/nvim-web-devicons',
+    'ryanoasis/vim-devicons', {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.0',
-        requires = {{'nvim-lua/plenary.nvim'}}
-    }
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-    use "nvim-telescope/telescope-symbols.nvim"
-    use "nvim-lua/popup.nvim"
-    use "preservim/nerdtree"
-    use "kevinhwang91/nvim-bqf"
-
-    -- version control
-    use "airblade/vim-gitgutter"
-    use "rhysd/git-messenger.vim"
-
-    -- misc
-    use "tweekmonster/startuptime.vim"
-    use "907th/vim-auto-save"
-    use "folke/which-key.nvim"
-    use "tpope/vim-abolish"
-    use "ggandor/leap.nvim"
-
-    use({
-        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        config = function() require("lsp_lines").setup() end
-    })
-
-    use({
-        "jackMort/ChatGPT.nvim",
+        dependencies = {{'nvim-lua/plenary.nvim'}}
+    }, 
+    -- {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
+    'nvim-telescope/telescope-symbols.nvim', 'nvim-lua/popup.nvim',
+    'preservim/nerdtree', 'kevinhwang91/nvim-bqf', -- version control
+    'airblade/vim-gitgutter', 'rhysd/git-messenger.vim', -- misc
+    'tweekmonster/startuptime.vim', '907th/vim-auto-save',
+    'folke/which-key.nvim', 'tpope/vim-abolish', 'ggandor/leap.nvim', {
+        'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+        config = function() require('lsp_lines').setup() end
+    }, {
+        'jackMort/ChatGPT.nvim',
         commit = '8820b99c', -- March 6th 2023, before submit issue
         config = function()
-            require("chatgpt").setup({
+            require('chatgpt').setup({
                 keymaps = {
-                    close = {"<C-c>"},
-                    submit = "<C-Enter>",
-                    yank_last = "<C-y>",
-                    yank_last_code = "<C-k>",
-                    scroll_up = "<C-u>",
-                    scroll_down = "<C-d>",
-                    toggle_settings = "<C-o>",
-                    new_session = "<C-n>",
-                    cycle_windows = "<Tab>",
+                    close = {'<C-c>'},
+                    submit = '<C-Enter>',
+                    yank_last = '<C-y>',
+                    yank_last_code = '<C-k>',
+                    scroll_up = '<C-u>',
+                    scroll_down = '<C-d>',
+                    toggle_settings = '<C-o>',
+                    new_session = '<C-n>',
+                    cycle_windows = '<Tab>',
                     -- in the Sessions pane
-                    select_session = "<Space>",
-                    rename_session = "r",
-                    delete_session = "d"
+                    select_session = '<Space>',
+                    rename_session = 'r',
+                    delete_session = 'd'
                 }
             })
         end,
-        requires = {
-            "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim"
+        dependencies = {
+            'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim'
         }
-    })
-
-    -- discord rich presence
-    -- use "andweeb/presence.nvim"
-
-    use "rhysd/committia.vim" -- git commit preview
-    use "lukas-reineke/indent-blankline.nvim"
-
-    -- old vim config
-    use 'bronson/vim-trailing-whitespace'
-    use 'junegunn/vim-easy-align'
-    -- use 'Lokaltog/vim-easymotion'
-    use 'luochen1990/rainbow'
-    use 'MarcWeber/vim-addon-local-vimrc'
-    use 'mhinz/vim-startify'
-    use 'scrooloose/nerdcommenter'
-    use 'sheerun/vim-polyglot'
-    use 'tmhedberg/matchit'
-    use 'tpope/vim-fugitive'
-    use 'tpope/vim-git'
-    use 'tpope/vim-repeat'
-    use 'tpope/vim-surround'
-    use 'metakirby5/codi.vim' --  Scratchpad :Codi
-    use 'wellle/targets.vim' --  Improved ca( ciw... etc
-    use 'farmergreg/vim-lastplace' --  reopens files to last position
-    use 'ConradIrwin/vim-bracketed-paste' --  auto :set paste
-    use {
-        "nvim-neotest/neotest",
-        requires = {
-            "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
-            "antoinemadec/FixCursorHold.nvim", "haydenmeade/neotest-jest"
+    }, -- discord rich presence
+    -- 'andweeb/presence.nvim',
+    'rhysd/committia.vim', -- git commit preview
+    'lukas-reineke/indent-blankline.nvim', -- old vim config
+    'bronson/vim-trailing-whitespace', 'junegunn/vim-easy-align',
+    -- 'Lokaltog/vim-easymotion',
+    'luochen1990/rainbow', 'MarcWeber/vim-addon-local-vimrc',
+    'mhinz/vim-startify', 'scrooloose/nerdcommenter', 'sheerun/vim-polyglot',
+    'tmhedberg/matchit', 'tpope/vim-fugitive', 'tpope/vim-git',
+    'tpope/vim-repeat', 'tpope/vim-surround', 'metakirby5/codi.vim', --  Scratchpad :Codi
+    'wellle/targets.vim', --  Improved ca( ciw... etc
+    'farmergreg/vim-lastplace', --  reopens files to last position
+    'ConradIrwin/vim-bracketed-paste', --  auto :set paste
+    {
+        'nvim-neotest/neotest',
+        dependencies = {
+            'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter',
+            'antoinemadec/FixCursorHold.nvim', 'haydenmeade/neotest-jest'
         }
-    }
-end, {
-    display = {
-        border = {"┌", "─", "┐", "│", "┘", "─", "└", "│"}
     }
 })
 
@@ -251,7 +192,6 @@ require "nvim-lspconfig"
 local cmd = vim.cmd
 local g = vim.g
 
-g.mapleader = ","
 g.auto_save = 0
 
 -- colorscheme related stuff cmd "syntax on"
