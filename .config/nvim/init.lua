@@ -71,7 +71,7 @@ require("lazy").setup({
         tag = '0.1.0',
         dependencies = {{'nvim-lua/plenary.nvim'}}
     }, 
-    -- {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
+    {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
     'nvim-telescope/telescope-symbols.nvim', 'nvim-lua/popup.nvim',
     'preservim/nerdtree', 'kevinhwang91/nvim-bqf', -- version control
     'airblade/vim-gitgutter', 'rhysd/git-messenger.vim', -- misc

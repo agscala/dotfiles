@@ -67,7 +67,7 @@ require("telescope").setup {
     }
 }
 
---require("telescope").load_extension("fzf")
+require("telescope").load_extension("fzf")
 
 local opt = {noremap = true, silent = true}
 
