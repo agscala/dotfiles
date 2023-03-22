@@ -22,13 +22,12 @@ require("neotest").setup({
         require("neotest-jest")({
             jestCommand = "yarn test --",
             -- jestConfigFile = "custom.jest.config.ts",
-            env = {CI = true},
-            cwd = function(path) return vim.fn.getcwd() end
+            env = { CI = true },
+            cwd = function() return vim.fn.getcwd() end
         })
     }
 })
 
-require('gitsigns').setup()
 require("lsp_lines").setup()
 require("symbols-outline").setup()
 
@@ -130,8 +129,8 @@ g.neoformat_only_msg_on_error = 1
 g.indentLine_enabled = 1
 g.indent_blankline_char = "▏"
 
-g.indent_blankline_filetype_exclude = {"help", "terminal"}
-g.indent_blankline_buftype_exclude = {"terminal"}
+g.indent_blankline_filetype_exclude = { "help", "terminal" }
+g.indent_blankline_buftype_exclude = { "terminal" }
 
 g.indent_blankline_show_trailing_blankline_indent = true
 g.indent_blankline_show_first_indent_level = true
@@ -166,7 +165,7 @@ vim.api.nvim_exec([[
 
 vim.diagnostic.config({
     virtual_lines = false,
-    virtual_text = {format = function(diagnostic) return "" end}
+    virtual_text = { format = function(diagnostic) return "" end }
     -- virtual_lines = { only_current_line = true },
 })
 
@@ -182,71 +181,71 @@ nest.applyKeymaps {
     -- },
 
     -- LSP stuff
-    {'<leader>D', "<cmd>lua vim.lsp.buf.type_definition()<CR>"},
-    {'rn', "<cmd>lua vim.lsp.buf.rename()<CR>"},
-    {'gD', "<Cmd>lua vim.lsp.buf.declaration()<CR>"},
-    {'gd', "<Cmd>lua vim.lsp.buf.definition()<CR>"},
-    {'ga', "<Cmd>lua vim.lsp.buf.code_action()<CR>"},
-    {'gi', "<Cmd>lua vim.lsp.buf.implementation()<CR>"},
-    {'gr', "<Cmd>lua vim.lsp.buf.references()<CR>"},
-    {'K', "<cmd>lua vim.lsp.buf.hover()<CR>"},
-    {'<C-k>', "<cmd>lua vim.lsp.buf.signature_help()<CR>"},
-    {'[d', "<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>"},
-    {']d', "<cmd>lua vim.diagnostic.goto_next({float = false})<CR>"},
+    { '<leader>D',  "<cmd>lua vim.lsp.buf.type_definition()<CR>" },
+    { 'rn',         "<cmd>lua vim.lsp.buf.rename()<CR>" },
+    { 'gD',         "<Cmd>lua vim.lsp.buf.declaration()<CR>" },
+    { 'gd',         "<Cmd>lua vim.lsp.buf.definition()<CR>" },
+    { 'ga',         "<Cmd>lua vim.lsp.buf.code_action()<CR>" },
+    { 'gi',         "<Cmd>lua vim.lsp.buf.implementation()<CR>" },
+    { 'gr',         "<Cmd>lua vim.lsp.buf.references()<CR>" },
+    { 'K',          "<cmd>lua vim.lsp.buf.hover()<CR>" },
+    { '<C-k>',      "<cmd>lua vim.lsp.buf.signature_help()<CR>" },
+    { '[d',         "<cmd>lua vim.diagnostic.goto_prev({float = false})<CR>" },
+    { ']d',         "<cmd>lua vim.diagnostic.goto_next({float = false})<CR>" },
     -- { '<Leader>e', "<cmd>lua vim.diagnostic.open_float()<CR>" },
-    {'<Leader>e', "<cmd>lua require('lsp_lines').toggle()<CR>"},
-    {'<Leader>q', "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>"},
-    {'<Leader>fm', "<Cmd>Neoformat<CR>"},
-    {'<Leader>fm', "<cmd>lua vim.lsp.buf.format()<CR>"}, {
-        '<leader>', {
-            {
-                't', { -- telescope pickers
-                    {
-                        's', ":SymbolsOutline<CR>",
-                        {noremap = true, silent = true}
-                    },
-                    {'u', ":UndotreeToggle<CR>"}
-                }
-            }, {
-                'f', { -- telescope pickers
-                    {
-                        't', ":NvimTreeFindFileToggle<CR>",
-                        {noremap = true, silent = true}
-                    }, {'u', ":UndotreeToggle<CR>"},
-                    {
-                        'f',
-                        "<Cmd>lua require('telescope.builtin').find_files()<CR>"
-                    },
-                    {
-                        's',
-                        "<Cmd>lua require('telescope.builtin').live_grep()<CR>"
-                    },
-                    {'b', "<Cmd>lua require('telescope.builtin').buffers()<CR>"},
-                    {
-                        'h',
-                        "<Cmd>lua require('telescope.builtin').help_tags()<CR>"
-                    },
-                    {
-                        'o',
-                        "<Cmd>lua require('telescope.builtin').oldfiles()<CR>"
-                    },
-                    {
-                        'e',
-                        "<Cmd>lua require('telescope.builtin').symbols() <CR>"
-                    },
-                    {'r', "<Cmd>lua require('telescope.builtin').resume() <CR>"}
-                }
-            }, {
-                'g', { -- git stuff
-                    {'m', "<Cmd>GitMessenger<CR>"}, {'b', "<Cmd>Git blame<CR>"},
-                    {'s', "<Cmd>Git<CR>"}
-                }
-            }
-        }
+    { '<Leader>e',  "<cmd>lua require('lsp_lines').toggle()<CR>" },
+    { '<Leader>q',  "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>" },
+    { '<Leader>fm', "<Cmd>Neoformat<CR>" },
+    { '<Leader>fm', "<cmd>lua vim.lsp.buf.format()<CR>" }, {
+    '<leader>', {
+    {
+        't', {         -- telescope pickers
+        {
+            's', ":SymbolsOutline<CR>",
+            { noremap = true, silent = true }
+        },
+        { 'u', ":UndotreeToggle<CR>" }
+    }
+    }, {
+    'f', {             -- telescope pickers
+    {
+        't', ":NvimTreeFindFileToggle<CR>",
+        { noremap = true, silent = true }
+    }, { 'u', ":UndotreeToggle<CR>" },
+    {
+        'f',
+        "<Cmd>lua require('telescope.builtin').find_files()<CR>"
     },
     {
+        's',
+        "<Cmd>lua require('telescope.builtin').live_grep()<CR>"
+    },
+    { 'b', "<Cmd>lua require('telescope.builtin').buffers()<CR>" },
+    {
+        'h',
+        "<Cmd>lua require('telescope.builtin').help_tags()<CR>"
+    },
+    {
+        'o',
+        "<Cmd>lua require('telescope.builtin').oldfiles()<CR>"
+    },
+    {
+        'e',
+        "<Cmd>lua require('telescope.builtin').symbols() <CR>"
+    },
+    { 'r', "<Cmd>lua require('telescope.builtin').resume() <CR>" }
+}
+}, {
+    'g', {             -- git stuff
+    { 'm', "<Cmd>GitMessenger<CR>" }, { 'b', "<Cmd>Git blame<CR>" },
+    { 's', "<Cmd>Git<CR>" }
+}
+}
+}
+},
+    {
         mode = 'i',
-        {{'<C-e>', "<Cmd>lua require'telescope.builtin'.symbols() <CR>"}}
+        { { '<C-e>', "<Cmd>lua require'telescope.builtin'.symbols() <CR>" } }
     }
 }
 

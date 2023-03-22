@@ -40,11 +40,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
   }, -- use 'feline-nvim/feline.nvim'
   -- use 'glepnir/galaxyline.nvim' -- customizable line at the bottom
-  'windwp/windline.nvim', {
-  'lewis6991/gitsigns.nvim',
-  dependencies = { 'nvim-lua/plenary.nvim' }
-  -- tag = 'release' -- To use the latest release
-}, --
+  'windwp/windline.nvim',
   { 'SmiteshP/nvim-gps', dependencies = 'nvim-treesitter/nvim-treesitter' },
 
   'LionC/nest.nvim', -- keybinding management
