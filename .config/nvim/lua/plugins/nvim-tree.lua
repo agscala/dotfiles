@@ -1,9 +1,12 @@
 return {
   'nvim-tree/nvim-tree.lua',
-  lazy = false,
+  lazy = true,
+  cmd = {
+    "NvimTreeFindFileToggle",
+  },
   keys = {
-    { "<leader>ft", "<CMD>NvimTreeFindFileToggle<CR>", desc="Open file tree for current file" },
-    { "<leader>tt", "<CMD>NvimTreeFindFileToggle<CR>", desc="Open file tree for current file" },
+    { "<leader>ft", "<CMD>NvimTreeFindFileToggle<CR>", desc = "Open file tree for current file" },
+    { "<leader>tt", "<CMD>NvimTreeFindFileToggle<CR>", desc = "Open file tree for current file" },
   },
   dependencies = {
     'nvim-tree/nvim-web-devicons',
