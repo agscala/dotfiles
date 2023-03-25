@@ -84,9 +84,8 @@ g.auto_save = 0
 -- vim.g.tokyonight_style = "night"
 -- cmd "colorscheme tokyonight"
 
-require('config-catppuccin')
-
 -- cmd "colorscheme nord"
+vim.cmd.colorscheme "catppuccin"
 
 -- require "custom_highlights"
 

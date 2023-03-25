@@ -2,8 +2,7 @@ return {
   -- color related stuff
   'siduck76/nvim-base16.lua', 'norcalli/nvim-colorizer.lua',
   'folke/tokyonight.nvim', 'shaunsingh/nord.nvim',
-  -- use {'Pocco81/Catppuccino.nvim', branch='old-catppuccino'}
-  { 'catppuccin/nvim',   name = 'catppuccin' }, 'nathom/filetype.nvim',
+  'nathom/filetype.nvim',
   'pantharshit00/vim-prisma',
   -- lsp stuff
   --
