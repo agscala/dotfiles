@@ -17,6 +17,6 @@ return {
         imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
         imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
       endfunction
-    ]])
+    ]], true)
   end
 }
