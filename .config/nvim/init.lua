@@ -40,7 +40,7 @@ require "misc-utils"
 -- require "lualine-config"
 
 require('config-cmp')
-require('config-committia')
+-- require('config-committia')
 -- require('config-feline')
 --
 --

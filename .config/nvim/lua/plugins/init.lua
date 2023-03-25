@@ -46,58 +46,74 @@ return {
   'LionC/nest.nvim', -- keybinding management
   -- file managing , picker etc
   'simrat39/symbols-outline.nvim', 'nvim-tree/nvim-web-devicons',
-  'ryanoasis/vim-devicons', {
-  'nvim-telescope/telescope.nvim',
-  tag = '0.1.0',
-  dependencies = { { 'nvim-lua/plenary.nvim' } }
-},
+  'ryanoasis/vim-devicons',
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.0',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    }
+  },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-  'nvim-telescope/telescope-symbols.nvim', 'nvim-lua/popup.nvim',
-  'preservim/nerdtree', 'kevinhwang91/nvim-bqf',       -- version control
-  'airblade/vim-gitgutter', 'rhysd/git-messenger.vim', -- misc
-  'tweekmonster/startuptime.vim', '907th/vim-auto-save',
-  'folke/which-key.nvim', 'tpope/vim-abolish', 'ggandor/leap.nvim', {
-  'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-  config = function() require('lsp_lines').setup() end
-}, {
-  'jackMort/ChatGPT.nvim',
-  commit = '8820b99c', -- March 6th 2023, before submit issue
-  config = function()
-    require('chatgpt').setup({
-      keymaps = {
-        close = { '<C-c>' },
-        submit = '<C-Enter>',
-        yank_last = '<C-y>',
-        yank_last_code = '<C-k>',
-        scroll_up = '<C-u>',
-        scroll_down = '<C-d>',
-        toggle_settings = '<C-o>',
-        new_session = '<C-n>',
-        cycle_windows = '<Tab>',
-        -- in the Sessions pane
-        select_session = '<Space>',
-        rename_session = 'r',
-        delete_session = 'd'
-      }
-    })
-  end,
-  dependencies = {
-    'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim'
-  }
-},                                       -- discord rich presence
+  'nvim-telescope/telescope-symbols.nvim',
+  'nvim-lua/popup.nvim',
+  'preservim/nerdtree',
+  'kevinhwang91/nvim-bqf',
+  -- version control
+  'airblade/vim-gitgutter',
+  'rhysd/git-messenger.vim',
+  -- misc
+  'tweekmonster/startuptime.vim',
+  '907th/vim-auto-save',
+  'folke/which-key.nvim',
+  'tpope/vim-abolish',
+  'ggandor/leap.nvim',
+  {
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+    config = function() require('lsp_lines').setup() end
+  },
+  {
+    'jackMort/ChatGPT.nvim',
+    commit = '8820b99c', -- March 6th 2023, before submit issue
+    config = function()
+      require('chatgpt').setup({
+        keymaps = {
+          close = { '<C-c>' },
+          submit = '<C-Enter>',
+          yank_last = '<C-y>',
+          yank_last_code = '<C-k>',
+          scroll_up = '<C-u>',
+          scroll_down = '<C-d>',
+          toggle_settings = '<C-o>',
+          new_session = '<C-n>',
+          cycle_windows = '<Tab>',
+          -- in the Sessions pane
+          select_session = '<Space>',
+          rename_session = 'r',
+          delete_session = 'd'
+        }
+      })
+    end,
+    dependencies = {
+      'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim'
+    }
+  },
+  -- discord rich presence
   -- 'andweeb/presence.nvim',
-  'rhysd/committia.vim',                 -- git commit preview
-  'lukas-reineke/indent-blankline.nvim', -- old vim config
-  'bronson/vim-trailing-whitespace', 'junegunn/vim-easy-align',
+  'lukas-reineke/indent-blankline.nvim',
+  -- old vim config
+  'bronson/vim-trailing-whitespace',
+  'junegunn/vim-easy-align',
   -- 'Lokaltog/vim-easymotion',
   'luochen1990/rainbow', 'MarcWeber/vim-addon-local-vimrc',
   'mhinz/vim-startify', 'scrooloose/nerdcommenter', 'sheerun/vim-polyglot',
   'tmhedberg/matchit', 'tpope/vim-fugitive', 'tpope/vim-git',
-  'tpope/vim-repeat', 'tpope/vim-surround', 'metakirby5/codi.vim', --  Scratchpad :Codi
-  'wellle/targets.vim',                                            --  Improved ca( ciw... etc
-  'farmergreg/vim-lastplace',                                      --  reopens files to last position
-  'ConradIrwin/vim-bracketed-paste',                               --  auto :set paste
+  'tpope/vim-repeat', 'tpope/vim-surround',
+  'metakirby5/codi.vim',             --  Scratchpad :Codi
+  'wellle/targets.vim',              --  Improved ca( ciw... etc
+  'farmergreg/vim-lastplace',        --  reopens files to last position
+  'ConradIrwin/vim-bracketed-paste', --  auto :set paste
   {
     'nvim-neotest/neotest',
     dependencies = {
