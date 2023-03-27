@@ -45,10 +45,6 @@ require "misc-utils"
 require('config-windline')
 
 require("colorizer").setup()
--- require('feline').setup({
--- components = require('catppuccin.core.integrations.feline'),
--- })
---
 
 -- lsp stuff
 

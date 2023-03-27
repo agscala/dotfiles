@@ -75,7 +75,6 @@ return {
   -- misc
   'tweekmonster/startuptime.vim',
   '907th/vim-auto-save',
-  'folke/which-key.nvim',
   'tpope/vim-abolish',
   'ggandor/leap.nvim',
   {
