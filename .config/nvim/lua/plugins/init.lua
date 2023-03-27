@@ -9,12 +9,21 @@ return {
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   'neovim/nvim-lspconfig',
-  'hrsh7th/cmp-nvim-lsp',
-  'hrsh7th/cmp-buffer',
-  'hrsh7th/cmp-path',
-  'hrsh7th/cmp-cmdline',
-  'hrsh7th/nvim-cmp',
-  'hrsh7th/cmp-vsnip',
+  {
+    'hrsh7th/cmp-nvim-lsp',
+  },
+  {
+    'hrsh7th/cmp-buffer',
+  },
+  {
+    'hrsh7th/cmp-path',
+  },
+  {
+    'hrsh7th/cmp-cmdline',
+  },
+  {
+    'hrsh7th/cmp-vsnip',
+  },
   'hrsh7th/vim-vsnip',
   'hrsh7th/vim-vsnip-integ',
 
@@ -40,8 +49,7 @@ return {
   }, -- use 'feline-nvim/feline.nvim'
   -- use 'glepnir/galaxyline.nvim' -- customizable line at the bottom
   'windwp/windline.nvim',
-  { 'SmiteshP/nvim-gps', dependencies = 'nvim-treesitter/nvim-treesitter' },
-
+  { 'SmiteshP/nvim-gps',                        dependencies = 'nvim-treesitter/nvim-treesitter' },
   'LionC/nest.nvim', -- keybinding management
   -- file managing , picker etc
   'simrat39/symbols-outline.nvim', 'nvim-tree/nvim-web-devicons',

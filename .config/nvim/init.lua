@@ -39,7 +39,8 @@ require "misc-utils"
 -- require "statusline"
 -- require "lualine-config"
 
-require('config-cmp')
+-- require('config-cmp')
+-- require('config-committia')
 -- require('config-feline')
 --
 --
