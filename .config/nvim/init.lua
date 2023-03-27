@@ -87,9 +87,6 @@ g.indent_blankline_buftype_exclude = { "terminal" }
 g.indent_blankline_show_trailing_blankline_indent = true
 g.indent_blankline_show_first_indent_level = true
 
-require "config-telescope"
--- require "nvimTree"
-
 -- git signs , lsp symbols etc
 require("lspkind").init()
 
