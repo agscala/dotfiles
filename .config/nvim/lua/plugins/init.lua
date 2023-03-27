@@ -49,10 +49,13 @@ return {
   }, -- use 'feline-nvim/feline.nvim'
   -- use 'glepnir/galaxyline.nvim' -- customizable line at the bottom
   'windwp/windline.nvim',
-  { 'SmiteshP/nvim-gps',                        dependencies = 'nvim-treesitter/nvim-treesitter' },
+  {
+    'SmiteshP/nvim-gps',
+    dependencies = 'nvim-treesitter/nvim-treesitter'
+  },
   'LionC/nest.nvim', -- keybinding management
   -- file managing , picker etc
-  'simrat39/symbols-outline.nvim', 'nvim-tree/nvim-web-devicons',
+  'simrat39/symbols-outline.nvim',
   'ryanoasis/vim-devicons',
   {
     'nvim-telescope/telescope.nvim',

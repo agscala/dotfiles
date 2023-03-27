@@ -32,8 +32,6 @@ require("lsp_lines").setup()
 require("symbols-outline").setup()
 
 -- load all plugins
-require "file-icons"
-
 require "misc-utils"
 -- require "top-bufferline"
 -- require "statusline"
