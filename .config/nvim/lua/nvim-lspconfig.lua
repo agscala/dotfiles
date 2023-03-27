@@ -3,7 +3,7 @@ local vim = vim
 local lspconfig = require("lspconfig")
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = {"bashls", "lua_ls", "tsserver"}
+    ensure_installed = { "bashls", "lua_ls", "tsserver" }
 })
 
 local function default_on_attach(client, bufnr)
@@ -14,7 +14,7 @@ local function default_on_attach(client, bufnr)
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
     -- Mappings.
-    local bufopts = {noremap = true, silent = true, buffer = bufnr}
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
     -- vim.keymap.set('n', '<c-]>', "<Cmd>lua vim.lsp.buf.definition()<CR>",
     -- bufopts)
@@ -60,10 +60,10 @@ end
 local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 lspconfig.util.default_config = vim.tbl_extend("force",
-                                               lspconfig.util.default_config, {
-    on_attach = default_on_attach,
-    capabilities = default_capabilities
-})
+    lspconfig.util.default_config, {
+        on_attach = default_on_attach,
+        capabilities = default_capabilities
+    })
 
 require("mason-lspconfig").setup_handlers({
     function(server_name) lspconfig[server_name].setup({}) end,
@@ -71,13 +71,13 @@ require("mason-lspconfig").setup_handlers({
         lspconfig.lua_ls.setup({
             settings = {
                 Lua = {
-                    runtime = {version = "LuaJIT"},
-                    diagnostics = {globals = {"vim", "use", "require"}},
+                    runtime = { version = "LuaJIT" },
+                    diagnostics = { globals = { "vim", "use", "require" } },
                     workspace = {
                         library = vim.api.nvim_get_runtime_file("", true),
                         checkThirdParty = false
                     },
-                    telemetry = {enable = false}
+                    telemetry = { enable = false }
                 }
             }
         })
@@ -85,10 +85,10 @@ require("mason-lspconfig").setup_handlers({
 })
 
 vim.fn.sign_define("LspDiagnosticsSignError",
-                   {text = "", numhl = "LspDiagnosticsDefaultError"})
+    { text = "", numhl = "LspDiagnosticsDefaultError" })
 vim.fn.sign_define("LspDiagnosticsSignWarning",
-                   {text = "", numhl = "LspDiagnosticsDefaultWarning"})
+    { text = "", numhl = "LspDiagnosticsDefaultWarning" })
 vim.fn.sign_define("LspDiagnosticsSignInformation",
-                   {text = "", numhl = "LspDiagnosticsDefaultInformation"})
+    { text = "", numhl = "LspDiagnosticsDefaultInformation" })
 vim.fn.sign_define("LspDiagnosticsSignHint",
-                   {text = "", numhl = "LspDiagnosticsDefaultHint"})
+    { text = "", numhl = "LspDiagnosticsDefaultHint" })

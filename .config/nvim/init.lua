@@ -30,48 +30,17 @@ require("neotest").setup({
 
 -- load all plugins
 require "misc-utils"
+require "options"
 require('config-windline')
 
 -- lsp stuff
 require "nvim-lspconfig"
 
-local cmd = vim.cmd
 local g = vim.g
-
-g.auto_save = 0
 
 vim.cmd.colorscheme "catppuccin"
 
--- require "custom_highlights"
-
--- vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
--- vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
--- require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-
--- lightspeed
--- require'lightspeed'.setup {
--- jump_to_first_match = true,
--- jump_on_partial_input_safety_timeout = 400,
--- -- This can get _really_ slow if the window has a lot of content,
--- -- turn it on only if your machine can always cope with it.
--- highlight_unique_chars = false,
--- grey_out_search_area = true,
--- match_only_the_start_of_same_char_seqs = true,
--- limit_ft_matches = 5,
--- full_inclusive_prefix_key = '<c-x>',
--- -- By default, the values of these will be decided at runtime,
--- -- based on `jump_to_first_match`.
--- labels = nil,
--- -- cycle_group_fwd_key = nil,
--- -- cycle_group_bwd_key = nil,
--- }
-
 -- blankline
-
-local indent = 4
-
-vim.opt.swapfile = false
-
 g.neoformat_try_node_exe = 1
 g.neoformat_basic_format_align = 1
 g.neoformat_basic_format_retab = 1
@@ -144,7 +113,7 @@ nest.applyKeymaps {
     { '<Leader>fm', "<cmd>lua vim.lsp.buf.format()<CR>" }, {
     '<leader>', {
     {
-        't', {         -- telescope pickers
+        't', { -- telescope pickers
         {
             's', ":SymbolsOutline<CR>",
             { noremap = true, silent = true }
@@ -152,7 +121,7 @@ nest.applyKeymaps {
         { 'u', ":UndotreeToggle<CR>" }
     }
     }, {
-    'f', {             -- telescope pickers
+    'f', { -- telescope pickers
     {
         't', ":NvimTreeFindFileToggle<CR>",
         { noremap = true, silent = true }
@@ -181,7 +150,7 @@ nest.applyKeymaps {
     { 'r', "<Cmd>lua require('telescope.builtin').resume() <CR>" }
 }
 }, {
-    'g', {             -- git stuff
+    'g', { -- git stuff
     { 'm', "<Cmd>GitMessenger<CR>" }, { 'b', "<Cmd>Git blame<CR>" },
     { 's', "<Cmd>Git<CR>" }
 }
@@ -197,39 +166,6 @@ nest.applyKeymaps {
 ----------------------
 -- Old Vim Config Stuff
 vim.api.nvim_exec([[
-    set backspace=indent,eol,start
-    set cursorcolumn
-    set cursorline
-    set encoding=utf-8
-    set fileformats=unix,dos,mac
-    set hidden
-    set laststatus=2
-    set nohlsearch
-    " set lazyredraw
-    set magic
-    set nocompatible
-    set number
-    set ruler
-    set scrolloff=3
-    set shortmess=a
-    set sidescroll=1
-    set sidescrolloff=10
-    set splitbelow
-    set splitright
-    set ttyfast
-    set wildignore=*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/.node_modules
-    set wildmenu
-    set wildmode=list:longest
-
-    set list
-    set listchars=tab:»\ ,trail:·
-
-    " No annoying sound on errors
-    set noerrorbells
-    set novisualbell
-    set t_vb=
-    set tm=500
-
     nnoremap j gj
     nnoremap k gk
     "reindent text after p
@@ -260,10 +196,6 @@ vim.api.nvim_exec([[
     map ][ /}<CR>b99]}
     map \]\] j0[[%/{<CR>
     map [] k$][%?}<CR>
-
-    " NERD_Commenter.vim settings
-    let NERDSpaceDelims = 1
-    let NERDCompactSexyComs = 1
 
     " Startify.vim settings
     let g:startify_change_to_dir = 0
