@@ -28,65 +28,22 @@ require("neotest").setup({
     }
 })
 
-require("lsp_lines").setup()
-require("symbols-outline").setup()
-
 -- load all plugins
 require "misc-utils"
--- require "top-bufferline"
--- require "statusline"
--- require "lualine-config"
-
--- require('config-cmp')
--- require('config-committia')
--- require('config-feline')
---
---
 require('config-windline')
 
-require("colorizer").setup()
-
 -- lsp stuff
-
--- require("mason").setup()
--- require("mason-lspconfig").setup()
 require "nvim-lspconfig"
--- mason_lspconfig = require("mason-lspconfig")
--- mason_lspconfig.setup({
--- ensure_installed = {
--- "sumneko_lua",
--- "tsserver",
--- }
--- })
--- mason_lspconfig.setup_handlers({
--- function(server_name)
--- require("lspconfig")[server_name].setup {
--- on_attach = function(client, bufnr)
--- require("nvim-lspconfig").on_attach(client, bufnr)
--- end
--- settings
--- }
--- end
--- })
 
 local cmd = vim.cmd
 local g = vim.g
 
 g.auto_save = 0
 
--- colorscheme related stuff cmd "syntax on"
--- vim.g.tokyonight_style = "night"
--- cmd "colorscheme tokyonight"
-
--- cmd "colorscheme nord"
 vim.cmd.colorscheme "catppuccin"
 
 -- require "custom_highlights"
 
--- leap
-require('leap').add_default_mappings()
-
--- hop
 -- vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
 -- vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
 -- require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
@@ -129,8 +86,6 @@ g.indent_blankline_buftype_exclude = { "terminal" }
 
 g.indent_blankline_show_trailing_blankline_indent = true
 g.indent_blankline_show_first_indent_level = true
-
--- require "mappings"
 
 require "config-telescope"
 -- require "nvimTree"

@@ -1,7 +1,6 @@
 return {
   -- color related stuff
   'siduck76/nvim-base16.lua', 'norcalli/nvim-colorizer.lua',
-  'folke/tokyonight.nvim', 'shaunsingh/nord.nvim',
   'nathom/filetype.nvim',
   'pantharshit00/vim-prisma',
   -- lsp stuff
@@ -76,10 +75,14 @@ return {
   'tweekmonster/startuptime.vim',
   '907th/vim-auto-save',
   'tpope/vim-abolish',
-  'ggandor/leap.nvim',
+  {
+    'ggandor/leap.nvim',
+    config = function()
+      require('leap').add_default_mappings()
+    end,
+  },
   {
     'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-    config = function() require('lsp_lines').setup() end
   },
   {
     'jackMort/ChatGPT.nvim',
