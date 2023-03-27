@@ -1,59 +1,57 @@
 return {
-  'hrsh7th/nvim-cmp',
-  config = function()
-    local cmp = require('cmp')
-
-    cmp.setup({
+  "hrsh7th/nvim-cmp",
+  version = false, -- last release is way too old
+  event = "InsertEnter",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "saadparwaiz1/cmp_luasnip",
+  },
+  opts = function()
+    local cmp = require("cmp")
+    return {
+      completion = {
+        completeopt = "menu,menuone,noinsert",
+      },
       snippet = {
         expand = function(args)
-          vim.fn["vsnip#anonymous"](args.body)   -- For `vsnip` users.
-          -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-          -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-          -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+          require("luasnip").lsp_expand(args.body)
         end,
       },
-      mapping = {
-        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-        ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })),
-        ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert })),
-        ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })),
-        ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert })),
-        ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<C-y>'] = cmp.config.disable,   -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-e>'] = cmp.mapping.confirm({ select = true }),
+      mapping = cmp.mapping.preset.insert({
+        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ["<S-CR>"] = cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true,
+        }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      }),
+      sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
+      }),
+      formatting = {
+        format = function(_, item)
+          local icons = require("icons").kinds
+          if icons[item.kind] then
+            item.kind = icons[item.kind] .. item.kind
+          end
+          return item
+        end,
       },
-      sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'vsnip' },     -- For vsnip users.
-        -- { name = 'luasnip' }, -- For luasnip users.
-        -- { name = 'ultisnips' }, -- For ultisnips users.
-        -- { name = 'snippy' }, -- For snippy users.
-      }, {
-        { name = 'buffer' },
-      })
-    })
-
-    -- Use buffer source for `/`.
-    cmp.setup.cmdline('/', {
-      sources = {
-        { name = 'buffer' }
-      }
-    })
-
-    -- Use cmdline & path source for ':'.
-    cmp.setup.cmdline(':', {
-      sources = cmp.config.sources({
-        { name = 'path' }
-      }, {
-        { name = 'cmdline' }
-      })
-    })
-
-    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-
-    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
+      experimental = {
+        ghost_text = {
+          hl_group = "LspCodeLens",
+        },
+      },
+    }
   end,
 }
