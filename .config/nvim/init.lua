@@ -139,8 +139,6 @@ g.indent_blankline_show_first_indent_level = true
 require "config-telescope"
 -- require "nvimTree"
 
-require "whichkey"
-
 -- git signs , lsp symbols etc
 require("lspkind").init()
 
