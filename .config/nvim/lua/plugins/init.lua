@@ -42,11 +42,10 @@ return {
     }
   }, 'j-hui/fidget.nvim', -- LSP status indicator in bottom right
   -- use 'akinsho/nvim-bufferline.lua'
-  {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
-  }, -- use 'feline-nvim/feline.nvim'
-  -- use 'glepnir/galaxyline.nvim' -- customizable line at the bottom
+  --{
+    --'nvim-lualine/lualine.nvim',
+    --dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
+  --},
   'windwp/windline.nvim',
   {
     'SmiteshP/nvim-gps',
@@ -113,8 +112,6 @@ return {
   },
   -- discord rich presence
   -- 'andweeb/presence.nvim',
-  'lukas-reineke/indent-blankline.nvim',
-  -- old vim config
   'bronson/vim-trailing-whitespace',
   'junegunn/vim-easy-align',
   -- 'Lokaltog/vim-easymotion',
@@ -132,5 +129,6 @@ return {
       'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter',
       'antoinemadec/FixCursorHold.nvim', 'haydenmeade/neotest-jest'
     }
-  }
+  },
+  "nvim-treesitter/nvim-treesitter-textobjects",
 }
