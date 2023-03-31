@@ -3,7 +3,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  config = {
+  opts = {
     signs = {
       add = { hl = "DiffAdd", text = "▌", numhl = "GitSignsAddNr" },
       change = { hl = "DiffChange", text = "▌", numhl = "GitSignsChangeNr" },

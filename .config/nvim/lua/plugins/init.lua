@@ -29,7 +29,6 @@ return {
   'stevearc/dressing.nvim', -- unifies ui elements
   'mbbill/undotree',
   'onsails/lspkind-nvim',   -- lsp completion icons
-  'sbdchd/neoformat',       -- reformat utility (,fm)
   'nvim-lua/plenary.nvim',  -- useful lua functions
   {
     'glepnir/lspsaga.nvim',
@@ -51,7 +50,6 @@ return {
     'SmiteshP/nvim-gps',
     dependencies = 'nvim-treesitter/nvim-treesitter'
   },
-  'LionC/nest.nvim', -- keybinding management
   -- file managing , picker etc
   'simrat39/symbols-outline.nvim',
   'ryanoasis/vim-devicons',
@@ -79,9 +77,6 @@ return {
     config = function()
       require('leap').add_default_mappings()
     end,
-  },
-  {
-    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
   },
   {
     'jackMort/ChatGPT.nvim',

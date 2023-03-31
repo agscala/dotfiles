@@ -92,3 +92,10 @@ vim.fn.sign_define("LspDiagnosticsSignInformation",
     { text = "", numhl = "LspDiagnosticsDefaultInformation" })
 vim.fn.sign_define("LspDiagnosticsSignHint",
     { text = "", numhl = "LspDiagnosticsDefaultHint" })
+
+require('lspkind').init({
+    -- defines how annotations are shown
+    -- default: symbol
+    -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+    mode = 'symbol_text',
+});
