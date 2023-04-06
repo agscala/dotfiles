@@ -43,7 +43,7 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
-keymap("v", "p", "_dP", opts)
+keymap("v", "p", "\"_dP", opts)
 
 -- Terminal --
 -- Better terminal navigation

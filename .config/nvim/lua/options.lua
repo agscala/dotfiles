@@ -30,7 +30,7 @@ opt.relativenumber = false -- Relative line numbers
 opt.scrolloff = 4          -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shiftround = true      -- Round indent
-opt.shiftwidth = 4         -- Size of an indent
+opt.shiftwidth = 2         -- Size of an indent
 opt.shortmess:append { W = true, I = true, c = true }
 opt.showmode = false       -- Dont show mode since we have a statusline
 opt.sidescrolloff = 4      -- Columns of context
@@ -50,7 +50,7 @@ opt.undolevels = 10000
 opt.updatetime = 200               -- Save swap file and trigger CursorHold
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5                -- Minimum window width
-opt.wrap = false                   -- Disable line wrap
+opt.wrap = true                   -- Disable line wrap
 
 if vim.fn.has("nvim-0.9.0") == 1 then
     opt.splitkeep = "screen"

@@ -64,12 +64,6 @@ vim.api.nvim_exec([[
     let g:easy_align_ignore_groups = []
     "let g:easy_align_ignore_groups = ['Comment', 'String']
 
-    " Fix [<section> commands so that it matches both formats of function braces
-    map [[ ?{<CR>w99[{
-    map ][ /}<CR>b99]}
-    map \]\] j0[[%/{<CR>
-    map [] k$][%?}<CR>
-
     " Startify.vim settings
     let g:startify_change_to_dir = 0
     autocmd FileType startify setlocal buftype=

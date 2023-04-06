@@ -128,5 +128,6 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
     "echasnovski/mini.bracketed",
-    'folke/neodev.nvim'
+    'folke/neodev.nvim',
+    'sickill/vim-pasta',
 }
