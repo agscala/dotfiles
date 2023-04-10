@@ -66,7 +66,6 @@ return {
     'preservim/nerdtree',
     'kevinhwang91/nvim-bqf',
     -- version control
-    'airblade/vim-gitgutter',
     'rhysd/git-messenger.vim',
     -- misc
     'tweekmonster/startuptime.vim',

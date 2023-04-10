@@ -22,7 +22,7 @@ return {
     return {
       completion = {
         completeopt = "menu,menuone,noinsert",
-        autocomplete = false,
+        --autocomplete = false,
       },
       snippet = {
         expand = function(args)
