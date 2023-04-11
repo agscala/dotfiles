@@ -30,26 +30,13 @@ return {
     'mbbill/undotree',
     'onsails/lspkind-nvim',   -- lsp completion icons
     'nvim-lua/plenary.nvim',  -- useful lua functions
-    {
-        'glepnir/lspsaga.nvim',
-        branch = 'main',
-        config = function() require('lspsaga').setup({}) end,
-        dependencies = {
-            { 'nvim-tree/nvim-web-devicons' },
-            -- Please make sure you install markdown and markdown_inline parser
-            { 'nvim-treesitter/nvim-treesitter' }
-        }
-    }, 'j-hui/fidget.nvim', -- LSP status indicator in bottom right
+    'j-hui/fidget.nvim', -- LSP status indicator in bottom right
     -- use 'akinsho/nvim-bufferline.lua'
     --{
     --'nvim-lualine/lualine.nvim',
     --dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
     --},
     'windwp/windline.nvim',
-    {
-        'SmiteshP/nvim-gps',
-        dependencies = 'nvim-treesitter/nvim-treesitter'
-    },
     -- file managing , picker etc
     'simrat39/symbols-outline.nvim',
     'ryanoasis/vim-devicons',
@@ -109,10 +96,16 @@ return {
     'bronson/vim-trailing-whitespace',
     'junegunn/vim-easy-align',
     -- 'Lokaltog/vim-easymotion',
-    'luochen1990/rainbow', 'MarcWeber/vim-addon-local-vimrc',
-    'mhinz/vim-startify', 'scrooloose/nerdcommenter', 'sheerun/vim-polyglot',
-    'tmhedberg/matchit', 'tpope/vim-fugitive', 'tpope/vim-git',
-    'tpope/vim-repeat', 'tpope/vim-surround',
+    'luochen1990/rainbow',
+    'MarcWeber/vim-addon-local-vimrc',
+    'mhinz/vim-startify',
+    'scrooloose/nerdcommenter',
+    'sheerun/vim-polyglot',
+    'tmhedberg/matchit',
+    'tpope/vim-fugitive',
+    'tpope/vim-git',
+    'tpope/vim-repeat',
+    'tpope/vim-surround',
     'metakirby5/codi.vim',             --  Scratchpad :Codi
     'wellle/targets.vim',              --  Improved ca( ciw... etc
     'farmergreg/vim-lastplace',        --  reopens files to last position

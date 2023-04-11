@@ -23,7 +23,8 @@ return {
         "bash",
         "lua",
         "json",
-        "python"
+        "python",
+        "vimdoc"
       },
       highlight = {
         enable = true,

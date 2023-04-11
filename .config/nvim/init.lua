@@ -29,7 +29,7 @@ require("neotest").setup({
 })
 
 -- load all plugins
-require "misc-utils"
+--require "misc-utils"
 require('config-windline')
 
 require "options"

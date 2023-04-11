@@ -11,6 +11,8 @@ local function default_on_attach(client, bufnr)
         vim.api.nvim_buf_set_option(bufnr, ...)
     end
 
+    require("nvim-navic").attach(client, bufnr)
+
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
     -- Mappings.
@@ -91,7 +93,7 @@ vim.fn.sign_define("LspDiagnosticsSignWarning",
 vim.fn.sign_define("LspDiagnosticsSignInformation",
     { text = "", numhl = "LspDiagnosticsDefaultInformation" })
 vim.fn.sign_define("LspDiagnosticsSignHint",
-    { text = "", numhl = "LspDiagnosticsDefaultHint" })
+    { text = "", numhl = "LspDiagnosticsDefaultHint" })
 
 require('lspkind').init({
     -- defines how annotations are shown
