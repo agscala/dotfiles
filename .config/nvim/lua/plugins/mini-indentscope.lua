@@ -11,6 +11,8 @@ return {
         })
     end,
     config = function()
+        vim.cmd "hi MiniIndentscopeSymbol guifg=#555555"
+
         require("mini.indentscope").setup({
             symbol = "│",
             options = { try_as_border = true },

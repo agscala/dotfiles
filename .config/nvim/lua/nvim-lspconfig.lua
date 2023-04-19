@@ -1,6 +1,8 @@
 local vim = vim
 
 local lspconfig = require("lspconfig")
+local navic = require("nvim-navic")
+
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = { "bashls", "lua_ls", "tsserver" }
@@ -10,8 +12,6 @@ local function default_on_attach(client, bufnr)
     local function buf_set_option(...)
         vim.api.nvim_buf_set_option(bufnr, ...)
     end
-
-    require("nvim-navic").attach(client, bufnr)
 
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -37,6 +37,10 @@ local function default_on_attach(client, bufnr)
     -- .set('n', ']d', "<Cmd>lua vim.diagnostic.goto_next({float = false})<CR>", bufopts)
     -- vim.keymap.set('n', ']r', "<Cmd>lua vim.diagnostic.open_float()<CR>",
     -- bufopts)
+
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+    end
 
     if client.supports_method("textDocument/prepareCallHeirarchy") then
         -- vim.keymap.set('n', 'gl', "<Cmd>lua vim.lsp.buf.incoming_calls()<CR>",

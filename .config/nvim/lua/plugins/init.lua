@@ -64,33 +64,6 @@ return {
             require('leap').add_default_mappings()
         end,
     },
-    {
-        'jackMort/ChatGPT.nvim',
-        commit = '8820b99c', -- March 6th 2023, before submit issue
-        config = function()
-            require('chatgpt').setup({
-                keymaps = {
-                    close = { '<C-c>' },
-                    submit = '<C-Enter>',
-                    yank_last = '<C-y>',
-                    yank_last_code = '<C-k>',
-                    scroll_up = '<C-u>',
-                    scroll_down = '<C-d>',
-                    toggle_settings = '<C-o>',
-                    new_session = '<C-n>',
-                    cycle_windows = '<Tab>',
-                    -- in the Sessions pane
-                    select_session = '<Space>',
-                    rename_session = 'r',
-                    delete_session = 'd'
-                }
-            })
-        end,
-        dependencies = {
-            'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope.nvim'
-        }
-    },
     -- discord rich presence
     -- 'andweeb/presence.nvim',
     'bronson/vim-trailing-whitespace',

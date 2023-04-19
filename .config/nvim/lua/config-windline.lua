@@ -6,6 +6,8 @@ local state = _G.WindLine.state
 local lsp_comps = require('windline.components.lsp')
 local git_comps = require('windline.components.git')
 
+local navic = require('nvim-navic');
+
 local hl_list = {
     Black = { 'white', 'black' },
     White = { 'black', 'white' },
@@ -19,9 +21,9 @@ basic.divider = { b_components.divider, '' }
 basic.bg = { ' ', 'StatusLine' }
 
 local colors_mode = {
-    Normal =  { 'black', 'red' },
-    Insert =  { 'black', 'green' },
-    Visual =  { 'black', 'yellow' },
+    Normal = { 'black', 'red' },
+    Insert = { 'black', 'green' },
+    Visual = { 'black', 'yellow' },
     Replace = { 'black', 'blue_light' },
     Command = { 'black', 'magenta' },
 }
@@ -37,9 +39,9 @@ basic.square_mode = {
     hl_colors = colors_mode,
     text = function()
         return {
-            { " ", state.mode[2] },
+            { " ",           state.mode[2] },
             { state.mode[1], state.mode[2] },
-            { " ", state.mode[2] },
+            { " ",           state.mode[2] },
         }
     end,
 }
@@ -55,9 +57,9 @@ basic.lsp_diagnos = {
     text = function(bufnr)
         if lsp_comps.check_lsp(bufnr) then
             return {
-                { lsp_comps.lsp_error({ format = '  %s', show_zero = false }), 'red' },
+                { lsp_comps.lsp_error({ format = '  %s', show_zero = false }),   'red' },
                 { lsp_comps.lsp_warning({ format = '  %s', show_zero = false }), 'yellow' },
-                { lsp_comps.lsp_hint({ format = '  %s', show_zero = false }), 'blue' },
+                { lsp_comps.lsp_hint({ format = '  %s', show_zero = false }),    'blue' },
             }
         end
         return ''
@@ -73,10 +75,10 @@ basic.fileStats = {
     },
     text = function(_, _, width)
         return {
-            { ' ', '' },
+            { ' ',                            '' },
             { b_components.cache_file_size(), 'default' },
-            { b_components.line_col_lua, 'white' },
-            { b_components.progress_lua, '' },
+            { b_components.line_col_lua,      'white' },
+            { b_components.progress_lua,      '' },
         }
     end,
 }
@@ -95,10 +97,10 @@ basic.file = {
         end
 
         return {
-            { ' ', hl_list.Black },
+            { ' ',                                                 hl_list.Black },
             { b_components.cache_file_name('[No Name]', 'unique'), color },
-            { ' ', '' },
-            { b_components.file_modified(' '), 'magenta' },
+            { ' ',                                                 '' },
+            { b_components.file_modified(' '),                  'magenta' },
         }
     end,
 }
@@ -118,6 +120,15 @@ basic.file_right = {
         end
     end,
 }
+
+basic.symbol_outline = {
+    text = function(_, _, width)
+        return {
+            { navic.get_location(), 'magenta' },
+        }
+    end,
+}
+
 basic.git = {
     name = 'git',
     hl_colors = {
@@ -129,9 +140,9 @@ basic.git = {
     text = function(bufnr)
         if git_comps.is_git(bufnr) then
             return {
-                { git_comps.diff_added({ format = '  %s', show_zero = true }), 'green' },
+                { git_comps.diff_added({ format = '  %s', show_zero = true }),   'green' },
                 { git_comps.diff_removed({ format = '  %s', show_zero = true }), 'red' },
-                { git_comps.diff_changed({ format = ' 柳%s', show_zero = true }), 'blue' },
+                { git_comps.diff_changed({ format = ' 柳%s', show_zero = true }),  'blue' },
             }
         end
         return ''
@@ -141,7 +152,7 @@ basic.git = {
 local quickfix = {
     filetypes = { 'qf', 'Trouble' },
     active = {
-        { '🚦 Quickfix ', { 'white', 'black' } },
+        { '🚦 Quickfix ',              { 'white', 'black' } },
         { helper.separators.slant_right, { 'black', 'black_light' } },
         {
             function()
@@ -149,14 +160,13 @@ local quickfix = {
             end,
             { 'cyan', 'black_light' },
         },
-        { ' Total : %L ', { 'cyan', 'black_light' } },
+        { ' Total : %L ',                { 'cyan', 'black_light' } },
         { helper.separators.slant_right, { 'black_light', 'InactiveBg' } },
-        { ' ', { 'InactiveFg', 'InactiveBg' } },
+        { ' ',                           { 'InactiveFg', 'InactiveBg' } },
         basic.divider,
         { helper.separators.slant_right, { 'InactiveBg', 'black' } },
-        { '🧛 ', { 'white', 'black' } },
+        { '🧛 ',                       { 'white', 'black' } },
     },
-
     always_active = true,
     show_last_status = true,
 }
@@ -164,9 +174,9 @@ local quickfix = {
 local explorer = {
     filetypes = { 'fern', 'NvimTree', 'lir' },
     active = {
-        { '  ', { 'black', 'red' } },
+        { '  ',                       { 'black', 'red' } },
         { helper.separators.slant_right, { 'red', 'NormalBg' } },
-        { b_components.divider, '' },
+        { b_components.divider,          '' },
         { b_components.file_name(''), { 'white', 'NormalBg' } },
     },
     always_active = true,
@@ -186,7 +196,7 @@ basic.lsp_name = {
             }
         end
         return {
-            { b_components.cache_file_type({icon = true}), 'magenta' },
+            { b_components.cache_file_type({ icon = true }), 'magenta' },
         }
     end,
 }
@@ -198,21 +208,22 @@ local default = {
         -- basic.vi_mode,
         basic.file,
         basic.lsp_diagnos,
+        basic.symbol_outline,
         basic.divider,
         basic.file_right,
         basic.lsp_name,
         basic.git,
         { git_comps.git_branch(), { 'magenta', 'black' }, breakpoint_width },
         basic.fileStats,
-        { ' ', hl_list.Black },
+        { ' ',                    hl_list.Black },
     },
     inactive = {
         { b_components.full_file_name, hl_list.Inactive },
         basic.file_name_inactive,
         basic.divider,
         basic.divider,
-        { b_components.line_col, hl_list.Inactive },
-        { b_components.progress, hl_list.Inactive },
+        { b_components.line_col,       hl_list.Inactive },
+        { b_components.progress,       hl_list.Inactive },
     },
 }
 
