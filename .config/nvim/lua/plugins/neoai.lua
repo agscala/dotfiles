@@ -21,7 +21,7 @@ return {
     },
     keys = {
         { "<leader>as", desc = "summarize text" },
-        { "<leader>ag", desc = "generate git message" },
+        { "<leader>ac", desc = "generate git message" },
     },
     config = function()
         require("neoai").setup({
@@ -49,7 +49,7 @@ return {
                 },
                 {
                     name = "gitcommit",
-                    key = "<leader>ag",
+                    key = "<leader>ac",
                     desc = "generate git commit message",
                     use_context = false,
                     prompt = function()
