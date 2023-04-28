@@ -208,7 +208,7 @@ local default = {
         -- basic.vi_mode,
         basic.file,
         basic.lsp_diagnos,
-        basic.symbol_outline,
+        --basic.symbol_outline,
         basic.divider,
         basic.file_right,
         basic.lsp_name,
@@ -227,6 +227,30 @@ local default = {
     },
 }
 
+local winbar = {
+    filetypes = { 'winbar' },
+    active = {
+        {
+            function(bufnr)
+                return navic.get_location({ highlight = true }, bufnr)
+            end
+        },
+    },
+    inactive = {
+        { ' ', { 'white', 'InactiveBg' } },
+        { '%=' },
+        {
+            function(bufnr)
+                local bufname = vim.api.nvim_buf_get_name(bufnr)
+                local path = vim.fn.fnamemodify(bufname, ':~:.')
+                return path
+            end,
+            { 'white', 'InactiveBg' },
+        },
+    },
+    --- enable=function(bufnr,winid)  return true end --a function to disable winbar on some window or filetype
+}
+
 windline.setup({
     colors_name = function(colors)
         -- print(vim.inspect(colors))
@@ -238,5 +262,6 @@ windline.setup({
         default,
         quickfix,
         explorer,
+        winbar,
     },
 })

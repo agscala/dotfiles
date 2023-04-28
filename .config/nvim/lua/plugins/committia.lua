@@ -1,5 +1,7 @@
 return {
   'rhysd/committia.vim',
+  lazy = false,
+  ft = "gitcommit",
   config = function()
     vim.api.nvim_exec([[
       let g:committia_hooks = {}
