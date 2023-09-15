@@ -57,7 +57,8 @@ return {
                             Generate a consise and clear summary to use as the git commit.
                             The first line should be a title that summarizes the changes.
                             The following lines should be a lengthier description of the changes.
-                            Do not include a label at the start of the lines.
+
+                            Important: Do not include a label at the start of the lines.
 
                             The changes included in the commit:
                         ]] .. vim.fn.system("git diff --cached")
