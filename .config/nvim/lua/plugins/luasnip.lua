@@ -5,10 +5,11 @@ return {
         or nil,
     dependencies = {
         "rafamadriz/friendly-snippets",
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-        end,
     },
+    config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+        require("luasnip").filetype_extend("ruby", {"rails"})
+    end,
     opts = {
         history = true,
         delete_check_events = "TextChanged",

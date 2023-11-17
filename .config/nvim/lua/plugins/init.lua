@@ -30,7 +30,7 @@ return {
     'mbbill/undotree',
     'onsails/lspkind-nvim',   -- lsp completion icons
     'nvim-lua/plenary.nvim',  -- useful lua functions
-    'j-hui/fidget.nvim', -- LSP status indicator in bottom right
+    'j-hui/fidget.nvim',      -- LSP status indicator in bottom right
     -- use 'akinsho/nvim-bufferline.lua'
     --{
     --'nvim-lualine/lualine.nvim',
