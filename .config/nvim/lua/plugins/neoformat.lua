@@ -1,10 +1,12 @@
 return {
-    'sbdchd/neoformat',
-    config = function()
-        vim.g.neoformat_try_node_exe = 1
-        vim.g.neoformat_basic_format_align = 1
-        vim.g.neoformat_basic_format_retab = 1
-        vim.g.neoformat_basic_format_trim = 1
-        vim.g.neoformat_only_msg_on_error = 1
-    end,
+    'stevearc/conform.nvim',
+    config = {
+        formatters_by_ft = {
+            lua = { "stylua" },
+            -- Conform will run multiple formatters sequentially
+            python = { "isort", "black" },
+            -- Use a sub-list to run only the first available formatter
+            javascript = { { "prettierd", "prettier" } },
+        },
+    }
 }

@@ -38,7 +38,6 @@ return {
     --},
     'windwp/windline.nvim',
     -- file managing , picker etc
-    'simrat39/symbols-outline.nvim',
     'ryanoasis/vim-devicons',
     {
         'nvim-telescope/telescope.nvim',
