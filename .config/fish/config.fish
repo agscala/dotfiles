@@ -2,7 +2,7 @@ alias vim 'nvim'
 alias vi 'nvim'
 alias vault 'aws-vault exec zapier --'
 
-set -Ux EDITOR vim
+set -Ux EDITOR nvim
 
 source ~/.config/fish/api-keys.fish
 
