@@ -8,6 +8,7 @@ require("mason-lspconfig").setup({
         "bashls",
         "lua_ls",
         "tsserver",
+        "eslint",
     }
 })
 
@@ -34,6 +35,11 @@ require("mason-lspconfig").setup_handlers({
                     importModuleSpecifierPreference = 'non-relative',
                 },
             },
+        })
+    end,
+    ["eslint"] = function()
+        lspconfig.eslint.setup({
+
         })
     end,
     ["lua_ls"] = function()

@@ -9,7 +9,6 @@ vim.opt.clipboard = "unnamedplus"  -- Sync with system clipboard
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.conceallevel = 3           -- Hide * markup for bold and italic
 vim.opt.confirm = true             -- Confirm to save changes before exiting modified buffer
-vim.opt.hidden = true
 vim.opt.cursorline = true          -- Enable highlighting of the current line
 vim.opt.cursorcolumn = false        -- Enable highlighting of the current line
 vim.opt.expandtab = true           -- Use spaces instead of tabs

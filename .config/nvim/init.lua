@@ -12,7 +12,11 @@ vim.opt.rtp:prepend(lazypath) -- using { } for using different branch , loading 
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
-require("lazy").setup('plugins')
+require("lazy").setup('plugins', {
+    change_detection = {
+        notify = false,
+    },
+})
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -68,3 +72,23 @@ vim.api.nvim_exec([[
     let g:startify_change_to_dir = 0
     autocmd FileType startify setlocal buftype=
 ]], false)
+
+vim.api.nvim_exec([[
+  let g:committia_hooks = {}
+  function! g:committia_hooks.edit_open(info)
+    " Additional settings
+    setlocal spell
+
+    " If no commit message, start with insert mode
+    if a:info.vcs ==# 'git' && getline(1) ==# ''
+      startinsert
+    endif
+
+    " Scroll the diff window from insert mode
+    " Map <C-n> and <C-p>
+    imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+    imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
+  endfunction
+
+  autocmd BufReadPost COMMIT_EDITMSG,MERGE_MSG call committia#open('git')
+]], true)
