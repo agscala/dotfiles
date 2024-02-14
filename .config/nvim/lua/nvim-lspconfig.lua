@@ -1,80 +1,44 @@
-local vim = vim
-
 local lspconfig = require("lspconfig")
 local navic = require("nvim-navic")
+local icons = require("icons")
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "bashls", "lua_ls", "tsserver" }
+    ensure_installed = {
+        "bashls",
+        "lua_ls",
+        "tsserver",
+    }
 })
 
-local function default_on_attach(client, bufnr)
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-
-    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-    -- Mappings.
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-    -- vim.keymap.set('n', '<c-]>', "<Cmd>lua vim.lsp.buf.definition()<CR>",
-    -- bufopts)
-    -- vim.keymap.set('n', 'K', "<Cmd>lua vim.lsp.buf.hover()<CR>", bufopts)
-    -- vim.keymap.set('n', 'gh', "<Cmd>lua vim.lsp.buf.signature_help()<CR>",
-    -- bufopts)
-    -- vim.keymap.set('n', 'ga', "<Cmd>lua vim.lsp.buf.code_action()<CR>", bufopts)
-    -- vim.keymap.set('n', 'gi', "<Cmd>lua vim.lsp.buf.implementation()<CR>",
-    -- bufopts)
-    -- vim.keymap.set('n', 'gt', "<Cmd>lua vim.lsp.buf.type_definition()<CR>",
-    -- bufopts)
-    -- vim.keymap.set('n', 'gr', "<Cmd>lua vim.lsp.buf.references()<CR>", bufopts)
-    -- vim.keymap.set('n', 'rn', "<Cmd>lua vim.lsp.buf.rename()<CR>", bufopts)
-
-    -- vim.keymap
-    -- .set('n', '[d', "<Cmd>lua vim.diagnostic.goto_prev({float = false})<CR>", bufopts)
-    -- vim.keymap
-    -- .set('n', ']d', "<Cmd>lua vim.diagnostic.goto_next({float = false})<CR>", bufopts)
-    -- vim.keymap.set('n', ']r', "<Cmd>lua vim.diagnostic.open_float()<CR>",
-    -- bufopts)
-
+local on_attach = function(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
     end
-
-    if client.supports_method("textDocument/prepareCallHeirarchy") then
-        -- vim.keymap.set('n', 'gl', "<Cmd>lua vim.lsp.buf.incoming_calls()<CR>",
-        -- bufopts)
-    end
-
-    if client.supports_method("textDocument/formatting") then
-        -- vim.api.nvim_create_autocmd({"BufWritePre"}, {
-        -- group = vim.api.nvim_create_augroup("SharedLspFormatting",
-        -- {clear = true}),
-        -- pattern = "*",
-        -- command = "Neoformat"
-        -- })
-    end
 end
-
--- local default_on_attach = function(client)
--- -- require("mappings").keys_lsp()
--- client.resolved_capabilities.document_formatting = false
--- client.resolved_capabilities.document_range_formatting = false
--- end
-
-local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-lspconfig.util.default_config = vim.tbl_extend("force",
-    lspconfig.util.default_config, {
-        on_attach = default_on_attach,
-        capabilities = default_capabilities
-    })
 
 require("mason-lspconfig").setup_handlers({
     function(server_name) lspconfig[server_name].setup({}) end,
+    ["tsserver"] = function()
+        lspconfig.tsserver.setup({
+            on_attach = on_attach,
+            init_options = {
+                preferences = {
+                    includeInlayParameterNameHints = 'all',
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
+                    importModuleSpecifierPreference = 'non-relative',
+                },
+            },
+        })
+    end,
     ["lua_ls"] = function()
         lspconfig.lua_ls.setup({
+            on_attach = on_attach,
             settings = {
                 Lua = {
                     runtime = { version = "LuaJIT" },
@@ -91,13 +55,13 @@ require("mason-lspconfig").setup_handlers({
 })
 
 vim.fn.sign_define("LspDiagnosticsSignError",
-    { text = "", numhl = "LspDiagnosticsDefaultError" })
+    { text = icons.diagnostics.Error, numhl = "LspDiagnosticsDefaultError" })
 vim.fn.sign_define("LspDiagnosticsSignWarning",
-    { text = "", numhl = "LspDiagnosticsDefaultWarning" })
+    { text = icons.diagnostics.Warn, numhl = "LspDiagnosticsDefaultWarning" })
 vim.fn.sign_define("LspDiagnosticsSignInformation",
-    { text = "", numhl = "LspDiagnosticsDefaultInformation" })
+    { text = icons.diagnostics.Info, numhl = "LspDiagnosticsDefaultInformation" })
 vim.fn.sign_define("LspDiagnosticsSignHint",
-    { text = "", numhl = "LspDiagnosticsDefaultHint" })
+    { text = icons.diagnostics.Info, numhl = "LspDiagnosticsDefaultHint" })
 
 require('lspkind').init({
     -- defines how annotations are shown
