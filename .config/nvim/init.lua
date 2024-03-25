@@ -21,17 +21,6 @@ require("lazy").setup('plugins', {
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require("neotest").setup({
-    adapters = {
-        require("neotest-jest")({
-            jestCommand = "yarn test --",
-            -- jestConfigFile = "custom.jest.config.ts",
-            env = { CI = true },
-            cwd = function() return vim.fn.getcwd() end
-        })
-    }
-})
-
 -- load all plugins
 --require "misc-utils"
 require('config-windline')
@@ -40,8 +29,6 @@ require "options"
 require "keymaps"
 
 -- lsp stuff
-
-local g = vim.g
 
 vim.cmd.colorscheme "catppuccin"
 
@@ -90,5 +77,5 @@ vim.api.nvim_exec([[
     imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
   endfunction
 
-  autocmd BufReadPost COMMIT_EDITMSG,MERGE_MSG call committia#open('git')
+  " autocmd BufReadPost COMMIT_EDITMSG,MERGE_MSG call committia#open('git')
 ]], true)

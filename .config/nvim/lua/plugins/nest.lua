@@ -26,8 +26,8 @@ return {
             -- { '<Leader>e', "<cmd>lua vim.diagnostic.open_float()<CR>" },
             { '<Leader>e',  "<cmd>lua require('lsp_lines').toggle()<CR>" },
             { '<Leader>q',  "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>" },
-            { '<Leader>fm', "<Cmd>Neoformat<CR>" },
-            { '<Leader>fm', "<cmd>lua vim.lsp.buf.format()<CR>" },
+            --{ '<Leader>fm', "<Cmd>Neoformat<CR>" },
+            --{ '<Leader>fm', "<cmd>lua vim.lsp.buf.format()<CR>" },
             { '<leader>', {
                 { 't', { -- telescope pickers
                     { 's', ":SymbolsOutline<CR>", { noremap = true, silent = true } },

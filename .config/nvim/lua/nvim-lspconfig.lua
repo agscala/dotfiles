@@ -8,7 +8,6 @@ require("mason-lspconfig").setup({
         "bashls",
         "lua_ls",
         "tsserver",
-        "eslint",
     }
 })
 
@@ -66,8 +65,8 @@ vim.fn.sign_define("LspDiagnosticsSignWarning",
     { text = icons.diagnostics.Warn, numhl = "LspDiagnosticsDefaultWarning" })
 vim.fn.sign_define("LspDiagnosticsSignInformation",
     { text = icons.diagnostics.Info, numhl = "LspDiagnosticsDefaultInformation" })
-vim.fn.sign_define("LspDiagnosticsSignHint",
-    { text = icons.diagnostics.Info, numhl = "LspDiagnosticsDefaultHint" })
+--vim.fn.sign_define("LspDiagnosticsSignHint",
+    --{ text = icons.diagnostics.Info, numhl = "LspDiagnosticsDefaultHint" })
 
 require('lspkind').init({
     -- defines how annotations are shown

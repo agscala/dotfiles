@@ -14,7 +14,7 @@ return {
                 nls.builtins.diagnostics.fish,
                 nls.builtins.diagnostics.flake8,
 
-                nls.builtins.diagnostics.eslint,
+                --nls.builtins.diagnostics.eslint,
             },
         }
     end,
