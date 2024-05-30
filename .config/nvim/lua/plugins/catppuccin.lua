@@ -9,6 +9,7 @@ return {
         dark = "mocha",
     },
     transparent_background = false,
+    show_end_of_buffer = true,
     term_colors = false,
     dim_inactive = {
       enabled = true,
