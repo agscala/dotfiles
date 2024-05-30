@@ -201,6 +201,25 @@ basic.lsp_name = {
     end,
 }
 
+basic.gitlab_pipeline_status = {
+    width = breakpoint_width,
+    name = 'gitlab_pipeline_status',
+    hl_colors = {
+        magenta = { 'magenta', 'black' },
+    },
+    text = function(bufnr)
+        if lsp_comps.check_lsp(bufnr) then
+            return {
+                { lsp_comps.lsp_name(), 'magenta' },
+            }
+        end
+        return {
+            { b_components.cache_file_type({ icon = true }), 'magenta' },
+        }
+    end,
+}
+
+
 local default = {
     filetypes = { 'default' },
     active = {
