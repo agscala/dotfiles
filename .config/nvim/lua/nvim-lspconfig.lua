@@ -2,6 +2,23 @@ local lspconfig = require("lspconfig")
 local navic = require("nvim-navic")
 local icons = require("icons")
 
+vim.diagnostic.config({
+    virtual_lines = false,
+    virtual_text = { 
+      prefix = "●",
+      -- format = function(diagnostic) return "" end ,
+    },
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+        [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+        [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+        [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+      },
+    }
+    -- virtual_lines = { only_current_line = true },
+})
+
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {

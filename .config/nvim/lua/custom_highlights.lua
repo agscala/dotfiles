@@ -1,5 +1,9 @@
 local cmd = vim.cmd
+
+
 -- blankline
+--
+--
 
 cmd "hi IndentBlanklineChar guifg=#383c44"
 
@@ -57,6 +61,7 @@ cmd "hi VertSplit guifg=#2a2e36"
 -- hint
 -- cmd "hi LspDiagnosticsSignHint guifg=#b6bdca"
 -- cmd "hi LspDiagnosticsVirtualTextHint guifg=#b6bdca"
+vim.cmd.highlight('DiagnosticUnderlineError guisp=#ff0000 gui=undercurl')
 
 -- lightspeed
 cmd "hi LightspeedLabel guifg=#ff0000"

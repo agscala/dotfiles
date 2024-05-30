@@ -1,3 +1,5 @@
+local icons = require("icons")
+
 return {
 
     -- color related stuff
@@ -53,7 +55,7 @@ return {
     'preservim/nerdtree',
     'kevinhwang91/nvim-bqf',
     -- version control
-    'rhysd/git-messenger.vim',
+    --'rhysd/git-messenger.vim', -- gc blame popup
     -- misc
     'tweekmonster/startuptime.vim',
     '907th/vim-auto-save',
@@ -92,4 +94,45 @@ return {
     'sickill/vim-pasta',
     { "nvim-neotest/nvim-nio" }, -- Async I/O
     { "folke/neodev.nvim", opts = {} }, -- type checking for neovim lua
+
+    -- Diagnostics popover
+    { 
+      'RaafatTurki/corn.nvim' ,
+      keys={
+        { "<leader>e", "<cmd>Corn toggle<cr>", desc = "toggle diagnostics popover" },
+      },
+
+      config = function()
+          require('corn').setup({
+            icons = {
+              error = icons.diagnostics.Error,
+              warn = icons.diagnostics.Warn,
+              hint = icons.diagnostics.Hint,
+              info = icons.diagnostics.Info,
+            },
+            item_preprocess_func = function(item)
+              return item
+            end,
+            on_toggle = function(is_hidden)
+              -- Toggle virtual text on/off
+              -- vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
+            end,
+          })
+      end,
+    },
+    {
+      'numToStr/Comment.nvim',
+      opts = {
+          -- add any options here
+      },
+      lazy = false,
+      config = function()
+        require('Comment').setup({
+          pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+        })
+      end,
+      dependencies = {
+        'JoosepAlviste/nvim-ts-context-commentstring',
+      }
+    },
 }

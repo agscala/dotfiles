@@ -30,6 +30,7 @@ require "keymaps"
 
 -- lsp stuff
 
+--vim.cmd.colorscheme "catppuccin"
 vim.cmd.colorscheme "catppuccin"
 
 -- git-messenger
@@ -38,12 +39,6 @@ vim.api.nvim_exec([[
     nmap gc <Plug>(git-messenger)
     let g:git_messenger_no_default_mappings = v:true
 ]], false)
-
-vim.diagnostic.config({
-    virtual_lines = false,
-    virtual_text = { format = function(diagnostic) return "" end }
-    -- virtual_lines = { only_current_line = true },
-})
 
 -- Old Vim Config Stuff
 vim.api.nvim_exec([[
