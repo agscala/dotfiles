@@ -5,6 +5,8 @@ local wezterm = require 'wezterm';
 return {
   -- font = wezterm.font("FiraCode Nerd Font"),
   font = wezterm.font("JetBrainsMono Nerd Font Mono"),
+  underline_position = -3,
+  underline_thickness = 2,
   font_size = 16,
   colors = {
     cursor_bg = "#FFF",
