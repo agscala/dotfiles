@@ -73,7 +73,7 @@ return {
     'HiPhish/rainbow-delimiters.nvim',
     'MarcWeber/vim-addon-local-vimrc',
     'mhinz/vim-startify',
-    'scrooloose/nerdcommenter',
+    --'scrooloose/nerdcommenter',
     'tpope/vim-fugitive',
     'tpope/vim-git',
     'tpope/vim-repeat',
@@ -120,8 +120,19 @@ return {
           })
       end,
     },
+    --{ "echasnovski/mini.comment", config = {}},
     {
       'numToStr/Comment.nvim',
+      keys = {
+        { "<leader>cc", "<CMD>normal gcc<cr>", desc = "toggle comment on line" },
+        { "<leader>cc", "<CMD>'<,'>normal gcc<CR>'.", desc = "toggle comments linewise", mode = "x"},
+        { "<leader>cs", "<CMD>normal gbc<CR>'.", desc = "block comment"},
+        { "<leader>cs", "<CMD>normal gb<CR>", desc = "block comment", mode = "x"},
+        { "<leader>cu", "<CMD>lua require('Comment.api').uncomment.blockwise.current()<CR>", desc = "toggle diagnostics popover" },
+        { "<leader>cu", "<CMD>'<,'>lua require('Comment.api').uncomment.linewise.current()<CR>'.", desc = "invert comments", mode = "x"},
+        { "<leader>ci", "<CMD>'<,'>normal gcc<CR>'.", desc = "invert comments", mode = "x"},
+        { "<leader>ci", "<CMD>lua require('Comment.api').toggle.linewise.current()<CR>", desc = "invert comment", mode = "n"},
+      },
       opts = {
           -- add any options here
       },

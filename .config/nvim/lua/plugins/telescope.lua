@@ -29,6 +29,7 @@ return {
           "--with-filename",
           "--line-number",
           "--column",
+          "--no-require-git",
           "--smart-case"
         },
         prompt_prefix = " ",
