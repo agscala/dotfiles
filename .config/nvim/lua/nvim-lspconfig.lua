@@ -25,7 +25,8 @@ require("mason-lspconfig").setup({
         "bashls",
         "lua_ls",
         "tsserver",
-        "stylelint_lsp"
+        "stylelint_lsp",
+        "css_variables",
     }
 })
 
@@ -54,11 +55,13 @@ require("mason-lspconfig").setup_handlers({
             },
         })
     end,
-    --["eslint"] = function()
-        --lspconfig.eslint.setup({
+    ["css_variables"] = function()
+      lspconfig.css_variables.setup({
+        filetypes = { "typescriptreact", "tsx", "jsx", "css", "scss" },
+        root_dir = lspconfig.util.root_pattern(".git"),
+      })
+    end,
 
-        --})
-    --end,
     ["stylelint_lsp"] = function()
       lspconfig.stylelint_lsp.setup({
         filetypes = { "typescriptreact", "tsx", "jsx", "css", "scss" },
