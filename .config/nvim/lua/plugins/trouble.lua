@@ -34,6 +34,7 @@ return {
     },
   },
   opts = {
+    multiline = true,
     win = {
       size = {
         width = 60,

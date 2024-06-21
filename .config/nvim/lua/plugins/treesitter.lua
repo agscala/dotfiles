@@ -9,14 +9,11 @@ return {
         "elixir",
         "c_sharp",
         "c",
-        "rust",
         "go",
         "graphql",
         "ruby",
         "rust",
-        "svelte",
         "tsx",
-        "vue",
         "yaml",
         "html",
         "css",
@@ -28,7 +25,6 @@ return {
       },
       highlight = {
         enable = true,
-        use_languagetree = true
       }
     }
   end,

@@ -28,3 +28,6 @@ end
 
 direnv hook fish | source
 
+
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /Users/agscala/.ghcup/bin $PATH # ghcup-env

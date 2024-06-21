@@ -93,11 +93,8 @@ return {
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	{ "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
 	"echasnovski/mini.bracketed",
-	"folke/neodev.nvim",
 	"sickill/vim-pasta",
 	{ "nvim-neotest/nvim-nio" }, -- Async I/O
-	{ "folke/neodev.nvim", opts = {} }, -- type checking for neovim lua
-
 	-- Diagnostics popover
 	{
 		"RaafatTurki/corn.nvim",

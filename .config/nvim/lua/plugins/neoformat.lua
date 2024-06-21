@@ -13,9 +13,15 @@ return {
 			typescript = { { "prettierd", "prettier" } },
 			typescriptreact = { { "prettierd", "prettier" } },
 
+            -- run on all filetypes
 			["*"] = { "codespell" },
+
+            -- run on files without a configured formatter
 			["_"] = { "trim_whitespace" },
 		},
+        formatters = {
+
+        }
 	},
 	init = function()
 		-- Uncomment for format on save:
