@@ -1,10 +1,13 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git", "clone", "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git", "--branch=stable", -- latest stable release
-        lazypath
-    })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 
 vim.opt.rtp:prepend(lazypath) -- using { } for using different branch , loading plugin with certain commands etc
@@ -12,10 +15,10 @@ vim.opt.rtp:prepend(lazypath) -- using { } for using different branch , loading 
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
-require("lazy").setup('plugins', {
-    change_detection = {
-        notify = false,
-    },
+require("lazy").setup("plugins", {
+	change_detection = {
+		notify = false,
+	},
 })
 
 vim.g.loaded_netrw = 1
@@ -23,25 +26,48 @@ vim.g.loaded_netrwPlugin = 1
 
 -- load all plugins
 --require "misc-utils"
-require('config-windline')
+require("config-windline")
 
-require "options"
-require "keymaps"
+require("options")
+require("keymaps")
 
--- lsp stuff
+-- NEOVIDE
+if vim.g.neovide then
+  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
+	vim.keymap.set("v", "<D-c>", '"+y') -- Copy
+	vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
+	vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
+	vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
+	vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
+
+    vim.g.neovide_scale_factor = 1.0
+	local change_scale_factor = function(delta)
+		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+	end
+	vim.keymap.set("n", "<D-=>", function()
+		change_scale_factor(1.25)
+	end)
+	vim.keymap.set("n", "<D-->", function()
+		change_scale_factor(1 / 1.25)
+	end)
+end
 
 --vim.cmd.colorscheme "catppuccin"
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme("catppuccin")
 
 -- git-messenger
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
     let g:git_messenger_floating_win_opts = { "border": "single" }
     nmap gc <Plug>(git-messenger)
     let g:git_messenger_no_default_mappings = v:true
-]], false)
+]],
+	false
+)
 
 -- Old Vim Config Stuff
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
     " Start interactive EasyAlign in visual mode (e.g. vipga)
     xmap ga <Plug>(EasyAlign)
 
@@ -53,9 +79,12 @@ vim.api.nvim_exec([[
     " Startify.vim settings
     let g:startify_change_to_dir = 0
     autocmd FileType startify setlocal buftype=
-]], false)
+]],
+	false
+)
 
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
   let g:committia_hooks = {}
   function! g:committia_hooks.edit_open(info)
     " Additional settings
@@ -73,4 +102,6 @@ vim.api.nvim_exec([[
   endfunction
 
   " autocmd BufReadPost COMMIT_EDITMSG,MERGE_MSG call committia#open('git')
-]], true)
+]],
+	true
+)

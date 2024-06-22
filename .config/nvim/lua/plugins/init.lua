@@ -61,12 +61,6 @@ return {
 	"tweekmonster/startuptime.vim",
 	"907th/vim-auto-save",
 	"tpope/vim-abolish",
-	{
-		"ggandor/leap.nvim",
-		config = function()
-			require("leap").add_default_mappings()
-		end,
-	},
 	-- discord rich presence
 	-- 'andweeb/presence.nvim',
 	"junegunn/vim-easy-align",
@@ -172,5 +166,34 @@ return {
 		config = function()
 			require("project_nvim").setup({})
 		end,
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
+	},
+	{
+		"Bekaboo/dropbar.nvim",
+		-- optional, but required for fuzzy finder support
+		dependencies = {
+			"nvim-telescope/telescope-fzf-native.nvim",
+		},
+	},
+	{
+		"mistricky/codesnap.nvim",
+		build = "make",
+
+		-- keys = {
+		-- 	{ "<leader>cc", "<cmd>CodeSnap<cr>", mode = "x", desc = "Save selected code snapshot into clipboard" },
+		-- 	{ "<leader>cs", "<cmd>CodeSnapSave<cr>", mode = "x", desc = "Save selected code snapshot in ~/Pictures" },
+		-- },
+		opts = {
+			save_path = "~/Pictures",
+			has_breadcrumbs = true,
+			has_line_number = true,
+            mac_window_bar = false,
+			bg_theme = "dusk",
+			watermark = "",
+		},
 	},
 }

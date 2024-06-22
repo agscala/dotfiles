@@ -281,6 +281,6 @@ windline.setup({
         default,
         quickfix,
         explorer,
-        winbar,
+        -- winbar,
     },
 })
