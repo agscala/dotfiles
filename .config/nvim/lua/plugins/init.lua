@@ -168,11 +168,6 @@ return {
 		end,
 	},
 	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
-	},
-	{
 		"Bekaboo/dropbar.nvim",
 		-- optional, but required for fuzzy finder support
 		dependencies = {
@@ -191,9 +186,35 @@ return {
 			save_path = "~/Pictures",
 			has_breadcrumbs = true,
 			has_line_number = true,
-            mac_window_bar = false,
+			mac_window_bar = false,
 			bg_theme = "dusk",
 			watermark = "",
 		},
+	},
+	"nvim-pack/nvim-spectre",
+	{
+		"dmmulroy/tsc.nvim",
+		config = function()
+			require("tsc").setup({})
+		end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
+	{ "echasnovski/mini.icons", version = false },
+
+	{
+		"mistricky/code-link.nvim",
+		opts = {
+			copy_command = function(link)
+				return 'echo "' .. link .. '" | pbcopy'
+			end,
+		},
+        keys = {
+            { "gll", "<cmd>CodeLink<cr>", desc = "Get link to source code" },
+        },
 	},
 }

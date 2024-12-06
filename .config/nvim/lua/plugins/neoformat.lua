@@ -19,9 +19,7 @@ return {
             -- run on files without a configured formatter
 			["_"] = { "trim_whitespace" },
 		},
-        formatters = {
-
-        }
+        stop_after_first = true,
 	},
 	init = function()
 		-- Uncomment for format on save:

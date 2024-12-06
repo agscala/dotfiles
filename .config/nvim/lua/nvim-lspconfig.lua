@@ -2,6 +2,8 @@ local lspconfig = require("lspconfig")
 local navic = require("nvim-navic")
 local icons = require("icons")
 
+require('lspconfig.ui.windows').default_options.border = 'single'
+
 vim.diagnostic.config({
     virtual_lines = false,
     virtual_text = { 
@@ -64,7 +66,7 @@ require("mason-lspconfig").setup_handlers({
 
     ["stylelint_lsp"] = function()
       lspconfig.stylelint_lsp.setup({
-        filetypes = { "typescriptreact", "tsx", "jsx", "css", "scss" },
+        filetypes = { "css", "scss" },
         --root_dir = require("lspconfig").util.root_pattern("package.json", ".git"),
         settings = {
           stylelintplus = {
@@ -110,3 +112,7 @@ require('lspkind').init({
     -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
     mode = 'symbol_text',
 });
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded",
+})
