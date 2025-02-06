@@ -9,17 +9,16 @@ return {
 			-- Conform will run multiple formatters sequentially
 			python = { "isort", "black" },
 			-- Use a sub-list to run only the first available formatter
-			javascript = { { "prettierd", "prettier" }, "eslint_d" },
-			typescript = { { "prettierd", "prettier" } },
-			typescriptreact = { { "prettierd", "prettier" } },
+			javascript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
+			typescript = { "prettierd", "prettier", stop_after_first = true },
+			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 
-            -- run on all filetypes
+			-- run on all filetypes
 			["*"] = { "codespell" },
 
-            -- run on files without a configured formatter
+			-- run on files without a configured formatter
 			["_"] = { "trim_whitespace" },
 		},
-        stop_after_first = true,
 	},
 	init = function()
 		-- Uncomment for format on save:

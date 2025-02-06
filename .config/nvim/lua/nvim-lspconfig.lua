@@ -26,7 +26,7 @@ require("mason-lspconfig").setup({
     ensure_installed = {
         "bashls",
         "lua_ls",
-        "tsserver",
+        "ts_ls",
         "stylelint_lsp",
         "css_variables",
     }
@@ -40,8 +40,8 @@ end
 
 require("mason-lspconfig").setup_handlers({
     function(server_name) lspconfig[server_name].setup({}) end,
-    ["tsserver"] = function()
-        lspconfig.tsserver.setup({
+    ["ts_ls"] = function()
+        lspconfig.ts_ls.setup({
             on_attach = on_attach,
             init_options = {
                 preferences = {

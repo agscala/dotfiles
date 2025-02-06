@@ -217,4 +217,6 @@ return {
             { "gll", "<cmd>CodeLink<cr>", desc = "Get link to source code" },
         },
 	},
+
+    {'akinsho/git-conflict.nvim', version = "*", config = true}
 }
