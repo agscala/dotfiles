@@ -34,15 +34,15 @@ return {
                 } },
                 { 'f',
                     { -- telescope pickers
-                        { 't', ":NvimTreeFindFileToggle<CR>",                           { noremap = true, silent = true } },
+                        -- { 't', ":NvimTreeFindFileToggle<CR>",                           { noremap = true, silent = true } },
                         { 'u', ":UndotreeToggle<CR>" },
-                        { 'f', "<Cmd>lua require('telescope.builtin').find_files()<CR>" },
+                        -- { 'f', "<Cmd>lua require('telescope.builtin').find_files()<CR>" },
                         { 's', "<Cmd>lua require('telescope.builtin').live_grep()<CR>" },
-                        { 'b', "<Cmd>lua require('telescope.builtin').buffers()<CR>" },
-                        { 'h', "<Cmd>lua require('telescope.builtin').help_tags()<CR>" },
-                        { 'o', "<Cmd>lua require('telescope.builtin').oldfiles()<CR>" },
-                        { 'e', "<Cmd>lua require('telescope.builtin').symbols() <CR>" },
-                        { 'r', "<Cmd>lua require('telescope.builtin').resume() <CR>" }
+                        -- { 'b', "<Cmd>lua require('telescope.builtin').buffers()<CR>" },
+                        -- { 'h', "<Cmd>lua require('telescope.builtin').help_tags()<CR>" },
+                        -- { 'o', "<Cmd>lua require('telescope.builtin').oldfiles()<CR>" },
+                        -- { 'e', "<Cmd>lua require('telescope.builtin').symbols() <CR>" },
+                        -- { 'r', "<Cmd>lua require('telescope.builtin').resume() <CR>" }
                     } },
                 { 'g', { -- git stuff
                     { 'm', "<Cmd>GitMessenger<CR>" }, { 'b', "<Cmd>Git blame<CR>" },

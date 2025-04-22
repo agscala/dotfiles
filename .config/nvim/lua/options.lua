@@ -4,6 +4,7 @@ vim.opt.wildignore = '*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/.node
 vim.opt.tm = 500
 -- vim.opt.fileformats="unix,dos,mac"
 
+vim.opt.autochdir = false
 vim.opt.autowrite = true           -- Enable auto write
 vim.opt.clipboard = "unnamedplus"  -- Sync with system clipboard
 vim.opt.completeopt = "menu,menuone,noselect"

@@ -19,6 +19,8 @@ return {
 		-- See the full "keymap" documentation for information on defining your own keymap.
 		keymap = { preset = "default" },
 
+		signature = { enabled = true },
+
 		appearance = {
 			-- Sets the fallback highlight groups to nvim-cmp's highlight groups
 			-- Useful for when your theme doesn't support blink.cmp
@@ -33,6 +35,10 @@ return {
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
+		},
+
+		completion = {
+			documentation = { auto_show = true, auto_show_delay_ms = 500 },
 		},
 	},
 	opts_extend = { "sources.default" },

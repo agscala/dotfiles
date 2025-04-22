@@ -114,7 +114,6 @@ return {
 			})
 		end,
 	},
-	--{ "echasnovski/mini.comment", config = {}},
 	{
 		"numToStr/Comment.nvim",
 		keys = {
@@ -213,10 +212,10 @@ return {
 				return 'echo "' .. link .. '" | pbcopy'
 			end,
 		},
-        keys = {
-            { "gll", "<cmd>CodeLink<cr>", desc = "Get link to source code" },
-        },
+		keys = {
+			{ "gll", "<cmd>CodeLink<cr>", desc = "Get link to source code" },
+		},
 	},
 
-    {'akinsho/git-conflict.nvim', version = "*", config = true}
+	{ "akinsho/git-conflict.nvim", version = "*", config = true },
 }
