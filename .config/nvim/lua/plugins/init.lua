@@ -161,12 +161,6 @@ return {
 		lazy = false, -- This plugin is already lazy
 	},
 	{
-		"ahmedkhalf/project.nvim",
-		config = function()
-			require("project_nvim").setup({})
-		end,
-	},
-	{
 		"Bekaboo/dropbar.nvim",
 		-- optional, but required for fuzzy finder support
 		dependencies = {
