@@ -1,10 +1,16 @@
 return {
-    'neovim/nvim-lspconfig',
-    config = function()
-        require "nvim-lspconfig"
-        --require("lsp_lines").setup()
-    end,
-    --dependencies = {
-        --'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-    --}
+	"mason-org/mason-lspconfig.nvim",
+	opts = {
+		ensure_installed = {
+			"bashls",
+			"lua_ls",
+			"ts_ls",
+			"stylelint_lsp",
+			"css_variables",
+		},
+	},
+	dependencies = {
+		{ "mason-org/mason.nvim", opts = {} },
+		"neovim/nvim-lspconfig",
+	},
 }

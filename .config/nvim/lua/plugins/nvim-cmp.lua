@@ -1,13 +1,12 @@
 return {
 	"hrsh7th/nvim-cmp",
-    enabled = true,
+	enabled = true,
 	version = false, -- last release is way too old
 	event = "InsertEnter",
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
-		"saadparwaiz1/cmp_luasnip",
 		{
 			"jdrupal-dev/css-vars.nvim",
 			opts = {
@@ -22,7 +21,6 @@ return {
 	lazy = false,
 	opts = function()
 		local cmp = require("cmp")
-		local luasnip = require("luasnip")
 
 		local has_words_before = function()
 			unpack = unpack or table.unpack
@@ -34,11 +32,6 @@ return {
 			completion = {
 				completeopt = "menu,menuone,noinsert",
 				autocomplete = false,
-			},
-			snippet = {
-				expand = function(args)
-					require("luasnip").lsp_expand(args.body)
-				end,
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -53,23 +46,14 @@ return {
 					select = true,
 				}),
 				["<Tab>"] = cmp.mapping(function(fallback)
-					if luasnip.expand_or_jumpable() then
-						luasnip.expand_or_jump()
-					else
-						fallback()
-					end
+					fallback()
 				end, { "i", "s" }),
 				["<S-Tab>"] = cmp.mapping(function(fallback)
-					if luasnip.jumpable(-1) then
-						luasnip.jump(-1)
-					else
-						fallback()
-					end
+					fallback()
 				end, { "i", "s" }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 			}),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
 				{ name = "buffer" },
 				{ name = "path" },
 				{

@@ -54,6 +54,7 @@ end
 
 --vim.cmd.colorscheme "catppuccin"
 vim.cmd.colorscheme("catppuccin")
+require("custom-highlights")
 
 -- git-messenger
 vim.api.nvim_exec(
