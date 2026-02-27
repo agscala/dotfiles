@@ -169,6 +169,7 @@ return {
 	},
 	{
 		"mistricky/codesnap.nvim",
+        enabled = false,
 		build = "make",
 
 		-- keys = {
@@ -212,4 +213,5 @@ return {
 	},
 
 	{ "akinsho/git-conflict.nvim", version = "*", config = true },
+	{ "serhez/bento.nvim", opts = {} },
 }
