@@ -1,0 +1,4 @@
+# Fisher-managed plugin files - reinstall with `fisher update`
+completions/
+conf.d/
+functions/
