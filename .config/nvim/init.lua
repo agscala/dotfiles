@@ -27,6 +27,7 @@ vim.g.loaded_netrwPlugin = 1
 -- load all plugins
 --require "misc-utils"
 require("config-windline")
+require("lsp")
 
 require("options")
 require("keymaps")

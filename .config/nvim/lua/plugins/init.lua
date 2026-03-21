@@ -7,11 +7,7 @@ return {
 	"norcalli/nvim-colorizer.lua",
 	--'nathom/filetype.nvim',
 	"pantharshit00/vim-prisma",
-	-- lsp stuff
-	--
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
-	"neovim/nvim-lspconfig",
+	-- lsp stuff (defined in lua/lsp.lua and lua/plugins/lspconfig.lua)
 	{
 		"hrsh7th/cmp-nvim-lsp",
 	},

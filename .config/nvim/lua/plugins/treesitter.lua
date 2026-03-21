@@ -21,7 +21,10 @@ return {
         "lua",
         "json",
         "python",
-        "vimdoc"
+        "vimdoc",
+        "gdscript",
+        "godot_resource",
+        "gdshader"
       },
       highlight = {
         enable = true,

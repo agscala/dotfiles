@@ -18,6 +18,7 @@ return {
 
 			-- run on files without a configured formatter
 			["_"] = { "trim_whitespace" },
+			gdscript = { "gdformat" },
 		},
 	},
 	init = function()
