@@ -165,7 +165,7 @@ return {
 	},
 	{
 		"mistricky/codesnap.nvim",
-        enabled = false,
+		enabled = false,
 		build = "make",
 
 		-- keys = {
