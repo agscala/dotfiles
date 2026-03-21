@@ -10,7 +10,19 @@ return {
 		},
 	},
 	dependencies = {
-		{ "mason-org/mason.nvim", opts = {} },
+		{
+			"mason-org/mason.nvim",
+			opts = {
+				ensure_installed = {
+					"stylua",
+					"prettierd",
+					"prettier",
+					"black",
+					"isort",
+					"codespell",
+				},
+			},
+		},
 		"neovim/nvim-lspconfig",
 	},
 }
