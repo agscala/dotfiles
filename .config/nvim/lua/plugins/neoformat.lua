@@ -14,5 +14,5 @@ return {
 			["_"] = { "trim_whitespace" },
 			gdscript = { "gdformat" },
 		},
-		},
-	}
+	},
+}
