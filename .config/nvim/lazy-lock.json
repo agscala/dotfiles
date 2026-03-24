@@ -29,6 +29,7 @@
   "git-conflict.nvim": { "branch": "main", "commit": "4bbfdd92d547d2862a75b4e80afaf30e73f7bbb4" },
   "gitlab.nvim": { "branch": "main", "commit": "19c688309a8a101d7506c626ba12a16ac93baf21" },
   "gitsigns.nvim": { "branch": "main", "commit": "7c4faa3540d0781a28588cafbd4dd187a28ac6e3" },
+  "godot.nvim": { "branch": "main", "commit": "35f63ace3c3a5a2cf8f36a0a0da569a14a69fab6" },
   "godotdev.nvim": { "branch": "master", "commit": "177b571b88e2248bb1568f4a0ae07cea20768125" },
   "haskell-tools.nvim": { "branch": "master", "commit": "65d6993eba1a56bbd5211ef13a100d26ce3e644a" },
   "indent-blankline.nvim": { "branch": "master", "commit": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03" },

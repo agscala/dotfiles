@@ -31,6 +31,8 @@ require("lsp")
 
 require("options")
 require("keymaps")
+require("debugging")
+require("godot")
 
 -- NEOVIDE
 if vim.g.neovide then
