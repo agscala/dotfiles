@@ -210,4 +210,5 @@ return {
 
 	{ "akinsho/git-conflict.nvim", version = "*", config = true },
 	{ "serhez/bento.nvim", opts = {} },
+    { "sindrets/diffview.nvim", opts = {} },
 }

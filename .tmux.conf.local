@@ -410,3 +410,8 @@ tmux_conf_update_plugins_on_reload=true
 #
 # "$@"
 # # /!\ do not remove the previous line
+
+# -- custom keybindings --------------------------------------------------------
+
+# set session default directory to current pane's working directory
+bind M-c attach-session -t . -c "#{pane_current_path}" \; display "Default directory: #{pane_current_path}"
