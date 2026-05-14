@@ -1,0 +1,9 @@
+[Application Options]
+; start in compact diff mode (small context around changes)
+compact = true
+
+; enable vim-style motion preset (counts, gg, G, zz/zt/zb, ZZ/ZQ)
+vim-motion = true
+
+; file tree panel width in units (1-10, default 2 of 10)
+tree-width = 4
