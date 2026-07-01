@@ -1,0 +1,126 @@
+{
+  "version": 3,
+  "workspaces": [
+    {
+      "id": "w1",
+      "custom_name": null,
+      "identity_cwd": "/Users/agscala/workspace/scratch",
+      "public_pane_numbers": {
+        "3": 2,
+        "5": 5,
+        "1": 1,
+        "4": 4,
+        "2": 3,
+        "6": 6
+      },
+      "next_public_pane_number": 7,
+      "public_tab_numbers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "next_public_tab_number": 5,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Split": {
+              "direction": "Horizontal",
+              "ratio": 0.3869565,
+              "first": {
+                "Pane": 1
+              },
+              "second": {
+                "Pane": 2
+              }
+            }
+          },
+          "panes": {
+            "1": {
+              "cwd": "/Users/agscala/workspace/scratch",
+              "agent_session": {
+                "source": "herdr:claude",
+                "agent": "claude",
+                "kind": "id",
+                "value": "5f874800-1fa2-4f02-a2e5-8e6c66d73b59"
+              }
+            },
+            "2": {
+              "cwd": "/Users/agscala/workspace/scratch"
+            }
+          },
+          "zoomed": false,
+          "focused": 1,
+          "root_pane": 1
+        },
+        {
+          "custom_name": "investigate identity package",
+          "layout": {
+            "Split": {
+              "direction": "Horizontal",
+              "ratio": 0.5,
+              "first": {
+                "Pane": 3
+              },
+              "second": {
+                "Pane": 4
+              }
+            }
+          },
+          "panes": {
+            "4": {
+              "cwd": "/Users/agscala/workspace/identity"
+            },
+            "3": {
+              "cwd": "/Users/agscala/workspace/identity",
+              "agent_session": {
+                "source": "herdr:claude",
+                "agent": "claude",
+                "kind": "id",
+                "value": "eaeafa3d-3306-4ba7-b70e-c0131e89f446"
+              }
+            }
+          },
+          "zoomed": false,
+          "focused": 3,
+          "root_pane": 3
+        },
+        {
+          "custom_name": "Fetch Research",
+          "layout": {
+            "Pane": 5
+          },
+          "panes": {
+            "5": {
+              "cwd": "/Users/agscala/workspace/all-of-zapier"
+            }
+          },
+          "zoomed": false,
+          "focused": 5,
+          "root_pane": 5
+        },
+        {
+          "custom_name": "herdr config",
+          "layout": {
+            "Pane": 6
+          },
+          "panes": {
+            "6": {
+              "cwd": "/Users/agscala/workspace/scratch"
+            }
+          },
+          "zoomed": false,
+          "focused": 6,
+          "root_pane": 6
+        }
+      ],
+      "active_tab": 3
+    }
+  ],
+  "active": 0,
+  "selected": 0,
+  "sidebar_width": 24,
+  "sidebar_section_split": 0.26415095,
+  "collapsed_space_keys": []
+}
