@@ -17,4 +17,5 @@ return {
 
   enable_tab_bar = false,
 
+  window_decorations = "RESIZE",
 }
