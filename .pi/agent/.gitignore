@@ -1,0 +1,4 @@
+# pi: track config only, ignore secrets + generated state
+*
+!.gitignore
+!settings.json
