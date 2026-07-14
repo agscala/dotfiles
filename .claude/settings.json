@@ -1,0 +1,92 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "editorMode": "vim",
+  "enabledPlugins": {
+    "revdiff@revdiff": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "revdiff": {
+      "source": {
+        "repo": "umputun/revdiff",
+        "source": "github"
+      }
+    }
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/agscala/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "*"
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(pnpm test:*)",
+      "Bash(pnpm:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(cat:*)",
+      "mcp__figma__get_design_context",
+      "mcp__figma__get_screenshot",
+      "mcp__figma__get_variable_defs",
+      "Bash(git branch:*)",
+      "Bash(git reset:*)",
+      "Bash(git commit:*)",
+      "Bash(# Remove empty directory if it exists rmdir packages/universal-layout/src/universal-footer/hooks || true # Stage all changes git add -A # Check status again git status --short)",
+      "Bash(# Check if backup branch has CHANGELOG changes git show backup-before-history-rewrite:packages/universal-layout/CHANGELOG.json)",
+      "Bash(# Check out all files from backup to match final state exactly git checkout backup-before-history-rewrite -- . # Check what changed git status --short)",
+      "Bash(# Copy all content from backup to apply modifications cp -r /tmp/ul-rewrite-backup/src/* packages/universal-layout/src/ cp /tmp/ul-rewrite-backup/package.json packages/universal-layout/ # Remove old empty directory rmdir packages/universal-layout/src/universal-footer/hooks || true # Stage all changes git add -A git status --short)",
+      "Bash(# Reset to the second commit \\(after new files added\\) git reset --hard dfeb35101 # First, only update imports in other files \\(not the hooks themselves\\) # Copy over files that import from hooks but aren''t hooks cp /tmp/ul-rewrite-backup/src/index.ts packages/universal-layout/src/ cp /tmp/ul-rewrite-backup/src/types.ts packages/universal-layout/src/ cp /tmp/ul-rewrite-backup/src/mocks/handlers.ts packages/universal-layout/src/mocks/ cp /tmp/ul-rewrite-backup/src/universal-footer/components/UniversalFooter/UniversalFooter.tsx packages/universal-layout/src/universal-footer/components/UniversalFooter/ cp /tmp/ul-rewrite-backup/src/universal-layout/components/AlertBanner/AlertBanner.stories.tsx packages/universal-layout/src/universal-layout/components/AlertBanner/ cp /tmp/ul-rewrite-backup/src/universal-layout/components/AlertBanner/AlertBanner.test.tsx packages/universal-layout/src/universal-layout/components/AlertBanner/ cp /tmp/ul-rewrite-backup/src/universal-layout/components/AlertBanner/useAlertBanner/*.ts packages/universal-layout/src/universal-layout/components/AlertBanner/useAlertBanner/ cp /tmp/ul-rewrite-backup/src/universal-layout/components/UniversalLayout/UniversalLayout.tsx packages/universal-layout/src/universal-layout/components/UniversalLayout/ cp /tmp/ul-rewrite-backup/src/universal-layout/components/UniversalLayout/index.ts packages/universal-layout/src/universal-layout/components/UniversalLayout/ cp /tmp/ul-rewrite-backup/src/universal-layout/hooks/index.ts packages/universal-layout/src/universal-layout/hooks/ cp /tmp/ul-rewrite-backup/src/universal-layout/hooks/useMutationSetHasSeenJobsCta.ts packages/universal-layout/src/universal-layout/hooks/ cp /tmp/ul-rewrite-backup/src/universal-layout/hooks/__tests__/useMutationSetHasSeenJobsCta.test.tsx packages/universal-layout/src/universal-layout/hooks/__tests__/ cp /tmp/ul-rewrite-backup/src/universal-nav/components/UniversalNav.test.tsx packages/universal-layout/src/universal-nav/components/ cp /tmp/ul-rewrite-backup/src/universal-nav/components/UniversalSidebar/InAppSidebar/Footer.tsx packages/universal-layout/src/universal-nav/components/UniversalSidebar/InAppSidebar/ cp /tmp/ul-rewrite-backup/src/universal-nav/components/UniversalSidebar/InAppSidebar/InAppSidebar.tsx packages/universal-layout/src/universal-nav/components/UniversalSidebar/InAppSidebar/ cp /tmp/ul-rewrite-backup/src/universal-nav/hooks/index.ts packages/universal-layout/src/universal-nav/hooks/ cp /tmp/ul-rewrite-backup/src/universal-nav/hooks/__tests__/useUniversalNavContext.test.tsx packages/universal-layout/src/universal-nav/hooks/__tests__/ cp /tmp/ul-rewrite-backup/src/universal-nav/hooks/useUniversalNavContext.tsx packages/universal-layout/src/universal-nav/hooks/ cp /tmp/ul-rewrite-backup/src/universal-nav/types.ts packages/universal-layout/src/universal-nav/ cp /tmp/ul-rewrite-backup/package.json packages/universal-layout/ rmdir packages/universal-layout/src/universal-footer/hooks || true git add -A git status --short)",
+      "Bash(# Reset to the first commit \\(pure moves\\) git reset --hard 0aee1b954 # Now apply ALL remaining changes in one commit cp -r /tmp/ul-rewrite-backup/src/* packages/universal-layout/src/ cp /tmp/ul-rewrite-backup/package.json packages/universal-layout/ rmdir packages/universal-layout/src/universal-footer/hooks || true git add -A git status --short)",
+      "mcp__zinnia-prod__query-database",
+      "mcp__zinnia-insights__query-database",
+      "Bash(git show:*)",
+      "Bash(grep:*)",
+      "Bash(git checkout:*)",
+      "Bash(git pull:*)",
+      "Bash(glab mr create:*)",
+      "Bash(git add:*)",
+      "mcp__design-system-mcp__get_component_docs",
+      "Bash(glab mr update 2722 --description \"$\\(cat <<''EOF''\n## Summary\n\nAdds a new MCP \\(Model Context Protocol\\) server package that provides AI assistants with access to Zinnia Design System documentation.\n\n### What''s included\n\n- **MCP server** \\(`@zapier/design-system-mcp`\\) with 6 tools:\n  - `list_components` - Browse components by package\n  - `get_component_docs` - Full component documentation with props\n  - `list_tokens` - List semantic/primitive token categories\n  - `get_token_docs` - Token values in CSS/JS/SCSS formats\n  - `get_layout_docs` - Universal layout hooks, types, constants\n  - `search` - Full-text search across all documentation\n\n- **Documentation extractors** that parse source code to generate docs:\n  - Component extraction from `@zapier/design-system`, `@zapier/design-system-beta`, `@zapier/universal-layout`\n  - Token extraction from `@zapier/design-tokens`\n  - Universal layout hooks, types, and constants extraction\n  - Supernova docs indexing \\(temporary, easily removable\\)\n\n- **SQLite FTS5 search index** for fast full-text search\n\n- **Tool descriptions** that guide AI assistants toward best practices:\n  - Use design tokens instead of hardcoded values\n  - Check for deprecated components and use replacements\n  - Follow accessibility requirements \\(contrast, touch targets, labels\\)\n  - Prefer semantic tokens over primitives\n\n## Quick Start\n\n### Claude Code\n\nAdd to `.mcp.json` \\(project-level\\) or `~/.claude/settings.json` \\(user-level\\):\n\n```json\n{\n  \"mcpServers\": {\n    \"design-system-mcp\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@zapier/design-system-mcp\"]\n    }\n  }\n}\n```\n\nThen restart Claude Code or run `/mcp` to connect.\n\n### Cursor\n\nAdd to `.cursor/mcp.json` \\(project-level\\) or `~/.cursor/mcp.json` \\(user-level\\):\n\n```json\n{\n  \"mcpServers\": {\n    \"design-system-mcp\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@zapier/design-system-mcp\"]\n    }\n  }\n}\n```\n\nThen restart Cursor to connect.\n\n## Test plan\n\n- [ ] Run `pnpm build` in `packages/design-system-mcp`\n- [ ] Connect MCP server to Claude Code or Cursor\n- [ ] Test `list_components` returns component list\n- [ ] Test `get_component_docs` returns markdown with props\n- [ ] Test `search` returns relevant results\n- [ ] Verify tool descriptions appear in MCP client\n\n🤖 Generated with [Claude Code]\\(https://claude.ai/code\\)\nEOF\n\\)\")",
+      "mcp__design-system-mcp__get_universal_layout_docs",
+      "mcp__design-system-mcp__list_components",
+      "Bash(git stash:*)",
+      "Bash(glab mr view:*)",
+      "Bash(tree:*)",
+      "Bash(git mv:*)",
+      "mcp__zinnia-mcp__search",
+      "Bash(curl:*)",
+      "Bash(git fetch:*)",
+      "Bash(git rm:*)",
+      "Bash(npx jest:*)",
+      "Bash(git merge:*)",
+      "Bash(acli jira:*)",
+      "Bash(git log:*)",
+      "mcp__chrome-devtools__navigate",
+      "Bash(npx vitest:*)"
+    ],
+    "defaultMode": "plan",
+    "deny": []
+  },
+  "skipAutoPermissionPrompt": true,
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-daltonized",
+  "statusLine": {
+    "type": "command",
+    "command": "ccstatusline",
+    "padding": 0,
+    "refreshInterval": 10
+  }
+}

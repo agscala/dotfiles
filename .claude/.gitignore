@@ -1,0 +1,12 @@
+# Ignore everything under ~/.claude by default...
+*
+# ...except the portable config we sync via yadm
+!.gitignore
+!CLAUDE.md
+!settings.json
+!hooks/
+!hooks/**
+!skills/
+!skills/**
+# keep OS cruft out even within allowed dirs
+.DS_Store
