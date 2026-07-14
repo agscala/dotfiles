@@ -15,9 +15,13 @@
     "npm:@quintinshaw/pi-dynamic-workflows",
     "npm:@dietrichgebert/ponytail",
     "npm:pi-intercom",
-    "npm:pi-vimmode"
+    "npm:pi-vimmode",
+    "npm:@narumitw/pi-statusline",
+    "npm:@zigai/pi-footer",
+    "npm:@ogulcancelik/pi-herdr"
   ],
   "theme": "dark",
   "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-8"
+  "defaultModel": "claude-opus-4-8",
+  "hideThinkingBlock": true
 }
