@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.80.6",
+  "lastChangelogVersion": "0.80.10",
   "packages": [
     "npm:pi-subagents",
     "npm:pi-mcp-adapter",
@@ -18,10 +18,15 @@
     "npm:pi-vimmode",
     "npm:@narumitw/pi-statusline",
     "npm:@zigai/pi-footer",
-    "npm:@ogulcancelik/pi-herdr"
+    "npm:@ogulcancelik/pi-herdr",
+    "npm:@tifan/pi-rename",
+    "npm:@yassimba/pi-herdr-worktree",
+    "git:github.com/EmilioAK/pi-claude-style-scroll",
+    "npm:@d3ara1n/pi-session-namer"
   ],
   "theme": "dark",
   "defaultProvider": "anthropic",
   "defaultModel": "claude-opus-4-8",
-  "hideThinkingBlock": true
+  "hideThinkingBlock": true,
+  "defaultThinkingLevel": "high"
 }

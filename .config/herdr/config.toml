@@ -107,8 +107,8 @@ default_shell = "fish"
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
-# navigate_workspace_up = "up"
-# navigate_workspace_down = "down"
+navigate_workspace_up = ["up", "ctrl+k"]
+navigate_workspace_down = ["down", "ctrl+j"]
 # navigate_pane_left = "h"      # left arrow always focuses the pane to the left
 # navigate_pane_down = "j"
 # navigate_pane_up = "k"
@@ -195,6 +195,7 @@ description = "Toggle diff"
 
 # Background notification popup delivery
 agent_panel_sort = "priority"
+show_agent_labels_on_pane_borders = true
 [ui.toast]
 # off = disable pop-up notifications
 # herdr = show in-app toasts

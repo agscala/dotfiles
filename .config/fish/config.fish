@@ -57,3 +57,6 @@ set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; se
 # opencode
 fish_add_path /Users/agscala/.opencode/bin
 export PATH="$HOME/.zdocs/bin:$PATH"
+
+# Pi
+fish_add_path "/Users/agscala/.asdf/installs/nodejs/24.18.0/bin"
