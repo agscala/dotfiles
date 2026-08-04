@@ -29,15 +29,15 @@ return {
 			},
 		})
 
-		vim.keymap.set("v", "<leader>9v", function()
+		vim.keymap.set("v", "<leader>av", function()
 			_99.visual()
 		end, { desc = "99: visual" })
 
-		vim.keymap.set("n", "<leader>9x", function()
+		vim.keymap.set("n", "<leader>ax", function()
 			_99.stop_all_requests()
 		end, { desc = "99: stop all requests" })
 
-		vim.keymap.set("n", "<leader>9s", function()
+		vim.keymap.set("n", "<leader>as", function()
 			_99.search()
 		end, { desc = "99: search" })
 	end,
