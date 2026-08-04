@@ -1,5 +1,4 @@
 {
-  "99": { "branch": "master", "commit": "c17422457027c913c76c75a921fca1e623d2678e" },
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "FixCursorHold.nvim": { "branch": "master", "commit": "1900f89dc17c603eec29960f57c00bd9ae696495" },
   "aerial.nvim": { "branch": "master", "commit": "28fe6e822ae344544c379d60fcb13c9519a1f08a" },
@@ -12,6 +11,7 @@
   "cmp-path": { "branch": "main", "commit": "c642487086dbd9a93160e1679a1327be111cbc25" },
   "cmp-vsnip": { "branch": "main", "commit": "989a8a73c44e926199bfd05fa7a516d51f2d2752" },
   "code-link.nvim": { "branch": "main", "commit": "b34a455dda83b882201b971bb2bd655bdba0e377" },
+  "codecompanion.nvim": { "branch": "main", "commit": "b27a1a734fdaf73e40328091cb5929d65aaa09e9" },
   "codesnap.nvim": { "branch": "main", "commit": "31b5dbc353ce0823086273abb6e82f3dcbb9e4f8" },
   "committia.vim": { "branch": "master", "commit": "c8c0f255e8090ed90dd9d5dd2e8672994f8e3671" },
   "conform.nvim": { "branch": "master", "commit": "619363c30309d29ffa631e67c8183f2a72caa373" },
