@@ -1,5 +1,10 @@
 return {
 	"ThePrimeagen/99",
+	keys = {
+		{ "<leader>av", function() require("99").visual() end, mode = "v", desc = "99: visual" },
+		{ "<leader>ax", function() require("99").stop_all_requests() end, mode = "n", desc = "99: stop all requests" },
+		{ "<leader>as", function() require("99").search() end, mode = "n", desc = "99: search" },
+	},
 	config = function()
 		local _99 = require("99")
 
@@ -29,16 +34,5 @@ return {
 			},
 		})
 
-		vim.keymap.set("v", "<leader>av", function()
-			_99.visual()
-		end, { desc = "99: visual" })
-
-		vim.keymap.set("n", "<leader>ax", function()
-			_99.stop_all_requests()
-		end, { desc = "99: stop all requests" })
-
-		vim.keymap.set("n", "<leader>as", function()
-			_99.search()
-		end, { desc = "99: search" })
 	end,
 }
