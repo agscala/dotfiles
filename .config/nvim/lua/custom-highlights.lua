@@ -80,15 +80,3 @@ cmd "hi LightspeedUniqueChar guifg=#b6bdca"
 -- cmd "hi LightspeedCursor guifg=#ff0000"
 
 
--- avante
--- Override the linked highlight groups with custom colors
--- First, clear any existing links
-cmd "hi clear AvanteSidebarNormal"
-cmd "hi clear AvanteSidebarWinSeparator"
-cmd "hi clear AvanteSidebarWinHorizontalSeparator"
-
--- Then define them with your own colors
-cmd "hi AvanteSidebarNormal guibg=#1a2b4a guifg=#ffffff"  -- Dark blue background with white text
-cmd "hi AvanteSidebarWinSeparator guifg=#2a3b5a guibg=#1a2b4a"  -- Sidebar window separator
-cmd "hi AvanteSidebarWinHorizontalSeparator guifg=#2a3b5a guibg=#1a2b4a"  -- Horizontal separator
-
