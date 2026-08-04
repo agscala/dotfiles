@@ -8,17 +8,23 @@ return {
 		require("codecompanion").setup({
 			strategies = {
 				chat = {
-					adapter = "gemini",
+					adapter = "antigravity",
 				},
 				inline = {
-					adapter = "gemini",
+					adapter = "antigravity",
 				},
 			},
 			adapters = {
-				gemini = function()
+				antigravity = function()
 					return require("codecompanion.adapters").extend("gemini", {
+						name = "antigravity",
 						env = {
 							api_key = "GEMINI_API_KEY",
+						},
+						schema = {
+							model = {
+								default = "google-antigravity/gemini-3.1-pro",
+							},
 						},
 					})
 				end,
