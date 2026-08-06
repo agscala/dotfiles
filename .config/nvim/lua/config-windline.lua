@@ -284,3 +284,18 @@ windline.setup({
         -- winbar,
     },
 })
+
+
+
+-- Fix: Prevent WindLine from forcing a local statusline on floating windows
+-- (which causes a statusline to overlap snacks.nvim pickers)
+local M = require('windline')
+local old_on_win_enter = M.on_win_enter
+M.on_win_enter = function(bufnr, winid)
+    winid = winid or vim.api.nvim_get_current_win()
+    if vim.api.nvim_win_is_valid(winid) and vim.api.nvim_win_get_config(winid).relative ~= '' then
+        -- It's a floating window, abort early so we don't set a local statusline
+        return
+    end
+    return old_on_win_enter(bufnr, winid)
+end

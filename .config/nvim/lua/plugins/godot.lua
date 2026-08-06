@@ -1,4 +1,4 @@
 return {
   'Mathijs-Bakker/godotdev.nvim',
-  dependencies = { 'nvim-lspconfig', 'nvim-dap', 'nvim-dap-ui', 'nvim-treesitter' },
+  dependencies = { "nvim-treesitter/nvim-treesitter", 'nvim-lspconfig', 'nvim-dap', 'nvim-dap-ui',  },
 }

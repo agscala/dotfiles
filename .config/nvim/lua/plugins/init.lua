@@ -29,7 +29,7 @@ return {
 	"stevearc/dressing.nvim", -- unifies ui elements
 	"mbbill/undotree",
 	"onsails/lspkind-nvim", -- lsp completion icons
-	"nvim-lua/plenary.nvim", -- useful lua functions
+	"nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", -- useful lua functions
 	"j-hui/fidget.nvim", -- LSP status indicator in bottom right
 	-- use 'akinsho/nvim-bufferline.lua'
 	--{
@@ -43,7 +43,7 @@ return {
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.0",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
+			"nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
 		},
 	},
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -74,8 +74,7 @@ return {
 	{
 		"nvim-neotest/neotest",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
+			"nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
 			"antoinemadec/FixCursorHold.nvim",
 			"haydenmeade/neotest-jest",
 		},
@@ -146,6 +145,7 @@ return {
 			})
 		end,
 		dependencies = {
+	"nvim-treesitter/nvim-treesitter-textobjects",
 			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
 	},
