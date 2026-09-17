@@ -1,3 +1,8 @@
+# Homebrew (adds /opt/homebrew/bin + sbin to PATH, sets MANPATH/HOMEBREW_PREFIX, etc.)
+if test -x /opt/homebrew/bin/brew
+    /opt/homebrew/bin/brew shellenv | source
+end
+
 alias vim 'nvim'
 alias vi 'nvim'
 alias vault 'aws-vault exec zapier --'

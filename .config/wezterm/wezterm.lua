@@ -4,7 +4,12 @@ local wezterm = require 'wezterm';
 
 return {
   -- font = wezterm.font("FiraCode Nerd Font"),
-  font = wezterm.font("JetBrainsMono Nerd Font Mono"),
+  -- Primary font sets cell metrics + normal glyphs; the herdr-radar icon font
+  -- supplies the agent vendor logos (U+E1A0-E1B3, U+E1C0-E1C5).
+  font = wezterm.font_with_fallback({
+    "JetBrainsMono Nerd Font Mono",
+    "Herdr Agent Icons Max",
+  }),
   underline_position = -3,
   underline_thickness = 2,
   font_size = 16,

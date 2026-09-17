@@ -1,0 +1,10 @@
+# herdr-radar settings
+# follow_appearance = false: do not poll macOS light/dark. Instead, the plugin's
+# sidebar colours follow whichever herdr [theme] name is configured (catppuccin = dark).
+follow_appearance = false
+
+# variant = "font": emit the bundled icon-font glyphs (vendor logos) instead of
+# plain text symbols. On macOS "auto" stays conservative and uses text because
+# there's no font-reachability query — but the font is installed and WezTerm is
+# configured to render it, so force font.
+variant = "font"
