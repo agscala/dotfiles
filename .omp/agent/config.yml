@@ -1,0 +1,32 @@
+symbolPreset: unicode
+theme:
+  dark: AndrewScala
+  light: light
+setupVersion: 2
+hideThinkingBlock: true
+composer:
+  shape: pi
+memory:
+  backend: "off"
+modelRoles:
+  smol: vercel-ai-gateway/deepseek/deepseek-v4.1-flash
+  default: openai/gpt-6-sol
+  advisor: openai/gpt-6-sol
+astGrep:
+  enabled: true
+statusLine:
+  preset: default
+  separator: powerline-thin
+display:
+  cacheMissMarker: true
+tui:
+  vimMode: true
+  vimModeDisplay: text
+spelling:
+  typoDetection: false
+  autocomplete: false
+startup:
+  quiet: true
+  setupWizard: false
+marketplace:
+  autoUpdate: notify
